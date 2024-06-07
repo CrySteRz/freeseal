@@ -12,8 +12,10 @@
 /utils/*.pem
 /utils/*.p12
 /utils/*.txt
+/log
+/attachments
 
-yarn.lock
+*.lock
 
 # Used by dotenv library to load environment variables.
 # .env

@@ -1,0 +1,304 @@
+en: &en
+  email: Email
+  verification_code_code: 'Verification code: %{code}'
+  digitally_signed_by: Digitally signed by
+  role: Role
+  provide_your_email_to_start: Provide your email to start
+  start: Start
+  starting: Starting
+  form_has_been_deleted_by_html: 'Form has been deleted by <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Invited by <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: You have been invited to submit a form
+  signed_on_time: 'Signed on %{time}'
+  form_has_been_submitted_already: Form has been submitted already
+  send_copy_to_email: Send copy to Email
+  sending: Sending
+  resubmit: Resubmit
+  form_has_been_deleted_by_html: 'Form has been deleted by <span class="font-semibold">%{name}</span>.'
+  or: or
+  download_documents: Download documents
+  downloading: Downloading
+  completed_successfully: Completed Successfully
+
+es: &es
+  role: Rol
+  verification_code_code: 'Código de verificación: %{code}'
+  email: Correo electrónico
+  digitally_signed_by: Firmado digitalmente por
+  role: Rol
+  provide_your_email_to_start: Proporciona tu correo electrónico para comenzar
+  start: Comenzar
+  starting: Comenzando
+  form_has_been_deleted_by_html: 'El formulario ha sido eliminado por <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Invitado por <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Has sido invitado/a a enviar un formulario
+  signed_on_time: 'Firmado en %{time}'
+  form_has_been_submitted_already: El formulario ya ha sido enviado
+  send_copy_to_email: Enviar copia a Correo electrónico
+  sending: Enviando
+  resubmit: Reenviar
+  or: o
+  download_documents: Descargar documentos
+  downloading: Descargando
+  completed_successfully: Completado exitosamente
+
+it:
+  role: Rôle
+  verification_code_code: 'Codice di verifica: %{code}'
+  email: Email
+  digitally_signed_by: Firmato digitalmente da
+  role: Ruolo
+  provide_your_email_to_start: Fornisci la tua email per iniziare
+  start: Inizia
+  starting: Iniziando
+  form_has_been_deleted_by_html: 'Il modulo è stato eliminato da <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Invitato da <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Sei stato invitato a inviare un modulo
+  signed_on_time: 'Firmato alle %{time}'
+  form_has_been_submitted_already: Il modulo è già stato inviato
+  send_copy_to_email: Invia copia via email
+  sending: Inviando
+  resubmit: Reinvia
+  or: o
+  download_documents: Scarica documenti
+  downloading: Scaricamento
+  completed_successfully: Completato con successo
+
+fr: &fr
+  email: Email
+  verification_code_code: 'Code de vérification: %{code}'
+  digitally_signed_by: Signé numériquement par
+  role: Rôle
+  provide_your_email_to_start: Entrez votre adresse email pour commencer
+  start: Démarrer
+  starting: Démarrage
+  form_has_been_deleted_by_html: 'Le formulaire a été supprimé par <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Invité par <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Vous avez été invité à remplir un formulaire
+  signed_on_time: 'Signé le %{time}'
+  form_has_been_submitted_already: Le formulaire a déjà été complété
+  send_copy_to_email: Envoyer une copie par e-mail
+  sending: Envoi en cours
+  resubmit: Compléter à nouveau
+  or: ou
+  download_documents: Télécharger les documents
+  downloading: Téléchargement
+  completed_successfully: Complété avec succès
+
+pt: &pt
+  role: Função
+  email: Email
+  verification_code_code: 'Código de verificação: %{code}'
+  digitally_signed_by: Assinado digitalmente por
+  role: Função
+  provide_your_email_to_start: Forneça o seu email para começar
+  start: Iniciar
+  starting: Iniciando
+  form_has_been_deleted_by_html: 'O formulário foi eliminado por <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Convidado por <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Foi convidado a submeter um formulário
+  signed_on_time: 'Assinado em %{time}'
+  form_has_been_submitted_already: O formulário já foi submetido
+  send_copy_to_email: Enviar cópia para Email
+  sending: Enviando
+  resubmit: Reenviar
+  or: ou
+  download_documents: Baixar documentos
+  downloading: Baixando
+  completed_successfully: Concluído com sucesso
+
+de: &de
+  role: Rolle
+  verification_code_code: 'Verifizierungscode: %{code}'
+  email: E-Mail
+  digitally_signed_by: Digital signiert von
+  role: Rolle
+  provide_your_email_to_start: Gib deine E-Mail-Adresse ein, um zu starten
+  start: Starten
+  starting: Starten
+  form_has_been_deleted_by_html: 'Das Formular wurde von <span class="font-semibold">%{name}</span> gelöscht.'
+  invited_by_html: 'Eingeladen von <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Du wurdest eingeladen, ein Formular einzureichen
+  signed_on_time: 'Unterzeichnet um %{time}'
+  form_has_been_submitted_already: Formular wurde bereits eingereicht
+  send_copy_to_email: Kopie per E-Mail senden
+  sending: Senden
+  resubmit: Erneut einreichen
+  or: oder
+  download_documents: Dokumente herunterladen
+  downloading: Herunterladen
+  completed_successfully: Erfolgreich abgeschlossen
+
+pl:
+  email: Email
+  verification_code_code: 'Kod weryfikacyjny: %{code}'
+  digitally_signed_by: Podpis cyfrowy przez
+  role: Rola
+  provide_your_email_to_start: Podaj swój adres email, aby rozpocząć
+  start: Rozpocznij
+  starting: Rozpoczynanie
+  form_has_been_deleted_by_html: 'Formularz został usunięty przez <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Zaproszony przez <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Zostałeś zaproszony do przesłania formularza
+  signed_on_time: 'Podpisano %{time}'
+  form_has_been_submitted_already: Formularz został już przesłany
+  send_copy_to_email: Wyślij kopię na Email
+  sending: Wysyłanie
+  resubmit: Prześlij ponownie
+  or: lub
+  download_documents: Pobierz dokumenty
+  downloading: Pobieranie
+  completed_successfully: Zakończono pomyślnie
+
+uk:
+  email: Email
+  digitally_signed_by: Цифровий підпис від
+  verification_code_code: 'Код підтвердження: %{code}'
+  role: Роль
+  provide_your_email_to_start: Введіть свій email, щоб почати
+  start: Почати
+  starting: Початок
+  form_has_been_deleted_by_html: 'Форму було видалено користувачем <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Запрошений користувачем <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Вас запросили подати форму
+  signed_on_time: 'Підписаний %{time}'
+  form_has_been_submitted_already: Форма вже була подана
+  send_copy_to_email: Надіслати копію на Email
+  sending: Надсилання
+  resubmit: Подати знову
+  or: або
+  download_documents: Завантажити документи
+  downloading: Завантаження
+  completed_successfully: Успішно завершено
+
+cs:
+  email: Email
+  digitally_signed_by: Digitálně podepsáno uživatelem
+  verification_code_code: 'Ověřovací kód: %{code}'
+  role: Role
+  provide_your_email_to_start: Zadejte svůj email pro zahájení
+  start: Zahájit
+  starting: Zahajování
+  form_has_been_deleted_by_html: 'Formulář byl smazán uživatelem <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Pozván uživatelem <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: Byli jste pozváni k odeslání formuláře
+  signed_on_time: 'Podepsáno %{time}'
+  form_has_been_submitted_already: Formulář již byl odeslán
+  send_copy_to_email: Odeslat kopii na Email
+  sending: Odesílání
+  resubmit: Odeslat znovu
+  or: nebo
+  download_documents: Stáhnout dokumenty
+  downloading: Stahování
+  completed_successfully: Úspěšně dokončeno
+
+he:
+  email: דוא"ל
+  digitally_signed_by: חתום דיגיטלית על ידי
+  role: תפקיד
+  verification_code_code: 'קוד אימות: %{code}'
+  provide_your_email_to_start: ספק את כתובת הדוא"ל שלך כדי להתחיל
+  start: התחל
+  starting: מתחיל
+  form_has_been_deleted_by_html: 'הטופס נמחק על ידי <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'הוזמן על ידי <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: הוזמנת להגיש טופס
+  signed_on_time: 'חתום ב-%{time}'
+  form_has_been_submitted_already: הטופס כבר נשלח
+  send_copy_to_email: שלח עותק לדוא"ל
+  sending: שולח
+  resubmit: שלח מחדש
+  or: או
+  download_documents: הורד מסמכים
+  downloading: מוריד
+  completed_successfully: הושלם בהצלחה
+
+nl:
+  email: E-mail
+  digitally_signed_by: Digitaal ondertekend door
+  role: Rol
+  verification_code_code: 'Verificatiecode: %{code}'
+  provide_your_email_to_start: Geef uw e-mailadres om te beginnen
+  start: Start
+  starting: Starten
+  form_has_been_deleted_by_html: 'Formulier is verwijderd door <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'Uitgenodigd door <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: U bent uitgenodigd om een formulier in te dienen
+  signed_on_time: 'Ondertekend op %{time}'
+  form_has_been_submitted_already: Formulier is al ingediend
+  send_copy_to_email: Stuur kopie naar E-mail
+  sending: Voltooien
+  resubmit: Opnieuw indienen
+  form_has_been_deleted_by_html: 'Formulier is verwijderd door <span class="font-semibold">%{name}</span>.'
+  or: of
+  download_documents: Documenten downloaden
+  downloading: Downloaden
+  completed_successfully: Succesvol voltooid
+
+ar:
+  email: البريد الإلكتروني
+  digitally_signed_by: تم التوقيع الرقمي بواسطة
+  role: الدور
+  provide_your_email_to_start: قدم بريدك الإلكتروني للبدء
+  start: بدء
+  starting: بداية
+  verification_code_code: 'رمز التحقق: %{code}'
+  form_has_been_deleted_by_html: 'تم حذف الاستمارة بواسطة <span class="font-semibold">%{name}</span>.'
+  invited_by_html: 'تمت الدعوة بواسطة <span class="font-semibold">%{name}</span>'
+  you_have_been_invited_to_submit_a_form: تمت دعوتك لتقديم استمارة
+  signed_on_time: 'تم التوقيع في %{time}'
+  form_has_been_submitted_already: تم تقديم الاستمارة بالفعل
+  send_copy_to_email: إرسال نسخة إلى البريد الإلكتروني
+  sending: جارٍ الإرسال
+  resubmit: إعادة التقديم
+  form_has_been_deleted_by_html: 'تم حذف الاستمارة بواسطة <span class="font-semibold">%{name}</span>.'
+  or: أو
+  download_documents: تحميل الوثائق
+  downloading: جارٍ التحميل
+  completed_successfully: تم الانتهاء بنجاح
+
+ko:
+  email: 이메일
+  digitally_signed_by: 디지털로 서명됨
+  role: 역할
+  provide_your_email_to_start: 시작하려면 이메일을 제공하세요
+  start: 시작
+  starting: 시작 중
+  form_has_been_deleted_by_html: '<span class="font-semibold">%{name}</span>에 의해 양식이 삭제되었습니다.'
+  invited_by_html: '<span class="font-semibold">%{name}</span>에 의해 초대되었습니다.'
+  you_have_been_invited_to_submit_a_form: 양식을 제출하도록 초대되었습니다.
+  verification_code_code: '확인 코드: %{code}'
+  signed_on_time: '%{time}에 서명됨'
+  form_has_been_submitted_already: 양식이 이미 제출되었습니다.
+  send_copy_to_email: 이메일로 사본 보내기
+  sending: 전송 중
+  resubmit: 다시 제출
+  form_has_been_deleted_by_html: '<span class="font-semibold">%{name}</span>에 의해 양식이 삭제되었습니다.'
+  or: 또는
+  download_documents: 문서 다운로드
+  downloading: 다운로드 중
+  completed_successfully: 성공적으로 완료됨
+
+en-US:
+  <<: *en
+  date:
+    formats:
+      default: "%m/%d/%Y"
+
+en-GB:
+  <<: *en
+  date:
+    formats:
+      default: "%d/%m/%Y"
+
+es-ES:
+  <<: *es
+
+fr-FR:
+  <<: *fr
+
+pt-PT:
+  <<: *pt
+
+de-DE:
+  <<: *de
