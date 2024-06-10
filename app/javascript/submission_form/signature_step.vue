@@ -1,21 +1,13 @@
 <template>
-  <div
-    dir="auto"
-    class="relative"
-  >
+  <div dir="auto" class="relative">
     <div
       class="flex justify-between items-center w-full"
       :class="{ 'mb-2': !field.description }"
     >
-      <label
-        class="label text-2xl"
-      >
-        <MarkdownContent
-          v-if="field.title"
-          :string="field.title"
-        />
+      <label class="label text-2xl">
+        <MarkdownContent v-if="field.title" :string="field.title" />
         <template v-else>
-          {{ showFieldNames && field.name ? field.name : t('signature') }}
+          {{ showFieldNames && field.name ? field.name : t("signature") }}
         </template>
       </label>
       <div class="space-x-2 flex">
@@ -32,12 +24,16 @@
           >
             <IconSignature :width="16" />
             <span class="hidden sm:inline">
-              {{ t('draw') }}
+              {{ t("draw") }}
             </span>
           </a>
         </span>
         <span
-          v-else-if="withTypedSignature && field.preferences?.format !== 'typed' && field.preferences?.format !== 'drawn'"
+          v-else-if="
+            withTypedSignature &&
+            field.preferences?.format !== 'typed' &&
+            field.preferences?.format !== 'drawn'
+          "
           class="tooltip ml-2"
           :data-tip="t('type_text')"
         >
@@ -49,7 +45,7 @@
           >
             <IconTextSize :width="16" />
             <span class="hidden sm:inline">
-              {{ t('type') }}
+              {{ t("type") }}
             </span>
           </a>
         </span>
@@ -68,9 +64,9 @@
               hidden
               accept="image/*"
               @change="drawImage"
-            >
+            />
             <span class="hidden sm:inline">
-              {{ t('upload') }}
+              {{ t("upload") }}
             </span>
           </label>
         </span>
@@ -81,7 +77,7 @@
           @click.prevent="remove"
         >
           <IconReload :width="16" />
-          {{ t('redraw') }}
+          {{ t("redraw") }}
         </a>
         <a
           v-else
@@ -90,7 +86,7 @@
           @click.prevent="[clear(), hideQr()]"
         >
           <IconReload :width="16" />
-          {{ t('clear') }}
+          {{ t("clear") }}
         </a>
         <a
           href="#"
@@ -98,18 +94,11 @@
           class="py-1.5 inline md:hidden"
           @click.prevent="$emit('minimize')"
         >
-          <IconArrowsDiagonalMinimize2
-            :width="20"
-            :height="20"
-          />
+          <IconArrowsDiagonalMinimize2 :width="20" :height="20" />
         </a>
       </div>
     </div>
-    <div
-      v-if="field.description"
-      dir="auto"
-      class="mb-3 px-1"
-    >
+    <div v-if="field.description" dir="auto" class="mb-3 px-1">
       <MarkdownContent :string="field.description" />
     </div>
     <AppearsOn :field="field" />
@@ -117,12 +106,12 @@
       :value="modelValue || computedPreviousValue"
       type="hidden"
       :name="`values[${field.uuid}]`"
-    >
+    />
     <img
       v-if="modelValue || computedPreviousValue"
       :src="attachmentsIndex[modelValue || computedPreviousValue].url"
       class="mx-auto bg-white border border-base-300 rounded max-h-72"
-    >
+    />
     <div class="relative">
       <div
         v-if="withQrButton"
@@ -130,7 +119,9 @@
         :data-tip="t('drawn_signature_on_a_touchscreen_device')"
       >
         <a
-          v-if="!isShowQr && !isSignatureStarted && !isTextSignature && !modelValue"
+          v-if="
+            !isShowQr && !isSignatureStarted && !isTextSignature && !modelValue
+          "
           href="#"
           class="btn btn-sm btn-circle btn-ghost"
           @click.prevent="showQr"
@@ -148,9 +139,7 @@
         v-show="isShowQr"
         class="top-0 bottom-0 right-0 left-0 absolute bg-base-content/10 rounded-2xl"
       >
-        <div
-          class="absolute top-1.5 right-1.5 tooltip"
-        >
+        <div class="absolute top-1.5 right-1.5 tooltip">
           <a
             href="#"
             class="btn btn-sm btn-circle btn-normal btn-outline"
@@ -165,10 +154,7 @@
             ref="qr"
             class="bg-white p-4 rounded-xl h-full"
           >
-            <canvas
-              ref="qrCanvas"
-              class="h-full"
-            />
+            <canvas ref="qrCanvas" class="h-full" />
           </div>
         </div>
       </div>
@@ -182,51 +168,63 @@
       :placeholder="`${t('type_signature_here')}...`"
       type="text"
       @input="updateWrittenSignature"
-    >
+    />
     <div
       v-if="isShowQr"
       dir="auto"
       class="text-base-content/60 text-xs text-center w-full mt-1"
     >
-      {{ t('scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature') }}
+      {{
+        t(
+          "scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature"
+        )
+      }}
     </div>
     <div
       v-else-if="withDisclosure"
       dir="auto"
       class="text-base-content/60 text-xs text-center w-full mt-1"
     >
-      {{ t('by_clicking_you_agree_to_the').replace('{button}', buttonText.charAt(0).toUpperCase() + buttonText.slice(1)) }} <a
-        href="https://www.docuseal.co/esign-disclosure"
-        target="_blank"
-      >
+      {{
+        t("by_clicking_you_agree_to_the").replace(
+          "{button}",
+          buttonText.charAt(0).toUpperCase() + buttonText.slice(1)
+        )
+      }}
+      <a href="https://www.uvtsign.co/esign-disclosure" target="_blank">
         <span class="inline md:hidden">
-          {{ t('esignature_disclosure') }}
+          {{ t("esignature_disclosure") }}
         </span>
         <span class="hidden md:inline">
-          {{ t('electronic_signature_disclosure') }}
+          {{ t("electronic_signature_disclosure") }}
         </span>
       </a>
     </div>
-    <div
-      v-else
-      class="mt-5 md:mt-7"
-    />
+    <div v-else class="mt-5 md:mt-7" />
   </div>
 </template>
 
 <script>
-import { IconReload, IconCamera, IconSignature, IconTextSize, IconArrowsDiagonalMinimize2, IconQrcode, IconX } from '@tabler/icons-vue'
-import { cropCanvasAndExportToPNG } from './crop_canvas'
-import SignaturePad from 'signature_pad'
-import AppearsOn from './appears_on'
-import MarkdownContent from './markdown_content'
+import {
+  IconReload,
+  IconCamera,
+  IconSignature,
+  IconTextSize,
+  IconArrowsDiagonalMinimize2,
+  IconQrcode,
+  IconX,
+} from "@tabler/icons-vue";
+import { cropCanvasAndExportToPNG } from "./crop_canvas";
+import SignaturePad from "signature_pad";
+import AppearsOn from "./appears_on";
+import MarkdownContent from "./markdown_content";
 
-let isFontLoaded = false
+let isFontLoaded = false;
 
-const scale = 3
+const scale = 3;
 
 export default {
-  name: 'SignatureStep',
+  name: "SignatureStep",
   components: {
     AppearsOn,
     IconReload,
@@ -236,312 +234,349 @@ export default {
     IconX,
     IconTextSize,
     IconSignature,
-    IconArrowsDiagonalMinimize2
+    IconArrowsDiagonalMinimize2,
   },
-  inject: ['baseUrl', 't'],
+  inject: ["baseUrl", "t"],
   props: {
     field: {
       type: Object,
-      required: true
+      required: true,
     },
     submitterSlug: {
       type: String,
-      required: true
+      required: true,
     },
     showFieldNames: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     withDisclosure: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     withQrButton: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     buttonText: {
       type: String,
       required: false,
-      default: 'Submit'
+      default: "Submit",
     },
     withTypedSignature: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     attachmentsIndex: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
     previousValue: {
       type: String,
       required: false,
-      default: ''
+      default: "",
     },
     modelValue: {
       type: String,
       required: false,
-      default: ''
-    }
+      default: "",
+    },
   },
-  emits: ['attached', 'update:model-value', 'start', 'minimize'],
-  data () {
+  emits: ["attached", "update:model-value", "start", "minimize"],
+  data() {
     return {
       isSignatureStarted: !!this.previousValue,
       isShowQr: false,
       isUsePreviousValue: true,
-      isTextSignature: this.field.preferences?.format === 'typed',
-      uploadImageInputKey: Math.random().toString()
-    }
+      isTextSignature: this.field.preferences?.format === "typed",
+      uploadImageInputKey: Math.random().toString(),
+    };
   },
   computed: {
-    computedPreviousValue () {
+    computedPreviousValue() {
       if (this.isUsePreviousValue) {
-        return this.previousValue
+        return this.previousValue;
       } else {
-        return null
+        return null;
       }
-    }
+    },
   },
-  async mounted () {
+  async mounted() {
     this.$nextTick(() => {
       if (this.$refs.canvas) {
-        this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth * scale
-        this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth * scale / 3
+        this.$refs.canvas.width =
+          this.$refs.canvas.parentNode.clientWidth * scale;
+        this.$refs.canvas.height =
+          (this.$refs.canvas.parentNode.clientWidth * scale) / 3;
 
-        this.$refs.canvas.getContext('2d').scale(scale, scale)
+        this.$refs.canvas.getContext("2d").scale(scale, scale);
       }
 
       if (this.withQrButton) {
-        import('qr-creator').then(({ default: Qr }) => {
-          Qr.render({
-            text: `${document.location.origin}/p/${this.submitterSlug}?f=${this.field.uuid.split('-')[0]}`,
-            radius: 0.0,
-            ecLevel: 'H',
-            background: null,
-            size: 132
-          }, this.$refs.qrCanvas)
-        })
+        import("qr-creator").then(({ default: Qr }) => {
+          Qr.render(
+            {
+              text: `${document.location.origin}/p/${this.submitterSlug}?f=${
+                this.field.uuid.split("-")[0]
+              }`,
+              radius: 0.0,
+              ecLevel: "H",
+              background: null,
+              size: 132,
+            },
+            this.$refs.qrCanvas
+          );
+        });
       }
-    })
+    });
 
     if (this.$refs.canvas) {
-      this.pad = new SignaturePad(this.$refs.canvas)
+      this.pad = new SignaturePad(this.$refs.canvas);
 
-      this.pad.addEventListener('beginStroke', () => {
-        this.isSignatureStarted = true
+      this.pad.addEventListener("beginStroke", () => {
+        this.isSignatureStarted = true;
 
-        this.$emit('start')
-      })
+        this.$emit("start");
+      });
 
-      this.intersectionObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            this.$refs.canvas.width = this.$refs.canvas.parentNode.clientWidth * scale
-            this.$refs.canvas.height = this.$refs.canvas.parentNode.clientWidth * scale / 3
+      this.intersectionObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.$refs.canvas.width =
+                this.$refs.canvas.parentNode.clientWidth * scale;
+              this.$refs.canvas.height =
+                (this.$refs.canvas.parentNode.clientWidth * scale) / 3;
 
-            this.$refs.canvas.getContext('2d').scale(scale, scale)
+              this.$refs.canvas.getContext("2d").scale(scale, scale);
 
-            this.intersectionObserver?.disconnect()
-          }
-        })
-      })
+              this.intersectionObserver?.disconnect();
+            }
+          });
+        }
+      );
 
-      this.intersectionObserver.observe(this.$refs.canvas)
+      this.intersectionObserver.observe(this.$refs.canvas);
     }
   },
-  beforeUnmount () {
-    this.intersectionObserver?.disconnect()
-    this.stopCheckSignature()
+  beforeUnmount() {
+    this.intersectionObserver?.disconnect();
+    this.stopCheckSignature();
   },
   methods: {
-    remove () {
-      this.$emit('update:model-value', '')
+    remove() {
+      this.$emit("update:model-value", "");
 
-      this.isUsePreviousValue = false
-      this.isSignatureStarted = false
+      this.isUsePreviousValue = false;
+      this.isSignatureStarted = false;
     },
-    loadFont () {
+    loadFont() {
       if (!isFontLoaded) {
-        const font = new FontFace('Dancing Script', `url(${this.baseUrl}/fonts/DancingScript-Regular.otf) format("opentype")`)
+        const font = new FontFace(
+          "Dancing Script",
+          `url(${this.baseUrl}/fonts/DancingScript-Regular.otf) format("opentype")`
+        );
 
-        font.load().then((loadedFont) => {
-          document.fonts.add(loadedFont)
+        font
+          .load()
+          .then((loadedFont) => {
+            document.fonts.add(loadedFont);
 
-          isFontLoaded = true
-        }).catch((error) => {
-          console.error('Font loading failed:', error)
-        })
+            isFontLoaded = true;
+          })
+          .catch((error) => {
+            console.error("Font loading failed:", error);
+          });
       }
     },
-    showQr () {
-      this.isShowQr = true
+    showQr() {
+      this.isShowQr = true;
 
-      this.startCheckSignature()
+      this.startCheckSignature();
     },
-    hideQr () {
-      this.isShowQr = false
+    hideQr() {
+      this.isShowQr = false;
 
-      this.stopCheckSignature()
+      this.stopCheckSignature();
     },
-    startCheckSignature () {
-      const after = JSON.stringify(new Date())
+    startCheckSignature() {
+      const after = JSON.stringify(new Date());
 
       this.checkSignatureInterval = setInterval(() => {
-        this.checkSignature({ after })
-      }, 2000)
+        this.checkSignature({ after });
+      }, 2000);
     },
-    stopCheckSignature () {
+    stopCheckSignature() {
       if (this.checkSignatureInterval) {
-        clearInterval(this.checkSignatureInterval)
+        clearInterval(this.checkSignatureInterval);
       }
     },
-    checkSignature (params = {}) {
-      return fetch(this.baseUrl + '/s/' + this.submitterSlug + '/values?field_uuid=' + this.field.uuid + '&after=' + params.after, {
-        method: 'GET'
-      }).then(async (resp) => {
-        const { attachment } = await resp.json()
+    checkSignature(params = {}) {
+      return fetch(
+        this.baseUrl +
+          "/s/" +
+          this.submitterSlug +
+          "/values?field_uuid=" +
+          this.field.uuid +
+          "&after=" +
+          params.after,
+        {
+          method: "GET",
+        }
+      ).then(async (resp) => {
+        const { attachment } = await resp.json();
 
         if (attachment?.uuid) {
-          this.$emit('attached', attachment)
-          this.$emit('update:model-value', attachment.uuid)
-          this.hideQr()
+          this.$emit("attached", attachment);
+          this.$emit("update:model-value", attachment.uuid);
+          this.hideQr();
         }
-      })
+      });
     },
-    clear () {
-      this.pad.clear()
+    clear() {
+      this.pad.clear();
 
-      this.isSignatureStarted = false
+      this.isSignatureStarted = false;
 
       if (this.$refs.textInput) {
-        this.$refs.textInput.value = ''
+        this.$refs.textInput.value = "";
       }
     },
-    updateWrittenSignature (e) {
-      this.isSignatureStarted = !!e.target.value
+    updateWrittenSignature(e) {
+      this.isSignatureStarted = !!e.target.value;
 
-      const canvas = this.$refs.canvas
-      const context = canvas.getContext('2d')
+      const canvas = this.$refs.canvas;
+      const context = canvas.getContext("2d");
 
-      const fontFamily = 'Dancing Script'
-      const fontSize = '38px'
-      const fontStyle = 'italic'
-      const fontWeight = ''
+      const fontFamily = "Dancing Script";
+      const fontSize = "38px";
+      const fontStyle = "italic";
+      const fontWeight = "";
 
-      context.font = fontStyle + ' ' + fontWeight + ' ' + fontSize + ' ' + fontFamily
-      context.textAlign = 'center'
+      context.font =
+        fontStyle + " " + fontWeight + " " + fontSize + " " + fontFamily;
+      context.textAlign = "center";
 
-      context.clearRect(0, 0, canvas.width / scale, canvas.height / scale)
-      context.fillText(e.target.value, canvas.width / 2 / scale, canvas.height / 2 / scale + 11)
+      context.clearRect(0, 0, canvas.width / scale, canvas.height / scale);
+      context.fillText(
+        e.target.value,
+        canvas.width / 2 / scale,
+        canvas.height / 2 / scale + 11
+      );
     },
-    toggleTextInput () {
-      this.remove()
-      this.clear()
-      this.isTextSignature = !this.isTextSignature
+    toggleTextInput() {
+      this.remove();
+      this.clear();
+      this.isTextSignature = !this.isTextSignature;
 
       if (this.isTextSignature) {
         this.$nextTick(() => {
-          this.$refs.textInput.focus()
+          this.$refs.textInput.focus();
 
-          this.loadFont()
+          this.loadFont();
 
-          this.$emit('start')
-        })
+          this.$emit("start");
+        });
       }
     },
-    drawImage (event) {
-      this.remove()
-      this.isSignatureStarted = true
+    drawImage(event) {
+      this.remove();
+      this.isSignatureStarted = true;
 
-      const file = event.target.files[0]
+      const file = event.target.files[0];
 
-      if (file && file.type.match('image.*')) {
-        const reader = new FileReader()
+      if (file && file.type.match("image.*")) {
+        const reader = new FileReader();
 
         reader.onload = (event) => {
-          const img = new Image()
+          const img = new Image();
 
-          img.src = event.target.result
+          img.src = event.target.result;
 
           img.onload = () => {
-            const canvas = this.$refs.canvas
-            const context = canvas.getContext('2d')
+            const canvas = this.$refs.canvas;
+            const context = canvas.getContext("2d");
 
-            const aspectRatio = img.width / img.height
-            const canvasWidth = canvas.width / scale
-            const canvasHeight = canvas.height / scale
+            const aspectRatio = img.width / img.height;
+            const canvasWidth = canvas.width / scale;
+            const canvasHeight = canvas.height / scale;
 
-            let targetWidth = canvasWidth
-            let targetHeight = canvasHeight
+            let targetWidth = canvasWidth;
+            let targetHeight = canvasHeight;
 
             if (canvasWidth / canvasHeight > aspectRatio) {
-              targetWidth = canvasHeight * aspectRatio
+              targetWidth = canvasHeight * aspectRatio;
             } else {
-              targetHeight = canvasWidth / aspectRatio
+              targetHeight = canvasWidth / aspectRatio;
             }
 
             if (targetHeight > targetWidth) {
-              const scale = targetHeight / targetWidth
-              targetWidth = targetWidth * scale
-              targetHeight = targetHeight * scale
+              const scale = targetHeight / targetWidth;
+              targetWidth = targetWidth * scale;
+              targetHeight = targetHeight * scale;
             }
 
-            const x = (canvasWidth - targetWidth) / 2
-            const y = (canvasHeight - targetHeight) / 2
+            const x = (canvasWidth - targetWidth) / 2;
+            const y = (canvasHeight - targetHeight) / 2;
 
             setTimeout(() => {
-              context.clearRect(0, 0, canvasWidth, canvasHeight)
-              context.drawImage(img, x, y, targetWidth, targetHeight)
+              context.clearRect(0, 0, canvasWidth, canvasHeight);
+              context.drawImage(img, x, y, targetWidth, targetHeight);
 
-              this.$emit('start')
-            }, 50)
-          }
-        }
+              this.$emit("start");
+            }, 50);
+          };
+        };
 
-        reader.readAsDataURL(file)
+        reader.readAsDataURL(file);
 
-        this.uploadImageInputKey = Math.random().toString()
+        this.uploadImageInputKey = Math.random().toString();
       }
     },
-    async submit () {
+    async submit() {
       if (this.modelValue || this.computedPreviousValue) {
         if (this.computedPreviousValue) {
-          this.$emit('update:model-value', this.computedPreviousValue)
+          this.$emit("update:model-value", this.computedPreviousValue);
         }
 
-        return Promise.resolve({})
+        return Promise.resolve({});
       }
 
       return new Promise((resolve, reject) => {
-        cropCanvasAndExportToPNG(this.$refs.canvas, { errorOnTooSmall: true }).then(async (blob) => {
-          const file = new File([blob], 'signature.png', { type: 'image/png' })
+        cropCanvasAndExportToPNG(this.$refs.canvas, { errorOnTooSmall: true })
+          .then(async (blob) => {
+            const file = new File([blob], "signature.png", {
+              type: "image/png",
+            });
 
-          const formData = new FormData()
+            const formData = new FormData();
 
-          formData.append('file', file)
-          formData.append('submitter_slug', this.submitterSlug)
-          formData.append('name', 'attachments')
+            formData.append("file", file);
+            formData.append("submitter_slug", this.submitterSlug);
+            formData.append("name", "attachments");
 
-          return fetch(this.baseUrl + '/api/attachments', {
-            method: 'POST',
-            body: formData
-          }).then((resp) => resp.json()).then((attachment) => {
-            this.$emit('attached', attachment)
-            this.$emit('update:model-value', attachment.uuid)
+            return fetch(this.baseUrl + "/api/attachments", {
+              method: "POST",
+              body: formData,
+            })
+              .then((resp) => resp.json())
+              .then((attachment) => {
+                this.$emit("attached", attachment);
+                this.$emit("update:model-value", attachment.uuid);
 
-            return resolve(attachment)
+                return resolve(attachment);
+              });
           })
-        }).catch((error) => {
-          return reject(error)
-        })
-      })
-    }
-  }
-}
+          .catch((error) => {
+            return reject(error);
+          });
+      });
+    },
+  },
+};
 </script>

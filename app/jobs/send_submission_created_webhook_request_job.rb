@@ -3,7 +3,7 @@
 class SendSubmissionCreatedWebhookRequestJob < ApplicationJob
   queue_as :webhooks
 
-  USER_AGENT = 'DocuSeal.co Webhook'
+  USER_AGENT = 'UVTSign.co Webhook'
 
   MAX_ATTEMPTS = 10
 
@@ -31,7 +31,7 @@ class SendSubmissionCreatedWebhookRequestJob < ApplicationJob
     end
 
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
-       (!Docuseal.multitenant? || submission.account.account_configs.exists?(key: :plan))
+       (!Uvtsign.multitenant? || submission.account.account_configs.exists?(key: :plan))
       SendSubmissionCreatedWebhookRequestJob.set(wait: (2**attempt).minutes)
                                             .perform_later(submission, {
                                                              attempt: attempt + 1,

@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    return redirect_to settings_users_path, notice: 'Unable to update user.' if Docuseal.demo?
+    return redirect_to settings_users_path, notice: 'Unable to update user.' if Uvtsign.demo?
 
     attrs = user_params.compact_blank.merge(user_params.slice(:archived_at))
     attrs.delete(:role) if !role_valid?(attrs[:role]) || current_user == @user
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if Docuseal.demo? || @user.id == current_user.id
+    if Uvtsign.demo? || @user.id == current_user.id
       return redirect_to settings_users_path, notice: 'Unable to remove user'
     end
 

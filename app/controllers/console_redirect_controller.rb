@@ -6,10 +6,10 @@ class ConsoleRedirectController < ApplicationController
 
   def index
     if request.path == '/upgrade'
-      params[:redir] = Docuseal.multitenant? ? "#{Docuseal::CONSOLE_URL}/plans" : "#{Docuseal::CONSOLE_URL}/on_premise"
+      params[:redir] = Uvtsign.multitenant? ? "#{Uvtsign::CONSOLE_URL}/plans" : "#{Uvtsign::CONSOLE_URL}/on_premise"
     end
 
-    params[:redir] = "#{Docuseal::CONSOLE_URL}/manage" if request.path == '/manage'
+    params[:redir] = "#{Uvtsign::CONSOLE_URL}/manage" if request.path == '/manage'
 
     return redirect_to(new_user_session_path({ redir: params[:redir] }.compact)) if true_user.blank?
 
@@ -17,8 +17,8 @@ class ConsoleRedirectController < ApplicationController
                                scope: :console,
                                exp: 1.minute.from_now.to_i)
 
-    path = Addressable::URI.parse(params[:redir]).path if params[:redir].to_s.starts_with?(Docuseal::CONSOLE_URL)
+    path = Addressable::URI.parse(params[:redir]).path if params[:redir].to_s.starts_with?(Uvtsign::CONSOLE_URL)
 
-    redirect_to("#{Docuseal::CONSOLE_URL}#{path}?#{{ auth: }.to_query}", allow_other_host: true)
+    redirect_to("#{Uvtsign::CONSOLE_URL}#{path}?#{{ auth: }.to_query}", allow_other_host: true)
   end
 end

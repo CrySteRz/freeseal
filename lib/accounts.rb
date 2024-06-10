@@ -11,7 +11,7 @@ module Accounts
     new_user.uuid = SecureRandom.uuid
     new_user.account = new_account
     new_user.encrypted_password = SecureRandom.hex
-    new_user.email = "#{SecureRandom.hex}@docuseal.co"
+    new_user.email = "#{SecureRandom.hex}@uvtsign.co"
 
     account.templates.each do |template|
       new_template = template.dup
@@ -81,7 +81,7 @@ module Accounts
   def load_webhook_url(account)
     configs = account.encrypted_configs.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY)
 
-    unless Docuseal.multitenant?
+    unless Uvtsign.multitenant?
       configs ||= Account.order(:id).first.encrypted_configs.find_by(key: EncryptedConfig::WEBHOOK_URL_KEY)
     end
 
@@ -91,7 +91,7 @@ module Accounts
   def load_webhook_preferences(account)
     configs = account.account_configs.find_by(key: AccountConfig::WEBHOOK_PREFERENCES_KEY)
 
-    unless Docuseal.multitenant?
+    unless Uvtsign.multitenant?
       configs ||= Account.order(:id).first.account_configs.find_by(key: AccountConfig::WEBHOOK_PREFERENCES_KEY)
     end
 
@@ -100,10 +100,10 @@ module Accounts
 
   def load_signing_pkcs(account)
     cert_data =
-      if Docuseal.multitenant?
+      if Uvtsign.multitenant?
         data = EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value
 
-        return Docuseal.default_pkcs if data.blank?
+        return Uvtsign.default_pkcs if data.blank?
 
         data
       else
@@ -119,12 +119,12 @@ module Accounts
   end
 
   def load_timeserver_url(account)
-    if Docuseal.multitenant?
-      Docuseal::TIMESERVER_URL
+    if Uvtsign.multitenant?
+      Uvtsign::TIMESERVER_URL
     else
       url = EncryptedConfig.find_by(account:, key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
 
-      unless Docuseal.multitenant?
+      unless Uvtsign.multitenant?
         url ||=
           Account.order(:id).first.encrypted_configs.find_by(key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
       end
@@ -134,7 +134,7 @@ module Accounts
   end
 
   def can_send_emails?(_account, **_params)
-    return true if Docuseal.multitenant?
+    return true if Uvtsign.multitenant?
     return true if ENV['SMTP_ADDRESS'].present?
 
     EncryptedConfig.exists?(key: EncryptedConfig::EMAIL_SMTP_KEY)
