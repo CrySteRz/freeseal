@@ -43,6 +43,7 @@ gem 'strip_attributes'
 gem 'turbo-rails'
 gem 'twitter_cldr', require: false
 gem 'tzinfo-data'
+gem 'rack-cors' 
 
 group :development, :test do
   gem 'annotate'

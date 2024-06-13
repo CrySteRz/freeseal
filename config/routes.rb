@@ -22,6 +22,26 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :embed do
+    post 'forms', to: 'embeds#forms_create'
+    
+    resources :submit_form, only: %i[show update], path: 's', param: 'slug' do
+      resources :values, only: %i[index], controller: 'submit_form_values'
+      get :completed
+    end
+
+    resources :submitters, only: %i[], param: 'slug' do
+      resources :download, only: %i[index], controller: 'submissions_download'
+    end
+
+    get 'fonts/DancingScript-Regular.otf', to: 'fonts#dancing_script_regular'
+
+    namespace :api do
+      post 'submitter_form_views', to: 'submitter_form_views#create'
+      post 'attachments', to: 'attachments#create'
+    end
+  end
+
   namespace :api, defaults: { format: :json } do
     resources :attachments, only: %i[create]
     resources :submitter_email_clicks, only: %i[create]
