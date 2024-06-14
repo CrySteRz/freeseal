@@ -79,15 +79,27 @@
           <IconReload :width="16" />
           {{ t("redraw") }}
         </a>
-        <a
-          v-else
-          href="#"
-          class="btn btn-outline btn-sm font-medium"
-          @click.prevent="[clear(), hideQr()]"
+        <span
+          v-if="
+            withQrButton &&
+            !modelValue &&
+            !computedPreviousValue &&
+            field.preferences?.format !== 'typed'
+          "
+          class="tooltip"
+          :data-tip="t('drawn_signature_on_a_touchscreen_device')"
         >
-          <IconReload :width="16" />
-          {{ t("clear") }}
-        </a>
+          <a
+            href="#"
+            class="btn btn-sm btn-neutral font-medium hidden md:flex"
+            :class="{ 'btn-outline': !isShowQr, 'text-white': isShowQr }"
+            @click.prevent="
+              isShowQr ? hideQr() : [(isTextSignature = false), showQr()]
+            "
+          >
+            <IconQrcode :width="19" :height="19" />
+          </a>
+        </span>
         <a
           href="#"
           :title="t('minimize')"
@@ -114,19 +126,22 @@
     />
     <div class="relative">
       <div
-        v-if="withQrButton"
-        class="absolute top-1.5 right-1.5 tooltip hidden md:inline"
-        :data-tip="t('drawn_signature_on_a_touchscreen_device')"
+        v-if="
+          !modelValue &&
+          !computedPreviousValue &&
+          !isShowQr &&
+          !isTextSignature &&
+          isSignatureStarted
+        "
+        class="absolute top-0.5 right-0.5"
       >
         <a
-          v-if="
-            !isShowQr && !isSignatureStarted && !isTextSignature && !modelValue
-          "
           href="#"
-          class="btn btn-sm btn-circle btn-ghost"
-          @click.prevent="showQr"
+          class="btn btn-ghost font-medium btn-xs md:btn-sm"
+          @click.prevent="[clear(), hideQr()]"
         >
-          <IconQrcode />
+          <IconReload :width="16" />
+          {{ t("clear") }}
         </a>
       </div>
       <canvas
@@ -134,6 +149,10 @@
         ref="canvas"
         style="padding: 1px; 0"
         class="bg-white border border-base-300 rounded-2xl w-full"
+      />
+      <div
+        v-if="isShowQr"
+        class="top-0 bottom-0 right-0 left-0 absolute bg-white rounded-2xl m-0.5"
       />
       <div
         v-show="isShowQr"
@@ -191,7 +210,7 @@
           buttonText.charAt(0).toUpperCase() + buttonText.slice(1)
         )
       }}
-      <a href="https://www.uvtsign.co/esign-disclosure" target="_blank">
+      <a href="https://www.docuseal.co/esign-disclosure" target="_blank">
         <span class="inline md:hidden">
           {{ t("esignature_disclosure") }}
         </span>
@@ -338,7 +357,7 @@ export default {
     if (this.$refs.canvas) {
       this.pad = new SignaturePad(this.$refs.canvas);
 
-      this.pad.addEventListener("beginStroke", () => {
+      this.pad.addEventListener("endStroke", () => {
         this.isSignatureStarted = true;
 
         this.$emit("start");
@@ -445,6 +464,7 @@ export default {
 
       if (this.$refs.textInput) {
         this.$refs.textInput.value = "";
+        this.$refs.textInput.focus();
       }
     },
     updateWrittenSignature(e) {

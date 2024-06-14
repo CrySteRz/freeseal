@@ -1676,12 +1676,24 @@ html {
 .artboard.phone {
   width: 320px;
 }
+.btn-xs {
+  height: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  min-height: 1.5rem;
+  font-size: 0.75rem;
+}
 .btn-sm {
   height: 2rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   min-height: 2rem;
   font-size: 0.875rem;
+}
+.btn-square:where(.btn-xs) {
+  height: 1.5rem;
+  width: 1.5rem;
+  padding: 0px;
 }
 .btn-square:where(.btn-sm) {
   height: 2rem;
@@ -1988,6 +2000,9 @@ html {
 .right-0 {
   right: 0px;
 }
+.right-0\.5 {
+  right: 0.125rem;
+}
 .right-1 {
   right: 0.25rem;
 }
@@ -1996,6 +2011,9 @@ html {
 }
 .top-0 {
   top: 0px;
+}
+.top-0\.5 {
+  top: 0.125rem;
 }
 .top-1 {
   top: 0.25rem;
@@ -2011,6 +2029,12 @@ html {
 }
 .z-50 {
   z-index: 50;
+}
+.m-0 {
+  margin: 0px;
+}
+.m-0\.5 {
+  margin: 0.125rem;
 }
 .mx-1 {
   margin-left: 0.25rem;
@@ -3502,6 +3526,29 @@ select:required:invalid {
   height: 1rem;
   width: 1rem;
 }
+@media (min-width: 768px) {
+
+  .md\:btn-sm {
+    height: 2rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    min-height: 2rem;
+    font-size: 0.875rem;
+  }
+
+  .btn-square:where(.md\:btn-sm) {
+    height: 2rem;
+    width: 2rem;
+    padding: 0px;
+  }
+
+  .btn-circle:where(.md\:btn-sm) {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 9999px;
+    padding: 0px;
+  }
+}
 .hover\:bg-\[\#0A2540\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(10 37 64 / var(--tw-bg-opacity));
@@ -3549,6 +3596,10 @@ select:required:invalid {
 
   .md\:inline {
     display: inline;
+  }
+
+  .md\:flex {
+    display: flex;
   }
 
   .md\:hidden {

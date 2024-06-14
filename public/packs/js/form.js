@@ -3436,7 +3436,7 @@ const scale = 3;
     });
     if (this.$refs.canvas) {
       this.pad = new signature_pad__WEBPACK_IMPORTED_MODULE_1__["default"](this.$refs.canvas);
-      this.pad.addEventListener("beginStroke", () => {
+      this.pad.addEventListener("endStroke", () => {
         this.isSignatureStarted = true;
         this.$emit("start");
       });
@@ -3514,6 +3514,7 @@ const scale = 3;
       this.isSignatureStarted = false;
       if (this.$refs.textInput) {
         this.$refs.textInput.value = "";
+        this.$refs.textInput.focus();
       }
     },
     updateWrittenSignature(e) {
@@ -5347,65 +5348,73 @@ const _hoisted_9 = {
 const _hoisted_10 = {
   class: "hidden sm:inline"
 };
-const _hoisted_11 = ["title"];
-const _hoisted_12 = {
+const _hoisted_11 = ["data-tip"];
+const _hoisted_12 = ["title"];
+const _hoisted_13 = {
   key: 0,
   dir: "auto",
   class: "mb-3 px-1"
 };
-const _hoisted_13 = ["value", "name"];
-const _hoisted_14 = ["src"];
-const _hoisted_15 = {
+const _hoisted_14 = ["value", "name"];
+const _hoisted_15 = ["src"];
+const _hoisted_16 = {
   class: "relative"
 };
-const _hoisted_16 = ["data-tip"];
 const _hoisted_17 = {
+  key: 0,
+  class: "absolute top-0.5 right-0.5"
+};
+const _hoisted_18 = {
   ref: "canvas",
   style: {
     "padding": "1px"
   },
   class: "bg-white border border-base-300 rounded-2xl w-full"
 };
-const _hoisted_18 = {
-  class: "top-0 bottom-0 right-0 left-0 absolute bg-base-content/10 rounded-2xl"
-};
 const _hoisted_19 = {
-  class: "absolute top-1.5 right-1.5 tooltip"
+  key: 1,
+  class: "top-0 bottom-0 right-0 left-0 absolute bg-white rounded-2xl m-0.5"
 };
 const _hoisted_20 = {
-  class: "flex items-center justify-center w-full h-full p-4"
+  class: "top-0 bottom-0 right-0 left-0 absolute bg-base-content/10 rounded-2xl"
 };
 const _hoisted_21 = {
+  class: "absolute top-1.5 right-1.5 tooltip"
+};
+const _hoisted_22 = {
+  class: "flex items-center justify-center w-full h-full p-4"
+};
+const _hoisted_23 = {
   key: 0,
   ref: "qr",
   class: "bg-white p-4 rounded-xl h-full"
 };
-const _hoisted_22 = {
+const _hoisted_24 = {
   ref: "qrCanvas",
   class: "h-full"
 };
-const _hoisted_23 = ["required", "placeholder"];
-const _hoisted_24 = {
+const _hoisted_25 = ["required", "placeholder"];
+const _hoisted_26 = {
   key: 3,
   dir: "auto",
   class: "text-base-content/60 text-xs text-center w-full mt-1"
 };
-const _hoisted_25 = {
+const _hoisted_27 = {
   key: 4,
   dir: "auto",
   class: "text-base-content/60 text-xs text-center w-full mt-1"
 };
-const _hoisted_26 = {
-  href: "https://www.uvtsign.co/esign-disclosure",
+const _hoisted_28 = {
+  href: "https://www.docuseal.co/esign-disclosure",
   target: "_blank"
 };
-const _hoisted_27 = {
+const _hoisted_29 = {
   class: "inline md:hidden"
 };
-const _hoisted_28 = {
+const _hoisted_30 = {
   class: "hidden md:inline"
 };
-const _hoisted_29 = {
+const _hoisted_31 = {
   key: 5,
   class: "mt-5 md:mt-7"
 };
@@ -5415,9 +5424,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_IconTextSize = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconTextSize");
   const _component_IconCamera = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconCamera");
   const _component_IconReload = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconReload");
+  const _component_IconQrcode = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconQrcode");
   const _component_IconArrowsDiagonalMinimize2 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconArrowsDiagonalMinimize2");
   const _component_AppearsOn = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AppearsOn");
-  const _component_IconQrcode = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconQrcode");
   const _component_IconX = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconX");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex justify-between items-center w-full", {
@@ -5469,14 +5478,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => $options.remove && $options.remove(...args), ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconReload, {
     width: 16
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("redraw")), 1 /* TEXT */)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("redraw")), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.withQrButton && !$props.modelValue && !$options.computedPreviousValue && $props.field.preferences?.format !== 'typed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
     key: 4,
+    class: "tooltip",
+    "data-tip": $options.t('drawn_signature_on_a_touchscreen_device')
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#",
-    class: "btn btn-outline btn-sm font-medium",
-    onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => [$options.clear(), $options.hideQr()], ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconReload, {
-    width: 16
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("clear")), 1 /* TEXT */)])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["btn btn-sm btn-neutral font-medium hidden md:flex", {
+      'btn-outline': !$data.isShowQr,
+      'text-white': $data.isShowQr
+    }]),
+    onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => $data.isShowQr ? $options.hideQr() : [$data.isTextSignature = false, $options.showQr()], ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconQrcode, {
+    width: 19,
+    height: 19
+  })], 2 /* CLASS */)], 8 /* PROPS */, _hoisted_11)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#",
     title: $options.t('minimize'),
     class: "py-1.5 inline md:hidden",
@@ -5484,7 +5500,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconArrowsDiagonalMinimize2, {
     width: 20,
     height: 20
-  })], 8 /* PROPS */, _hoisted_11)])], 2 /* CLASS */), $props.field.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MarkdownContent, {
+  })], 8 /* PROPS */, _hoisted_12)])], 2 /* CLASS */), $props.field.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MarkdownContent, {
     string: $props.field.description
   }, null, 8 /* PROPS */, ["string"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AppearsOn, {
     field: $props.field
@@ -5492,24 +5508,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     value: $props.modelValue || $options.computedPreviousValue,
     type: "hidden",
     name: `values[${$props.field.uuid}]`
-  }, null, 8 /* PROPS */, _hoisted_13), $props.modelValue || $options.computedPreviousValue ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+  }, null, 8 /* PROPS */, _hoisted_14), $props.modelValue || $options.computedPreviousValue ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
     key: 1,
     src: $props.attachmentsIndex[$props.modelValue || $options.computedPreviousValue].url,
     class: "mx-auto bg-white border border-base-300 rounded max-h-72"
-  }, null, 8 /* PROPS */, _hoisted_14)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [$props.withQrButton ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-    key: 0,
-    class: "absolute top-1.5 right-1.5 tooltip hidden md:inline",
-    "data-tip": $options.t('drawn_signature_on_a_touchscreen_device')
-  }, [!$data.isShowQr && !$data.isSignatureStarted && !$data.isTextSignature && !$props.modelValue ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
-    key: 0,
+  }, null, 8 /* PROPS */, _hoisted_15)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [!$props.modelValue && !$options.computedPreviousValue && !$data.isShowQr && !$data.isTextSignature && $data.isSignatureStarted ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#",
-    class: "btn btn-sm btn-circle btn-ghost",
-    onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => $options.showQr && $options.showQr(...args), ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconQrcode)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 8 /* PROPS */, _hoisted_16)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("canvas", _hoisted_17, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$props.modelValue && !$options.computedPreviousValue]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    class: "btn btn-ghost font-medium btn-xs md:btn-sm",
+    onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => [$options.clear(), $options.hideQr()], ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconReload, {
+    width: 16
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("clear")), 1 /* TEXT */)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("canvas", _hoisted_18, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$props.modelValue && !$options.computedPreviousValue]]), $data.isShowQr ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#",
     class: "btn btn-sm btn-circle btn-normal btn-outline",
     onClick: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => $options.hideQr && $options.hideQr(...args), ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconX)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [$props.withQrButton ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("canvas", _hoisted_22, null, 512 /* NEED_PATCH */)], 512 /* NEED_PATCH */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isShowQr]])]), $data.isTextSignature ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconX)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [$props.withQrButton ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("canvas", _hoisted_24, null, 512 /* NEED_PATCH */)], 512 /* NEED_PATCH */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isShowQr]])]), $data.isTextSignature ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
     key: 2,
     id: "signature_text_input",
     ref: "textInput",
@@ -5518,7 +5531,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: `${$options.t('type_signature_here')}...`,
     type: "text",
     onInput: _cache[8] || (_cache[8] = (...args) => $options.updateWrittenSignature && $options.updateWrittenSignature(...args))
-  }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_23)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isShowQr ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature")), 1 /* TEXT */)) : $props.withDisclosure ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("by_clicking_you_agree_to_the").replace("{button}", $props.buttonText.charAt(0).toUpperCase() + $props.buttonText.slice(1))) + " ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("esignature_disclosure")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("electronic_signature_disclosure")), 1 /* TEXT */)])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_29))]);
+  }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_25)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isShowQr ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature")), 1 /* TEXT */)) : $props.withDisclosure ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("by_clicking_you_agree_to_the").replace("{button}", $props.buttonText.charAt(0).toUpperCase() + $props.buttonText.slice(1))) + " ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("esignature_disclosure")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("electronic_signature_disclosure")), 1 /* TEXT */)])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31))]);
 }
 
 /***/ }),

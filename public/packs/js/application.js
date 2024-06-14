@@ -1017,105 +1017,106 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "en": () => (/* binding */ en)
 /* harmony export */ });
 const en = {
-  search_field: 'Search field',
-  field_not_found: 'Field not found',
-  clear: 'Clear',
-  align: 'Align',
-  add_all_required_fields_to_continue: 'Add all required fields to continue',
-  left: 'Left',
-  right: 'Right',
-  center: 'Center',
-  description: 'Description',
-  display_title: 'Display title',
-  with_logo: 'With logo',
-  unchecked: 'Unchecked',
-  equal: 'Equal',
-  not_equal: 'Not equal',
-  contains: 'Contains',
-  does_not_contain: 'Does not contain',
-  not_empty: 'Not empty',
-  empty: 'Empty',
-  select_field_: 'Select field...',
-  select_value_: 'Select value...',
-  remove_condition: 'Remove condition',
-  are_you_sure: 'Are you sure?',
-  sign_yourself: 'Sign Yourself',
-  set_signing_date: 'Set signing date',
-  send: 'Send',
-  remove: 'Remove',
-  edit: 'Edit',
-  settings: 'Settings',
-  up: 'Up',
-  down: 'Down',
-  checked: 'Checked',
-  save: 'Save',
-  cancel: 'Cancel',
-  any: 'Any',
-  drawn: 'Drawn',
-  formula: 'Formula',
-  typed: 'Typed',
-  draw_field_on_the_document: 'Draw {field} field on the document',
-  click_to_upload: 'Click to upload',
-  or_drag_and_drop_files: 'or drag and drop files',
-  uploading: 'Uploading',
-  processing_: 'Processing...',
-  add_pdf_documents_or_images: 'Add PDF documents or images',
-  add_documents_or_images: 'Add documents or images',
-  required: 'Required',
-  default_value: 'Default value',
-  format: 'Format',
-  read_only: 'Read-only',
-  page: 'Page',
-  draw_new_area: 'Draw New Area',
-  copy_to_all_pages: 'Copy to All Pages',
-  add_option: 'Add option',
-  option: 'Option',
-  condition: 'Condition',
-  first_party: 'First Party',
-  second_party: 'Second Party',
-  third_party: 'Third Party',
-  fourth_party: 'Fourth Party',
-  fifth_party: 'Fifth Party',
-  sixth_party: 'Sixth Party',
-  seventh_party: 'Seventh Party',
-  eighth_party: 'Eighth Party',
-  ninth_party: 'Ninth Party',
-  tenth_party: 'Tenth Party',
-  eleventh_party: 'Eleventh Party',
-  twelfth_party: 'Twelfth Party',
-  thirteenth_party: 'Thirteenth Party',
-  fourteenth_party: 'Fourteenth Party',
-  fifteenth_party: 'Fifteenth Party',
-  sixteenth_party: 'Sixteenth Party',
-  seventeenth_party: 'Seventeenth Party',
-  eighteenth_party: 'Eighteenth Party',
-  nineteenth_party: 'Nineteenth Party',
-  twentieth_party: 'Twentieth Party',
-  draw: 'Draw',
-  add: 'Add',
-  or_add_field_without_drawing: 'Or add field without drawing',
-  text: 'Text',
-  number: 'Number',
-  signature: 'Signature',
-  initials: 'Initials',
-  date: 'Date',
-  image: 'Image',
-  file: 'File',
-  select: 'Select',
-  checkbox: 'Checkbox',
-  multiple: 'Multiple',
-  radio: 'Radio',
-  cells: 'Cells',
-  stamp: 'Stamp',
-  payment: 'Payment',
-  phone: 'Phone',
-  field: 'Field',
-  group: 'Group',
-  draw_a_text_field_on_the_page_with_a_mouse: 'Draw a text field on the page with a mouse',
-  draw_field: 'Draw {field} Field',
-  replace: 'Replace',
-  uploading_: 'Uploading...',
-  add_document: 'Add Document'
+  search_field: "Search field",
+  field_not_found: "Field not found",
+  clear: "Clear",
+  align: "Align",
+  add_all_required_fields_to_continue: "Add all required fields to continue",
+  left: "Left",
+  right: "Right",
+  center: "Center",
+  description: "Description",
+  display_title: "Display title",
+  with_logo: "With logo",
+  unchecked: "Unchecked",
+  equal: "Equal",
+  not_equal: "Not equal",
+  contains: "Contains",
+  does_not_contain: "Does not contain",
+  not_empty: "Not empty",
+  empty: "Empty",
+  select_field_: "Select field...",
+  select_value_: "Select value...",
+  remove_condition: "Remove condition",
+  add_condition: "Add condition",
+  are_you_sure: "Are you sure?",
+  sign_yourself: "Sign Yourself",
+  set_signing_date: "Set signing date",
+  send: "Send",
+  remove: "Remove",
+  edit: "Edit",
+  settings: "Settings",
+  up: "Up",
+  down: "Down",
+  checked: "Checked",
+  save: "Save",
+  cancel: "Cancel",
+  any: "Any",
+  drawn: "Drawn",
+  formula: "Formula",
+  typed: "Typed",
+  draw_field_on_the_document: "Draw {field} field on the document",
+  click_to_upload: "Click to upload",
+  or_drag_and_drop_files: "or drag and drop files",
+  uploading: "Uploading",
+  processing_: "Processing...",
+  add_pdf_documents_or_images: "Add PDF documents or images",
+  add_documents_or_images: "Add documents or images",
+  required: "Required",
+  default_value: "Default value",
+  format: "Format",
+  read_only: "Read-only",
+  page: "Page",
+  draw_new_area: "Draw New Area",
+  copy_to_all_pages: "Copy to All Pages",
+  add_option: "Add option",
+  option: "Option",
+  condition: "Condition",
+  first_party: "First Party",
+  second_party: "Second Party",
+  third_party: "Third Party",
+  fourth_party: "Fourth Party",
+  fifth_party: "Fifth Party",
+  sixth_party: "Sixth Party",
+  seventh_party: "Seventh Party",
+  eighth_party: "Eighth Party",
+  ninth_party: "Ninth Party",
+  tenth_party: "Tenth Party",
+  eleventh_party: "Eleventh Party",
+  twelfth_party: "Twelfth Party",
+  thirteenth_party: "Thirteenth Party",
+  fourteenth_party: "Fourteenth Party",
+  fifteenth_party: "Fifteenth Party",
+  sixteenth_party: "Sixteenth Party",
+  seventeenth_party: "Seventeenth Party",
+  eighteenth_party: "Eighteenth Party",
+  nineteenth_party: "Nineteenth Party",
+  twentieth_party: "Twentieth Party",
+  draw: "Draw",
+  add: "Add",
+  or_add_field_without_drawing: "Or add field without drawing",
+  text: "Text",
+  number: "Number",
+  signature: "Signature",
+  initials: "Initials",
+  date: "Date",
+  image: "Image",
+  file: "File",
+  select: "Select",
+  checkbox: "Checkbox",
+  multiple: "Multiple",
+  radio: "Radio",
+  cells: "Cells",
+  stamp: "Stamp",
+  payment: "Payment",
+  phone: "Phone",
+  field: "Field",
+  group: "Group",
+  draw_a_text_field_on_the_page_with_a_mouse: "Draw a text field on the page with a mouse",
+  draw_field: "Draw {field} Field",
+  replace: "Replace",
+  uploading_: "Uploading...",
+  add_document: "Add Document"
 };
 
 
@@ -2254,6 +2255,12 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.template.fields.length) {
         e.preventDefault();
         alert("Please draw fields to prepare the document.");
+      } else {
+        const submitterWithoutFields = this.template.submitters.find(submitter => !this.template.fields.some(f => f.submitter_uuid === submitter.uuid));
+        if (submitterWithoutFields) {
+          e.preventDefault();
+          alert(`Please add fields for ${submitterWithoutFields.name} to prepare the document or remove the party.`);
+        }
       }
     },
     onSaveClick() {
@@ -2265,15 +2272,20 @@ __webpack_require__.r(__webpack_exports__);
           return alert(this.t("add_all_required_fields_to_continue") + ": " + fields.map(f => f.name).join(", "));
         }
       }
-      if (this.template.fields.length) {
-        this.isSaving = true;
-        this.save().then(() => {
-          window.Turbo.visit(`/templates/${this.template.id}`);
-        }).finally(() => {
-          this.isSaving = false;
-        });
-      } else {
+      if (!this.template.fields.length) {
         alert("Please draw fields to prepare the document.");
+      } else {
+        const submitterWithoutFields = this.template.submitters.find(submitter => !this.template.fields.some(f => f.submitter_uuid === submitter.uuid));
+        if (submitterWithoutFields) {
+          alert(`Please add fields for ${submitterWithoutFields.name} to prepare the document or remove the party.`);
+        } else {
+          this.isSaving = true;
+          this.save().then(() => {
+            window.Turbo.visit(`/templates/${this.template.id}`);
+          }).finally(() => {
+            this.isSaving = false;
+          });
+        }
       }
     },
     scrollToArea(area) {
@@ -2355,16 +2367,10 @@ __webpack_require__.r(__webpack_exports__);
   emits: ["close"],
   data() {
     return {
-      newCondition: this.field.conditions?.[0] || {}
+      conditions: this.field.conditions?.[0] ? JSON.parse(JSON.stringify(this.field.conditions)) : [{}]
     };
   },
   computed: {
-    conditionField() {
-      return this.fields.find(f => f.uuid === this.newCondition.field_uuid);
-    },
-    conditionActions() {
-      return this.fieldActions(this.conditionField);
-    },
     fields() {
       return this.template.fields.reduce((acc, f) => {
         if (f !== this.field && f.submitter_uuid === this.field.submitter_uuid) {
@@ -2378,6 +2384,12 @@ __webpack_require__.r(__webpack_exports__);
     this.field.conditions ||= [];
   },
   methods: {
+    conditionField(condition) {
+      return this.fields.find(f => f.uuid === condition.field_uuid);
+    },
+    conditionActions(condition) {
+      return this.fieldActions(this.conditionField(condition));
+    },
     fieldActions(field) {
       const actions = [];
       if (!field) {
@@ -2396,10 +2408,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     validateSaveAndClose() {
       if (!this.withConditions) {
-        return alert("Available only in Pro");
+        return alert("Not yet available.");
       }
-      if (this.newCondition.field_uuid) {
-        this.field.conditions = [this.newCondition];
+      if (this.conditions.find(f => f.field_uuid)) {
+        this.field.conditions = this.conditions;
       } else {
         delete this.field.conditions;
       }
@@ -5095,36 +5107,33 @@ const _hoisted_3 = {
   class: "flex justify-between items-center border-b pb-2 mb-2 font-medium"
 };
 const _hoisted_4 = {
+  class: "my-4 space-y-5"
+};
+const _hoisted_5 = {
   key: 0,
-  class: "bg-base-300 rounded-xl py-2 px-3 text-center"
+  class: "flex justify-between border-b mx-1 -mb-1 pb-1"
 };
-const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "https://www.uvtsign.co/pricing",
-  target: "_blank",
-  class: "link"
-}, "Available in Pro", -1 /* HOISTED */);
-const _hoisted_6 = [_hoisted_5];
-const _hoisted_7 = {
-  class: "my-4"
+const _hoisted_6 = {
+  class: "text-sm"
 };
-const _hoisted_8 = {
-  class: "space-y-4"
-};
+const _hoisted_7 = ["onClick"];
+const _hoisted_8 = ["onChange"];
 const _hoisted_9 = ["selected"];
 const _hoisted_10 = ["value", "selected"];
-const _hoisted_11 = ["required"];
+const _hoisted_11 = ["onUpdate:modelValue", "required"];
 const _hoisted_12 = ["value"];
-const _hoisted_13 = {
+const _hoisted_13 = ["onChange"];
+const _hoisted_14 = {
   value: "",
   disabled: "",
   selected: ""
 };
-const _hoisted_14 = ["value", "selected"];
-const _hoisted_15 = {
+const _hoisted_15 = ["value", "selected"];
+const _hoisted_16 = {
   class: "base-button w-full mt-2"
 };
-const _hoisted_16 = {
-  key: 1,
+const _hoisted_17 = {
+  key: 0,
   class: "text-center w-full mt-4"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -5135,48 +5144,61 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     href: "#",
     class: "text-xl",
     onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => _ctx.$emit('close'), ["prevent"]))
-  }, "×")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [!$options.withConditions ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [..._hoisted_6])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => $options.validateSaveAndClose && $options.validateSaveAndClose(...args), ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    class: "select select-bordered select-sm w-full bg-white h-11 pl-4 text-base font-normal",
-    required: "",
-    onChange: _cache[2] || (_cache[2] = $event => [$data.newCondition.field_uuid = $event.target.value, delete $data.newCondition.value, $options.conditionActions.includes($data.newCondition.action) ? '' : $data.newCondition.action = $options.conditionActions[0]])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-    value: "",
-    disabled: "",
-    selected: !$data.newCondition.field_uuid
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("select_field_")), 9 /* TEXT, PROPS */, _hoisted_9), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.fields, f => {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      key: f.uuid,
-      value: f.uuid,
-      selected: $data.newCondition.field_uuid === f.uuid
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(f.name || $props.buildDefaultName(f, $options.template.fields)), 9 /* TEXT, PROPS */, _hoisted_10);
-  }), 128 /* KEYED_FRAGMENT */))], 32 /* NEED_HYDRATION */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => $data.newCondition.action = $event),
-    class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["select select-bordered select-sm w-full h-11 pl-4 text-base font-normal", {
-      'bg-white': $data.newCondition.field_uuid,
-      'bg-base-300': !$data.newCondition.field_uuid
-    }]),
-    required: $data.newCondition.field_uuid
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.conditionActions, action => {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      key: action,
-      value: action
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t(action)), 9 /* TEXT, PROPS */, _hoisted_12);
-  }), 128 /* KEYED_FRAGMENT */))], 10 /* CLASS, PROPS */, _hoisted_11), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.newCondition.action]]), $options.conditionField?.options?.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("select", {
-    key: 0,
-    class: "select select-bordered select-sm w-full bg-white h-11 pl-4 text-base font-normal",
-    required: "",
-    onChange: _cache[4] || (_cache[4] = $event => $data.newCondition.value = $event.target.value)
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("select_value_")), 1 /* TEXT */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.conditionField.options, (option, index) => {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      key: option.uuid,
-      value: option.uuid,
-      selected: $data.newCondition.value === option.uuid
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.value || `${$options.t("option")} ${index + 1}`), 9 /* TEXT, PROPS */, _hoisted_14);
-  }), 128 /* KEYED_FRAGMENT */))], 32 /* NEED_HYDRATION */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("save")), 1 /* TEXT */)], 32 /* NEED_HYDRATION */), $props.field.conditions?.[0]?.field_uuid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, "×")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => $options.validateSaveAndClose && $options.validateSaveAndClose(...args), ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conditions, (condition, cindex) => {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: cindex,
+      class: "space-y-4 relative"
+    }, [$data.conditions.length > 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("condition")) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(cindex + 1), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      href: "#",
+      class: "link text-sm",
+      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => $data.conditions.splice(cindex, 1), ["prevent"])
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("remove")), 9 /* TEXT, PROPS */, _hoisted_7)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+      class: "select select-bordered select-sm w-full bg-white h-11 pl-4 text-base font-normal",
+      required: "",
+      onChange: $event => [condition.field_uuid = $event.target.value, delete condition.value, $options.conditionActions(condition).includes(condition.action) ? '' : condition.action = $options.conditionActions(condition)[0]]
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+      value: "",
+      disabled: "",
+      selected: !condition.field_uuid
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("select_field_")), 9 /* TEXT, PROPS */, _hoisted_9), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.fields, f => {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+        key: f.uuid,
+        value: f.uuid,
+        selected: condition.field_uuid === f.uuid
+      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(f.name || $props.buildDefaultName(f, $options.template.fields)), 9 /* TEXT, PROPS */, _hoisted_10);
+    }), 128 /* KEYED_FRAGMENT */))], 40 /* PROPS, NEED_HYDRATION */, _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+      "onUpdate:modelValue": $event => condition.action = $event,
+      class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["select select-bordered select-sm w-full h-11 pl-4 text-base font-normal", {
+        'bg-white': condition.field_uuid,
+        'bg-base-300': !condition.field_uuid
+      }]),
+      required: condition.field_uuid
+    }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.conditionActions(condition), action => {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+        key: action,
+        value: action
+      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t(action)), 9 /* TEXT, PROPS */, _hoisted_12);
+    }), 128 /* KEYED_FRAGMENT */))], 10 /* CLASS, PROPS */, _hoisted_11), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, condition.action]]), $options.conditionField(condition)?.options?.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("select", {
+      key: 1,
+      class: "select select-bordered select-sm w-full bg-white h-11 pl-4 text-base font-normal",
+      required: "",
+      onChange: $event => condition.value = $event.target.value
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("select_value_")), 1 /* TEXT */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.conditionField(condition).options, (option, index) => {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+        key: option.uuid,
+        value: option.uuid,
+        selected: condition.value === option.uuid
+      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.value || `${$options.t("option")} ${index + 1}`), 9 /* TEXT, PROPS */, _hoisted_15);
+    }), 128 /* KEYED_FRAGMENT */))], 40 /* PROPS, NEED_HYDRATION */, _hoisted_13)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "#",
+    class: "inline float-right link text-right mb-3 px-2",
+    onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => $data.conditions.push({}), ["prevent"]))
+  }, " + " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("add_condition")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("save")), 1 /* TEXT */)], 32 /* NEED_HYDRATION */), $props.field.conditions?.[0]?.field_uuid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     class: "link",
-    onClick: _cache[6] || (_cache[6] = $event => [$data.newCondition.field_uuid = null, delete $props.field.conditions, $options.validateSaveAndClose()])
+    onClick: _cache[4] || (_cache[4] = $event => [$data.conditions = [], delete $props.field.conditions, $options.validateSaveAndClose()])
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("remove_condition")), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]);
 }
 

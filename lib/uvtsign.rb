@@ -23,14 +23,14 @@ module Uvtsign
   CLOUD_URL = if Rails.env.development?
                 'http://localhost:3000'
               else
-                'https://uvtsign.co'
+                'https://sign.uvt.ro'
               end
   CDN_URL = if Rails.env.development?
               'http://localhost:3000'
             elsif ENV['MULTITENANT'] == 'true'
               "https://cdn.#{HOST}"
             else
-              'https://cdn.uvtsign.co'
+              'https://cdn.sign.uvt.ro'
             end
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
