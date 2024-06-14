@@ -8,11 +8,16 @@ module Embed
     def index
       submitter = Submitter.find_by!(slug: params[:submit_form_slug])
 
-      return render json: {} if submitter.completed_at?
-      return render json: {} if submitter.submission.template.archived_at? || submitter.submission.archived_at?
+      if submitter.completed_at? || submitter.submission.template.archived_at? || submitter.submission.archived_at?
+        return render json: {}
+      end
 
       value = submitter.values[params['field_uuid']]
       attachment = submitter.attachments.where(created_at: params[:after]..).find_by(uuid: value) if value.present?
+
+      if params[:completed] == 'true'
+        submitter.update(completed_at: Time.current)
+      end
 
       render json: {
         value:,

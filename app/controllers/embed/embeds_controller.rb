@@ -11,10 +11,14 @@ module Embed
     def forms_create
       email = params[:email]
       slug = params[:slug]
+      resubmit = params[:resubmit]
 
       submission = find_submission(slug, email)
 
       if submission.nil?
+        submission = create_submission(email, @template)
+        render json: new_submission_response(submission)
+      elsif resubmit
         submission = create_submission(email, @template)
         render json: new_submission_response(submission)
       elsif submission_completed?(submission)
@@ -22,12 +26,6 @@ module Embed
       else
         render json: new_submission_response(submission)
       end
-    end
-
-    def submitter_form_views_create
-      submitter_slug = params[:submitter_slug]
-      submitter = Submitter.find_by!(slug: submitter_slug)
-      render json: { status: 'ok' }, status: :ok
     end
 
     private
@@ -38,8 +36,10 @@ module Embed
     end
 
     def find_submission(slug, email)
-      Submission.joins(:submitters)
-                .where(slug: slug, submitters: { email: email })
+      Submission.joins(:submitters, :template)
+                .where(templates: { slug: slug }, submitters: { email: email })
+                .where.not(submitters: { completed_at: nil })
+                .where(archived_at: nil)
                 .first
     end
 
@@ -83,6 +83,7 @@ module Embed
         logo: nil,
         completed_submitter: {
           id: submission.submitters.first.id,
+          submission_id: submission.id,
           email: submission.submitters.first.email,
           completed_at: submission.submitters.first.completed_at
         }
@@ -91,8 +92,6 @@ module Embed
 
     def new_submission_response(submission)
       submitter = submission.submitters.first
-
-      Rails.logger.info("Template Fields: #{submission.template_fields.inspect}")
 
       {
         sandbox: false,

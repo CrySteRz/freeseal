@@ -24,10 +24,9 @@ Rails.application.routes.draw do
 
   namespace :embed do
     post 'forms', to: 'embeds#forms_create'
-    
+
     resources :submit_form, only: %i[show update], path: 's', param: 'slug' do
       resources :values, only: %i[index], controller: 'submit_form_values'
-      get :completed
     end
 
     resources :submitters, only: %i[], param: 'slug' do
