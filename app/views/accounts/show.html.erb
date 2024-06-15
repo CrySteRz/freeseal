@@ -22,14 +22,6 @@
         </div>
       <% end %>
       <% encrypted_config = @encrypted_config || EncryptedConfig.find_or_initialize_by(account: current_account, key: EncryptedConfig::APP_URL_KEY) %>
-      <% if !Uvtsign.multitenant? && can?(:manage, encrypted_config) && !current_account.testing? %>
-        <%= fields_for encrypted_config do |ff| %>
-          <div class="form-control">
-            <%= ff.label :value, 'App URL', class: 'label' %>
-            <%= ff.text_field :value, autocomplete: 'off', class: 'base-input' %>
-          </div>
-        <% end %>
-      <% end %>
       <% if can?(:update, current_account) %>
         <div class="form-control pt-2">
           <%= f.button button_title(title: 'Update', disabled_with: 'Updating'), class: 'base-button' %>

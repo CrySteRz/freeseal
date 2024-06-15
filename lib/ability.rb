@@ -4,23 +4,30 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :manage, Template, account_id: user.account_id
+    user ||= User.new # guest user (not logged in)
 
-    can %i[read update create], Template,
-        Abilities::TemplateConditions.collection(user) do |template|
-      Abilities::TemplateConditions.entity(template, user:, ability: 'manage')
+    if user.admin?
+      can :manage, :all
+      can :read, :all
+    elsif user.editor?
+      can :update, User, id: user.id # Editors can update their own profile
+      can :manage, Template, account_id: user.account_id
+      can :manage, TemplateFolder, account_id: user.account_id
+      can :manage, Submission, account_id: user.account_id
+      can :manage, Submitter, submission: { account_id: user.account_id }
+    elsif user.viewer?
+      can :read, Submission, account_id: user.account_id
+      can :read, Template, account_id: user.account_id
+      can :read, TemplateFolder, account_id: user.account_id
+      can :read, Submitter, submission: { account_id: user.account_id }
+      can :update, User, id: user.id
+    else
+      cannot :read, :all
     end
 
-    can :manage, TemplateFolder, account_id: user.account_id
-    can :manage, TemplateSharing, template: { account_id: user.account_id }
-    can :manage, Submission, account_id: user.account_id
-    can :manage, Submitter, submission: { account_id: user.account_id }
-    can :manage, User, account_id: user.account_id
-    can :manage, EncryptedConfig, account_id: user.account_id
-    can :manage, EncryptedUserConfig, user_id: user.id
-    can :manage, AccountConfig, account_id: user.account_id
-    can :manage, UserConfig, user_id: user.id
-    can :manage, Account, id: user.account_id
-    can :manage, AccessToken, user_id: user.id
+    # Only admins can manage other users
+    can :create, User if user.admin?
+    can :destroy, User if user.admin?
+    can :update, User, account_id: user.account_id if user.admin? || user.editor?
   end
 end

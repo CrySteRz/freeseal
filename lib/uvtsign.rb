@@ -2,17 +2,14 @@
 
 module Uvtsign
   URL_CACHE = ActiveSupport::Cache::MemoryStore.new
-  PRODUCT_URL = 'http://127.0.0.1:3000'
+  PRODUCT_URL = 'http://localhost:3000'
   NEWSLETTER_URL = "#{PRODUCT_URL}/newsletters".freeze
   ENQUIRIES_URL = "#{PRODUCT_URL}/enquiries".freeze
   PRODUCT_NAME = 'UVTSign'
   DEFAULT_APP_URL = 'http://localhost:3000'
   GITHUB_URL = 'https://github.com/uvtsignco/uvtsign'
-  DISCORD_URL = 'https://discord.gg/qygYCDGck9'
-  TWITTER_URL = 'https://twitter.com/uvtsignco'
-  TWITTER_HANDLE = '@uvtsignco'
-  SUPPORT_EMAIL = 'support@uvtsign.co'
-  HOST = ENV.fetch('HOST', 'localhost')
+  SUPPORT_EMAIL = 'support@e-uvt.ro'
+  HOST = ENV.fetch('HOST', 'localhost:3000')
   CONSOLE_URL = if Rails.env.development?
                   'http://console.localhost.io:3001'
                 elsif ENV['MULTITENANT'] == 'true'
@@ -72,14 +69,7 @@ module Uvtsign
   end
 
   def default_url_options
-    return DEFAULT_URL_OPTIONS if multitenant?
-
-    @default_url_options ||= begin
-      value = EncryptedConfig.find_by(key: EncryptedConfig::APP_URL_KEY)&.value
-      value ||= DEFAULT_APP_URL
-      url = Addressable::URI.parse(value)
-      { host: url.host, port: url.port, protocol: url.scheme }
-    end
+    DEFAULT_URL_OPTIONS
   end
 
   def product_name

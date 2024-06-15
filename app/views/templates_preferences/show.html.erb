@@ -1,7 +1,7 @@
 <%= render 'shared/turbo_modal_large', title: 'Preferences', close_after_submit: false do %>
   <% show_api = Uvtsign.multitenant? || current_account.testing? || !current_account.linked_account_account %>
   <% options = [%w[General general]] %>
-  <% options << ['API and Embedding', 'api'] if show_api %>
+  <% options << ['Embedding', 'api'] if show_api %>
   <% if options.size > 1 %>
     <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-3 block">
       <div class="join">
@@ -132,19 +132,7 @@
       </div>
       <%= render 'templates_code_modal/placeholder' %>
       <%= render 'templates/embedding', template: @template %>
-      <% if can?(:manage, TemplateSharing.new(template: @template)) %>
-        <%= form_for '', url: template_sharings_testing_index_path, method: :post, html: { class: 'mt-1' } do |f| %>
-          <%= f.hidden_field :template_id, value: @template.id %>
-          <div class="flex items-center justify-between">
-            <span>
-              Share template with Test Environment
-            </span>
-            <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: current_account.testing_accounts), onchange: 'this.form.requestSubmit()' %>
-          </div>
-        <% end %>
-        <div class="mb-4">
-        </div>
-      <% end %>
+
     </div>
   <% end %>
 <% end %>

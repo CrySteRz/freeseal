@@ -7,44 +7,43 @@
       <li>
         <%= link_to 'Profile', settings_profile_index_path, class: 'text-base hover:bg-base-300' %>
       </li>
+       <%if can?(:manage, Account )%>
       <li>
         <%= link_to 'Account', settings_account_path, class: 'text-base hover:bg-base-300' %>
       </li>
+      <%end%>
       <% unless Uvtsign.multitenant? %>
-        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? &&  true_user == current_user %>
+        <% if can?(:manage, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? &&  true_user == current_user %>
           <li>
             <%= link_to 'Email', settings_email_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
-        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user %>
+        <% if can?(:manage, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user %>
           <li>
             <%= link_to 'Storage', settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
       <% end %>
-      <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
+      <% if can?(:manage, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
         <li>
           <%= link_to 'E-Signature', settings_esign_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <% if can?(:read, AccountConfig) %>
+      <% if can?(:manage, AccountConfig) %>
         <li>
           <%= link_to 'Personalization', settings_personalization_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <% if can?(:read, User) %>
+      <% if can?(:manage, UserConfig) %>
         <li>
           <%= link_to 'Users', settings_users_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      
-      <% if !Uvtsign.multitenant? %>
-        <% if can?(:read, AccessToken) %>
+        <% if can?(:manage, AccessToken) %>
           <li>
             <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
-      <% end %>
 
     </ul>
   </menu-active>

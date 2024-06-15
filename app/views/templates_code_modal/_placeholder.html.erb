@@ -1,11 +1,6 @@
 <div class="alert">
-  <%= svg_icon('info_circle', class: 'w-6 h-6') %>
   <div>
-    <p class="font-bold">API and Embedding</p>
-    <p class="text-gray-700">
-      Unlock with UVTSign Pro
-      <br>
-      <a class="link font-medium" target="_blank" href="<%= Uvtsign.multitenant? ? console_redirect_index_path(redir: "#{Uvtsign::CONSOLE_URL}/plans") : "#{Uvtsign::CLOUD_URL}/sign_up?#{{ redir: "#{Uvtsign::CONSOLE_URL}/on_premise" }.to_query}" %>" data-turbo="false">Learn More</a>
-    </p>
+    <p class="font-bold">Embedding Code</p>
+
   </div>
 </div>

@@ -2,7 +2,9 @@
 
 class UsersController < ApplicationController
   load_and_authorize_resource :user, only: %i[index edit update destroy]
-
+  before_action do
+    authorize!(:manage, User)
+  end
   before_action :build_user, only: %i[new create]
   authorize_resource :user, only: %i[new create]
 
@@ -23,18 +25,23 @@ class UsersController < ApplicationController
 
   def create
     existing_user = User.accessible_by(current_ability).find_by(email: @user.email)
-
+  
     if existing_user
       existing_user.archived_at = nil
       existing_user.assign_attributes(user_params)
       existing_user.account = current_account
-
+  
       @user = existing_user
     end
-
+  
     if @user.save
+      # Set the default value for EncryptedConfig upon user creation
+      EncryptedConfig.find_or_create_by(account: current_account, key: EncryptedConfig::APP_URL_KEY) do |config|
+        config.value = Uvtsign.CLOUD_URL
+      end
+  
       UserMailer.invitation_email(@user).deliver_later!
-
+  
       redirect_back fallback_location: settings_users_path, notice: 'User has been invited'
     else
       render turbo_stream: turbo_stream.replace(:modal, template: 'users/new'), status: :unprocessable_entity

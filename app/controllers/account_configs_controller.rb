@@ -2,6 +2,7 @@
 
 class AccountConfigsController < ApplicationController
   before_action :load_account_config
+  
   authorize_resource :account_config
 
   ALLOWED_KEYS = [
