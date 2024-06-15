@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
 class DashboardController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index]
-
-  before_action :maybe_redirect_product_url
-  before_action :maybe_render_landing
-  before_action :maybe_redirect_mfa_setup
-
+  before_action :redirect_unauthenticated_user
+  before_action :maybe_redirect_product_url, if: :signed_in?
+  before_action :maybe_redirect_mfa_setup, if: :signed_in?
   skip_authorization_check
 
   def index
@@ -19,26 +16,23 @@ class DashboardController < ApplicationController
 
   private
 
+  def redirect_unauthenticated_user
+    return if signed_in?
+
+    redirect_to new_user_session_path
+  end
+
   def maybe_redirect_product_url
-    return if !Uvtsign.multitenant? || signed_in?
+    return unless Uvtsign.multitenant?
 
     redirect_to Uvtsign::PRODUCT_URL, allow_other_host: true
   end
 
   def maybe_redirect_mfa_setup
-    return unless signed_in?
     return if current_user.otp_required_for_login
 
-    return if !current_user.otp_required_for_login && !AccountConfig.exists?(value: true,
-                                                                             account_id: current_user.account_id,
-                                                                             key: AccountConfig::FORCE_MFA)
-
-    redirect_to mfa_setup_path, notice: 'Setup 2FA to continue'
-  end
-
-  def maybe_render_landing
-    return if signed_in?
-
-    render 'pages/landing'
+    if AccountConfig.exists?(value: true, account_id: current_user.account_id, key: AccountConfig::FORCE_MFA)
+      redirect_to mfa_setup_path, notice: 'Setup 2FA to continue'
+    end
   end
 end

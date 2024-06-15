@@ -2,7 +2,7 @@
 
 module Uvtsign
   URL_CACHE = ActiveSupport::Cache::MemoryStore.new
-  PRODUCT_URL = 'https://www.uvtsign.co'
+  PRODUCT_URL = 'http://127.0.0.1:3000'
   NEWSLETTER_URL = "#{PRODUCT_URL}/newsletters".freeze
   ENQUIRIES_URL = "#{PRODUCT_URL}/enquiries".freeze
   PRODUCT_NAME = 'UVTSign'

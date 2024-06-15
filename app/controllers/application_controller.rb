@@ -9,9 +9,7 @@ class ApplicationController < ActionController::Base
   check_authorization unless: :devise_controller?
 
   before_action :sign_in_for_demo, if: -> { Uvtsign.demo? }
-  before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?
-
   helper_method :button_title,
                 :current_account,
                 :svg_icon
@@ -73,10 +71,6 @@ class ApplicationController < ActionController::Base
 
   def current_account
     current_user&.account
-  end
-
-  def maybe_redirect_to_setup
-    redirect_to setup_index_path unless User.exists?
   end
 
   def button_title(title: 'Submit', disabled_with: 'Submitting', title_class: '', icon: nil, icon_disabled: nil)

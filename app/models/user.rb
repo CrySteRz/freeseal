@@ -53,6 +53,7 @@ class User < ApplicationRecord
   has_one_attached :initials
 
   belongs_to :account
+  accepts_nested_attributes_for :account
   has_one :access_token, dependent: :destroy
   has_many :templates, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
   has_many :template_folders, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
@@ -60,7 +61,7 @@ class User < ApplicationRecord
   has_many :encrypted_configs, dependent: :destroy, class_name: 'EncryptedUserConfig'
   has_many :email_messages, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
 
-  devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable
+  devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable, :registerable
 
   attribute :role, :string, default: ADMIN_ROLE
   attribute :uuid, :string, default: -> { SecureRandom.uuid }

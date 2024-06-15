@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show'
 
   devise_for :users,
-             path: '/', only: %i[sessions passwords omniauth_callbacks],
+             path: '/', only: %i[sessions passwords registrations omniauth_callbacks],
              controllers: begin
-               options = { sessions: 'sessions', passwords: 'passwords' }
+               options = { sessions: 'sessions', passwords: 'passwords', registrations: 'registrations' }
                options[:omniauth_callbacks] = 'omniauth_callbacks' if User.devise_modules.include?(:omniauthable)
                options
              end
@@ -111,9 +111,9 @@ Rails.application.routes.draw do
                                   path: '/blobs/proxy/:signed_id/*filename',
                                   controller: 'api/active_storage_blobs_proxy_legacy',
                                   as: :rails_blob
-    get '/disk/:encoded_key/*filename' => 'active_storage/disk#show', as: :rails_disk_service
-    put '/disk/:encoded_token' => 'active_storage/disk#update', as: :update_rails_disk_service
-    post '/direct_uploads' => 'active_storage/direct_uploads#create', as: :rails_direct_uploads
+    get '/disk/:encoded_key/*filename' => 'active_storage/disk#show', as: :rails_disk_service_legacy
+    put '/disk/:encoded_token' => 'active_storage/disk#update', as: :update_rails_disk_service_legacy
+    post '/direct_uploads' => 'active_storage/direct_uploads#create', as: :rails_direct_uploads_legacy
   end
 
   resources :start_form, only: %i[show update], path: 'd', param: 'slug' do
