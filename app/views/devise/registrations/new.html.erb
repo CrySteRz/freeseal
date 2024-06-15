@@ -40,8 +40,8 @@
 
       <div class="form-control">
         <%= f.fields_for :account do |af| %>
-          <%= af.label :name, "Account Name", class: 'label' %>
-          <%= af.text_field :name, required: true, class: 'base-input' %>
+          <%= af.label :name, "Team Name (optional)", class: 'label' %>
+          <%= af.text_field :name, class: 'base-input' %>
         <% end %>
       </div>
     </div>
