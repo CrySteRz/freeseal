@@ -20,10 +20,6 @@ module PdfIcons
     StringIO.new(logo_data)
   end
 
-  def logo_new_io
-    StringIO.new(logo_new_data)
-  end
-
   def check_data
     @check_data ||= PATH.join('check.png').read
   end
@@ -36,7 +32,4 @@ module PdfIcons
     @logo_data ||= PATH.join('logo.png').read
   end
 
-  def logo_new_data
-    @logo_new_data ||= PATH.join('logo_new.png').read
-  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RegistrationsController < Devise::RegistrationsController
   def new
     build_resource({})
@@ -16,6 +18,17 @@ class RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
+
+        encrypted_configs = [
+          { key: EncryptedConfig::APP_URL_KEY, value: Uvtsign::HOST },
+          { key: EncryptedConfig::ESIGN_CERTS_KEY, value: GenerateCertificate.call.transform_values(&:to_pem) }
+        ]
+        resource.account.encrypted_configs.create!(encrypted_configs)
+
+        Uvtsign.refresh_default_url_options!
+
+        sign_in(resource)
+
         respond_with resource, location: after_sign_up_path_for(resource)
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
@@ -44,5 +57,9 @@ class RegistrationsController < Devise::RegistrationsController
     return unless hash[:account_attributes]
 
     resource.account = Account.new(hash[:account_attributes])
+  end
+
+  def encrypted_config_params
+    params.require(:user).permit(encrypted_config: [:value])[:encrypted_config]
   end
 end

@@ -66,7 +66,7 @@
     </div>
     <div v-if="attribution" class="text-center mt-4">
       {{ t("signed_with") }}
-      <a href="https://www.uvtsign.co/start" target="_blank" class="underline"
+      <a href="https://www.uvtsign.co/" target="_blank" class="underline"
         >UVTSign</a
       >
       - {{ t("open_source_documents_software") }}

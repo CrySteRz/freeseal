@@ -10,7 +10,7 @@ module Submissions
                   'Helvetica'
                 end
 
-    SIGN_REASON = 'Signed by %<name>s with UVTSign.co'
+    SIGN_REASON = "Signed by %<name>s with #{Uvtsign::PRODUCT_NAME}"
 
     RTL_REGEXP = TextUtils::RTL_REGEXP
 
@@ -473,13 +473,9 @@ module Submissions
       reason_name = submitter.email || submitter.name || submitter.phone
 
       config =
-        if Uvtsign.multitenant?
-          AccountConfig.where(account: submitter.account, key: AccountConfig::ESIGNING_PREFERENCE_KEY)
-                       .first_or_initialize(value: 'single')
-        else
-          AccountConfig.where(key: AccountConfig::ESIGNING_PREFERENCE_KEY)
-                       .first_or_initialize(value: 'single')
-        end
+        AccountConfig.where(account: submitter.account, key: AccountConfig::ESIGNING_PREFERENCE_KEY)
+                     .first_or_initialize(value: 'single')
+
 
       return sign_reason(reason_name) if config.value == 'multiple'
 

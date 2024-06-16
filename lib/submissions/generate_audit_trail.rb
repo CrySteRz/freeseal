@@ -330,7 +330,7 @@ module Submissions
     end
 
     def sign_reason
-      'Signed with UVTSign.co'
+      "Signed with #{Uvtsign::PRODUCT_NAME}"
     end
 
     def add_logo(column, _submission = nil)

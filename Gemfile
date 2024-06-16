@@ -12,7 +12,7 @@ gem 'cancancan'
 gem 'csv'
 gem 'devise'
 gem 'devise-two-factor'
-gem 'dotenv'
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'email_typo'
 gem 'faraday'
 gem 'faraday-follow_redirects'
@@ -23,6 +23,8 @@ gem 'jwt'
 gem 'lograge'
 gem 'mysql2', require: false
 gem 'oj'
+gem "omniauth-rails_csrf_protection"
+gem 'omniauth-google-oauth2'
 gem 'pagy'
 gem 'pg', require: false
 gem 'premailer-rails'

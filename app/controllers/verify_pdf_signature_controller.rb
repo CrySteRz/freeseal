@@ -10,13 +10,7 @@ class VerifyPdfSignatureController < ApplicationController
       end
 
     cert_data =
-      if Uvtsign.multitenant?
-        value = EncryptedConfig.find_by(account: current_account, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
-
-        Uvtsign::CERTS.merge(value)
-      else
-        EncryptedConfig.find_by(key: EncryptedConfig::ESIGN_CERTS_KEY)&.value || {}
-      end
+        EncryptedConfig.find_by(account: current_account, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value
 
     default_pkcs = GenerateCertificate.load_pkcs(cert_data)
 

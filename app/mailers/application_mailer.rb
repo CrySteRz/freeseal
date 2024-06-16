@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  default from: 'UVTSign <info@uvtsign.co>'
+  default from: 'UVTSign <sign@e-uvt.ro>'
   layout 'mailer'
 
   register_interceptor ActionMailerConfigsInterceptor

@@ -39,6 +39,9 @@ Rails.application.routes.draw do
       post 'submitter_form_views', to: 'submitter_form_views#create'
       post 'attachments', to: 'attachments#create'
     end
+
+    post 'send_submission_email', to: 'submissions#send_email', defaults: { format: :json }
+
   end
 
   namespace :api, defaults: { format: :json } do

@@ -19,11 +19,13 @@
 #  locked_at              :datetime
 #  otp_required_for_login :boolean          default(FALSE), not null
 #  otp_secret             :string
+#  provider               :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  role                   :string           not null
 #  sign_in_count          :integer          default(0), not null
+#  uid                    :string
 #  unlock_token           :string
 #  uuid                   :string           not null
 #  created_at             :datetime         not null
@@ -59,9 +61,10 @@ class User < ApplicationRecord
   has_many :encrypted_configs, dependent: :destroy, class_name: 'EncryptedUserConfig'
   has_many :email_messages, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
 
-  devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable, :registerable
+  devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable, :registerable,
+         :omniauthable, omniauth_providers: [:google_oauth2]
 
-  attribute :role, :string, default: 'viewer'
+  attribute :role, :string, default: 'admin'
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
   scope :active, -> { where(archived_at: nil) }
@@ -78,6 +81,24 @@ class User < ApplicationRecord
 
   def remember_me
     true
+  end
+
+  def self.from_google(auth)
+    user = find_or_initialize_by(email: auth.info.email)
+    user.uid = auth.uid
+    user.provider = 'google'
+    user.first_name = auth.info.first_name
+    user.last_name = auth.info.last_name
+    user.password = Devise.friendly_token[0, 20] if user.new_record?
+    # TODO: FINISH THIS
+    user.account = Account.find_or_create_by() do |account|
+      account.name = auth.info.name
+      account.timezone = 'UTC'
+      account.locale = 'en-US'
+    end
+
+    user.save!
+    user
   end
 
   def self.sign_in_after_reset_password

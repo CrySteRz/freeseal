@@ -4101,7 +4101,7 @@ const _hoisted_11 = {
   class: "text-center mt-4"
 };
 const _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "https://www.uvtsign.co/start",
+  href: "https://www.uvtsign.co/",
   target: "_blank",
   class: "underline"
 }, "UVTSign", -1 /* HOISTED */);

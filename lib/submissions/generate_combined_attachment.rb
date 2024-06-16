@@ -56,7 +56,7 @@ module Submissions
     end
 
     def sign_reason
-      'Signed with UVTSign.co'
+      "Signed with #{Uvtsign::PRODUCT_NAME}"
     end
   end
 end
