@@ -38,6 +38,8 @@ gem 'rotp'
 gem 'rqrcode'
 gem 'ruby-vips'
 gem 'rubyXL'
+gem 'rswag-api'
+gem 'rswag-ui'
 gem 'shakapacker'
 gem 'sidekiq', require: ENV.key?('REDIS_URL')
 gem 'sqlite3', require: false, force_ruby_platform: true

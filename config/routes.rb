@@ -44,6 +44,9 @@ Rails.application.routes.draw do
 
   end
 
+  mount Rswag::Ui::Engine => '/docs/api'
+  mount Rswag::Api::Engine => '/docs/api'
+
   namespace :api, defaults: { format: :json } do
     resources :attachments, only: %i[create]
     resources :submitter_email_clicks, only: %i[create]
