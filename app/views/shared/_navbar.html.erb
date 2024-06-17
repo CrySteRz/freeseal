@@ -48,14 +48,6 @@
           </span>
         <% end %>
       <% end %>
-      <% if Uvtsign.multitenant? && !request.path.in?([new_user_registration_path, new_user_session_path]) %>
-        <%= link_to new_user_registration_path({ lang: params[:lang] }.compact_blank), class: 'btn btn-neutral btn-sm btn-outline' do %>
-          <span class="flex items-center justify-center space-x-1">
-            <span class="hidden sm:block"><%= t('create_free_account') %></span>
-            <span class="md:hidden"><%= t('sign_up') %></span>
-          </span>
-        <% end %>
-      <% end %>
     </div>
   <% end %>
 </div>

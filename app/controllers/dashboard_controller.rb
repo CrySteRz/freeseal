@@ -2,7 +2,6 @@
 
 class DashboardController < ApplicationController
   before_action :redirect_unauthenticated_user
-  before_action :maybe_redirect_product_url, if: :signed_in?
   before_action :maybe_redirect_mfa_setup, if: :signed_in?
   skip_authorization_check
 
@@ -22,17 +21,11 @@ class DashboardController < ApplicationController
     redirect_to new_user_session_path
   end
 
-  def maybe_redirect_product_url
-    return unless Uvtsign.multitenant?
-
-    redirect_to Uvtsign::PRODUCT_URL, allow_other_host: true
-  end
-
   def maybe_redirect_mfa_setup
     return if current_user.otp_required_for_login
 
-    if AccountConfig.exists?(value: true, account_id: current_user.account_id, key: AccountConfig::FORCE_MFA)
-      redirect_to mfa_setup_path, notice: 'Setup 2FA to continue'
-    end
+    return unless AccountConfig.exists?(value: true, account_id: current_user.account_id, key: AccountConfig::FORCE_MFA)
+
+    redirect_to mfa_setup_path, notice: 'Setup 2FA to continue'
   end
 end

@@ -7,7 +7,7 @@ class PasswordsController < Devise::PasswordsController
 
   def create
     super do |resource|
-      resource.errors.clear unless Uvtsign.multitenant?
+      resource.errors.clear
     end
   end
 

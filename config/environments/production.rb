@@ -123,40 +123,11 @@ Rails.application.configure do
 
   config.lograge.enabled = true
   config.lograge.base_controller_class = ['ActionController::API', 'ActionController::Base']
+  config.lograge.formatter = Lograge::Formatters::Json.new
 
-  if ENV['MULTITENANT'] == 'true'
-    config.lograge.formatter = ->(data) { data.except(:path, :location).to_json }
-
-    config.lograge.custom_payload do |controller|
-      params =
-        begin
-          controller.request.try(:params) || {}
-        rescue StandardError
-          {}
-        end
-
-      {
-        fwd: controller.request.remote_ip,
-        params: {
-          id: params[:id],
-          sig: (params[:signed_uuid] || params[:signed_id]).to_s.split('--').first,
-          slug: (params[:slug] ||
-                 params[:submitter_slug] ||
-                 params[:submission_slug] ||
-                 params[:submit_form_slug] ||
-                 params[:template_slug]).to_s.last(5)
-        }.compact_blank,
-        host: controller.request.host,
-        uid: controller.instance_variable_get(:@current_user).try(:id)
-      }
-    end
-  else
-    config.lograge.formatter = Lograge::Formatters::Json.new
-
-    config.lograge.custom_payload do |controller|
-      {
-        fwd: controller.request.remote_ip
-      }
-    end
+  config.lograge.custom_payload do |controller|
+    {
+      fwd: controller.request.remote_ip
+    }
   end
 end

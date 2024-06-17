@@ -33,7 +33,7 @@ class SendFormStartedWebhookRequestJob < ApplicationJob
     end
 
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
-       (!Uvtsign.multitenant? || submitter.account.account_configs.exists?(key: :plan))
+       submitter.account.account_configs.exists?(key: :plan)
       SendFormStartedWebhookRequestJob.set(wait: (2**attempt).minutes)
                                       .perform_later(submitter, {
                                                        attempt: attempt + 1,

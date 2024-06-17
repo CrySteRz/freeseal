@@ -6,7 +6,7 @@ class ConsoleRedirectController < ApplicationController
 
   def index
     if request.path == '/upgrade'
-      params[:redir] = Uvtsign.multitenant? ? "#{Uvtsign::CONSOLE_URL}/plans" : "#{Uvtsign::CONSOLE_URL}/on_premise"
+      params[:redir] = "#{Uvtsign::CONSOLE_URL}/on_premise"
     end
 
     params[:redir] = "#{Uvtsign::CONSOLE_URL}/manage" if request.path == '/manage'

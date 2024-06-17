@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     if @user.save
       # Set the default value for EncryptedConfig upon user creation
       EncryptedConfig.find_or_create_by(account: current_account, key: EncryptedConfig::APP_URL_KEY) do |config|
-        config.value = Uvtsign.CLOUD_URL
+        config.value = Uvtsign::CLOUD_URL
       end
   
       UserMailer.invitation_email(@user).deliver_later!

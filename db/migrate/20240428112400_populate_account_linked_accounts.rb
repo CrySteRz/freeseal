@@ -10,8 +10,6 @@ class PopulateAccountLinkedAccounts < ActiveRecord::Migration[7.1]
   end
 
   def up
-    return if Uvtsign.multitenant?
-
     MigrationAccount.order(:id).each do |account|
       next if account.id == 1
       next if MigrationAccountLinkedAccount.exists?(linked_account_id: account.id)

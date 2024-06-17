@@ -10,6 +10,13 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
 
+    if resource.new_record? && resource.account.nil?
+      resource.build_account
+      resource.account.name = "#{resource.first_name} #{resource.last_name}"
+      resource.account.timezone = 'UTC'
+      resource.account.locale = 'en-US'
+    end
+
     resource.account.name = "#{resource.first_name} #{resource.last_name}" if resource.account.name.blank?
 
     resource.save

@@ -109,16 +109,6 @@ Rails.application.routes.draw do
   resource :blobs_proxy, only: %i[show], path: '/blobs_proxy/:signed_uuid/*filename',
                          controller: 'api/active_storage_blobs_proxy'
 
-  if Uvtsign.multitenant?
-    resource :blobs_proxy_legacy, only: %i[show],
-                                  path: '/blobs/proxy/:signed_id/*filename',
-                                  controller: 'api/active_storage_blobs_proxy_legacy',
-                                  as: :rails_blob
-    get '/disk/:encoded_key/*filename' => 'active_storage/disk#show', as: :rails_disk_service_legacy
-    put '/disk/:encoded_token' => 'active_storage/disk#update', as: :update_rails_disk_service_legacy
-    post '/direct_uploads' => 'active_storage/direct_uploads#create', as: :rails_direct_uploads_legacy
-  end
-
   resources :start_form, only: %i[show update], path: 'd', param: 'slug' do
     get :completed
   end
@@ -149,11 +139,9 @@ Rails.application.routes.draw do
   end
 
   scope '/settings', as: :settings do
-    unless Uvtsign.multitenant?
-      resources :storage, only: %i[index create], controller: 'storage_settings'
-      resources :email, only: %i[index create], controller: 'email_smtp_settings'
-      resources :sms, only: %i[index], controller: 'sms_settings'
-    end
+    resources :storage, only: %i[index create], controller: 'storage_settings'
+    resources :email, only: %i[index create], controller: 'email_smtp_settings'
+    resources :sms, only: %i[index], controller: 'sms_settings'
     resources :sso, only: %i[index], controller: 'sso_settings'
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'

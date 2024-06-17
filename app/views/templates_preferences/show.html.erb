@@ -1,5 +1,5 @@
 <%= render 'shared/turbo_modal_large', title: 'Preferences', close_after_submit: false do %>
-  <% show_api = Uvtsign.multitenant? || current_account.testing? || !current_account.linked_account_account %>
+  <% show_api = current_account.testing? || !current_account.linked_account_account %>
   <% options = [%w[General general]] %>
   <% options << ['Embedding', 'api'] if show_api %>
   <% if options.size > 1 %>

@@ -12,17 +12,15 @@
         <%= link_to 'Account', settings_account_path, class: 'text-base hover:bg-base-300' %>
       </li>
       <%end%>
-      <% unless Uvtsign.multitenant? %>
-        <% if can?(:manage, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? &&  true_user == current_user %>
-          <li>
-            <%= link_to 'Email', settings_email_index_path, class: 'text-base hover:bg-base-300' %>
-          </li>
-        <% end %>
-        <% if can?(:manage, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user %>
-          <li>
-            <%= link_to 'Storage', settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
-          </li>
-        <% end %>
+      <% if can?(:manage, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? && true_user == current_user %>
+        <li>
+          <%= link_to 'Email', settings_email_index_path, class: 'text-base hover:bg-base-300' %>
+        </li>
+      <% end %>
+      <% if can?(:manage, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user %>
+        <li>
+          <%= link_to 'Storage', settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
+        </li>
       <% end %>
       <% if can?(:manage, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
         <li>
@@ -47,7 +45,7 @@
 
     </ul>
   </menu-active>
-  <% if Uvtsign.multitenant? || cannot?(:manage, :tenants) %>
+  <% if cannot?(:manage, :tenants) %>
     <div class="mx-4 border-t border-base-300 hidden md:block">
       <div class="text-sm mt-3">
         Need help? Ask a question:

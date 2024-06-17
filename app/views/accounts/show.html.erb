@@ -5,7 +5,7 @@
     <%= form_for '', url: settings_account_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
       <%= fields_for current_account do |ff| %>
         <div class="form-control">
-          <%= ff.label :name, 'Company Name', class: 'label' %>
+          <%= ff.label :name, 'Team Name', class: 'label' %>
           <%= ff.text_field :name, required: true, class: 'base-input', dir: 'auto' %>
         </div>
         <div class="grid md:grid-cols-2 gap-4">

@@ -91,25 +91,17 @@ module Accounts
   def load_webhook_preferences(account)
     configs = account.account_configs.find_by(key: AccountConfig::WEBHOOK_PREFERENCES_KEY)
 
-    unless Uvtsign.multitenant?
-      configs ||= Account.order(:id).first.account_configs.find_by(key: AccountConfig::WEBHOOK_PREFERENCES_KEY)
-    end
+    configs ||= Account.order(:id).first.account_configs.find_by(key: AccountConfig::WEBHOOK_PREFERENCES_KEY)
 
     configs&.value.presence || {}
   end
 
   def load_signing_pkcs(account)
     cert_data =
-      if Uvtsign.multitenant?
-        data = EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value
 
-        return Uvtsign.default_pkcs if data.blank?
+      data = EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value
 
-        data
-      else
-        EncryptedConfig.find_by(account:, key: EncryptedConfig::ESIGN_CERTS_KEY)&.value ||
-          EncryptedConfig.find_by(key: EncryptedConfig::ESIGN_CERTS_KEY).value
-      end
+    return Uvtsign.default_pkcs if data.blank?
 
     if (default_cert = cert_data['custom']&.find { |e| e['status'] == 'default' })
       OpenSSL::PKCS12.new(Base64.urlsafe_decode64(default_cert['data']), default_cert['password'].to_s)
@@ -119,22 +111,14 @@ module Accounts
   end
 
   def load_timeserver_url(account)
-    if Uvtsign.multitenant?
-      Uvtsign::TIMESERVER_URL
-    else
-      url = EncryptedConfig.find_by(account:, key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
+    url = EncryptedConfig.find_by(account:, key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
 
-      unless Uvtsign.multitenant?
-        url ||=
-          Account.order(:id).first.encrypted_configs.find_by(key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
-      end
+    url ||= Account.order(:id).first.encrypted_configs.find_by(key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
 
-      url
-    end.presence
+    url.presence
   end
 
   def can_send_emails?(_account, **_params)
-    return true if Uvtsign.multitenant?
     return true if ENV['SMTP_ADDRESS'].present?
 
     EncryptedConfig.exists?(key: EncryptedConfig::EMAIL_SMTP_KEY)

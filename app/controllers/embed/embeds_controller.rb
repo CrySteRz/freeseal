@@ -22,9 +22,9 @@ module Embed
         submission = create_submission(email, @template)
         render json: new_submission_response(submission)
       elsif submission_completed?(submission)
-        render json: completed_submission_response(submission)
+        handle_completed_submission(submission, resubmit)
       else
-        render json: new_submission_response(submission)
+        render json: existing_incomplete_submission_response(submission)
       end
     end
 
@@ -38,13 +38,22 @@ module Embed
     def find_submission(slug, email)
       Submission.joins(:submitters, :template)
                 .where(templates: { slug: slug }, submitters: { email: email })
-                .where.not(submitters: { completed_at: nil })
                 .where(archived_at: nil)
+                .order(created_at: :desc)
                 .first
     end
 
     def submission_completed?(submission)
       submission.submitters.where(completed_at: nil).empty?
+    end
+
+    def handle_completed_submission(submission, resubmit)
+      if resubmit
+        new_submission = create_submission(submission.submitters.first.email, submission.template)
+        render json: new_submission_response(new_submission)
+      else
+        render json: completed_submission_response(submission)
+      end
     end
 
     def c_user(template)
@@ -68,6 +77,8 @@ module Embed
     end
 
     def completed_submission_response(submission)
+      submitter = submission.submitters.order(completed_at: :desc).first
+
       {
         sandbox: false,
         template: {
@@ -82,10 +93,10 @@ module Embed
         attachments: nil,
         logo: nil,
         completed_submitter: {
-          id: submission.submitters.first.id,
+          id: submitter.id,
           submission_id: submission.id,
-          email: submission.submitters.first.email,
-          completed_at: submission.submitters.first.completed_at
+          email: submitter.email,
+          completed_at: submitter.completed_at
         }
       }
     end
@@ -123,7 +134,46 @@ module Embed
         },
         values: {},
         documents: serialize_documents(submission.template_schema_documents),
-        attachments: [],
+        attachments: serialize_attachments(submitter.attachments),
+        logo: nil,
+        completed_submitter: nil
+      }
+    end
+
+    def existing_incomplete_submission_response(submission)
+      submitter = submission.submitters.first
+
+      {
+        sandbox: false,
+        template: {
+          id: submission.template.id,
+          slug: submission.template.slug,
+          name: submission.template.name
+        },
+        submission: {
+          id: submission.id,
+          template_fields: serialize_template_fields(submission.template_fields),
+          template_schema: submission.template_schema,
+          template_submitters: submission.template_submitters
+        },
+        submitter: {
+          id: submitter.id,
+          uuid: submitter.uuid,
+          email: submitter.email,
+          slug: submitter.slug,
+          values: submitter.values,
+          name: submitter.name,
+          phone: submitter.phone,
+          external_id: submitter.external_id,
+          preferences: {
+            send_email: true,
+            send_sms: false
+          },
+          application_key: submitter.application_key
+        },
+        values: submitter.values,
+        documents: serialize_documents(submission.template_schema_documents),
+        attachments: serialize_attachments(submitter.attachments),
         logo: nil,
         completed_submitter: nil
       }
@@ -171,6 +221,18 @@ module Embed
           url: image.url,
           metadata: image.metadata,
           filename: image.filename
+        }
+      end
+    end
+
+    def serialize_attachments(attachments)
+      attachments.map do |attachment|
+        {
+          id: attachment.id,
+          uuid: attachment.uuid,
+          url: attachment.url,
+          filename: attachment.filename,
+          content_type: attachment.content_type
         }
       end
     end

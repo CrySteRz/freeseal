@@ -90,14 +90,31 @@ class User < ApplicationRecord
     user.first_name = auth.info.first_name
     user.last_name = auth.info.last_name
     user.password = Devise.friendly_token[0, 20] if user.new_record?
-    # TODO: FINISH THIS
-    user.account = Account.find_or_create_by() do |account|
-      account.name = auth.info.name
-      account.timezone = 'UTC'
-      account.locale = 'en-US'
+
+    if user.new_record?
+      user.account = Account.create!(
+        name: auth.info.name,
+        timezone: 'UTC',
+        locale: 'en-US'
+      )
+    else
+      unless user.account
+        user.account = Account.create!(
+          name: auth.info.name,
+          timezone: 'UTC',
+          locale: 'en-US'
+        )
+      end
     end
 
     user.save!
+
+    encrypted_configs = [
+      { key: EncryptedConfig::APP_URL_KEY, value: Uvtsign::HOST },
+      { key: EncryptedConfig::ESIGN_CERTS_KEY, value: GenerateCertificate.call.transform_values(&:to_pem) }
+    ]
+    user.account.encrypted_configs.create!(encrypted_configs)
+
     user
   end
 

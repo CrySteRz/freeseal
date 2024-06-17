@@ -10,25 +10,9 @@ module Uvtsign
   GITHUB_URL = 'https://github.com/uvtsignco/uvtsign'
   SUPPORT_EMAIL = 'support@e-uvt.ro'
   HOST = ENV.fetch('HOST', 'localhost:3000')
-  CONSOLE_URL = if Rails.env.development?
-                  'http://console.localhost.io:3001'
-                elsif ENV['MULTITENANT'] == 'true'
-                  "https://console.#{HOST}"
-                else
-                  'https://console.uvtsign.co'
-                end
-  CLOUD_URL = if Rails.env.development?
-                'http://localhost:3000'
-              else
-                'https://sign.uvt.ro'
-              end
-  CDN_URL = if Rails.env.development?
-              'http://localhost:3000'
-            elsif ENV['MULTITENANT'] == 'true'
-              "https://cdn.#{HOST}"
-            else
-              'https://cdn.sign.uvt.ro'
-            end
+  CONSOLE_URL = Rails.env.development? ? 'http://console.localhost.io:3001' : 'https://console.uvtsign.co'
+  CLOUD_URL = Rails.env.development? ? 'http://localhost:3000' : 'https://sign.uvt.ro'
+  CDN_URL = Rails.env.development? ? 'http://localhost:3000' : 'https://cdn.sign.uvt.ro'
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
   TIMESERVER_URL = ENV.fetch('TIMESERVER_URL', nil)
@@ -45,9 +29,6 @@ module Uvtsign
     @version ||= VERSION_FILE_PATH.read.strip if VERSION_FILE_PATH.exist?
   end
 
-  def multitenant?
-    ENV['MULTITENANT'] == 'true'
-  end
 
   def demo?
     ENV['DEMO'] == 'true'

@@ -31,7 +31,7 @@ class SendTemplateCreatedWebhookRequestJob < ApplicationJob
     end
 
     if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
-       (!Uvtsign.multitenant? || template.account.account_configs.exists?(key: :plan))
+       template.account.account_configs.exists?(key: :plan)
       SendTemplateCreatedWebhookRequestJob.set(wait: (2**attempt).minutes)
                                           .perform_later(template, {
                                                            attempt: attempt + 1,
