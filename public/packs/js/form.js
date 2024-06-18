@@ -5405,7 +5405,7 @@ const _hoisted_27 = {
   class: "text-base-content/60 text-xs text-center w-full mt-1"
 };
 const _hoisted_28 = {
-  href: "https://www.docuseal.co/esign-disclosure",
+  href: "https://www.placeholder.com/esign-disclosure",
   target: "_blank"
 };
 const _hoisted_29 = {

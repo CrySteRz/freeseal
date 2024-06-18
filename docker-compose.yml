@@ -1,27 +1,25 @@
-version: '3'
-
 services:
   app:
     depends_on:
       postgres:
         condition: service_healthy
-    image: docuseal/docuseal:latest
+    image: uvtsign/uvtsign:latest
     ports:
       - 3000:3000
     volumes:
       - .:/data
     environment:
-      - FORCE_SSL=${HOST}
-      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
+      #FORCE_SSL=${HOST}
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/uvtsign
 
   postgres:
     image: postgres:15
     volumes:
-      - './pg_data:/var/lib/postgresql/data'
+      - "./pg_data:/var/lib/postgresql/data"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: docuseal
+      POSTGRES_DB: uvtsign
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s

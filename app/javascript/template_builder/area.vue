@@ -79,10 +79,7 @@
         }}</span
       >
       <div
-        v-if="
-          isSettingsFocus ||
-          (isNameFocus && !['checkbox', 'phone'].includes(field.type))
-        "
+        v-if="isSettingsFocus || (isNameFocus && field.type !== 'checkbox')"
         class="flex items-center ml-1.5"
       >
         <input

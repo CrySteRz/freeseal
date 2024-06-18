@@ -69,15 +69,15 @@ COPY ./public ./public
 COPY ./tmp ./tmp
 COPY LICENSE README.md Rakefile config.ru .version ./
 
-COPY --from=fonts /fonts/GoNotoKurrent-Regular.ttf /fonts/GoNotoKurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts
+COPY --from=fonts /fonts/GoNotoKurrent-Regular.ttf /fonts/GoNotoKurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts/
 COPY --from=fonts /fonts/FreeSans.ttf /usr/share/fonts/freefont
 COPY --from=webpack /app/public/packs ./public/packs
 
 RUN ln -s /fonts /app/public/fonts
 RUN bundle exec bootsnap precompile --gemfile app/ lib/
 
-WORKDIR /data/docuseal
-ENV WORKDIR=/data/docuseal
+WORKDIR /data/uvtsign
+ENV WORKDIR=/data/uvtsign
 
 EXPOSE 3000
 CMD ["/app/bin/bundle", "exec", "puma", "-C", "/app/config/puma.rb", "--dir", "/app"]

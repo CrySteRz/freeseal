@@ -91,7 +91,6 @@ const en = {
   cells: "Cells",
   stamp: "Stamp",
   payment: "Payment",
-  phone: "Phone",
   field: "Field",
   group: "Group",
   draw_a_text_field_on_the_page_with_a_mouse:

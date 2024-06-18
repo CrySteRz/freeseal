@@ -6,16 +6,8 @@
       class="btn btn-neutral text-white btn-circle btn-lg group"
       tabindex="0"
     >
-      <IconPlus
-        class="group-focus:hidden"
-        width="28"
-        height="28"
-      />
-      <IconX
-        class="hidden group-focus:inline"
-        width="28"
-        height="28"
-      />
+      <IconPlus class="group-focus:hidden" width="28" height="28" />
+      <IconX class="hidden group-focus:inline" width="28" height="28" />
     </label>
     <ul
       tabindex="0"
@@ -23,15 +15,17 @@
       @click="closeDropdown"
     >
       <template v-if="submitterDefaultFields.length">
-        <template
-          v-for="field in submitterDefaultFields"
-          :key="field.name"
-        >
+        <template v-for="field in submitterDefaultFields" :key="field.name">
           <li>
             <a
               href="#"
               class="text-sm py-1 px-2"
-              @click.prevent="$emit('select', { name: field.name || '', type: field.type || 'text' })"
+              @click.prevent="
+                $emit('select', {
+                  name: field.name || '',
+                  type: field.type || 'text',
+                })
+              "
             >
               <component
                 :is="fieldIcons[field.type || 'text']"
@@ -51,22 +45,20 @@
         </template>
       </template>
       <template v-else>
-        <template
-          v-for="(icon, type) in fieldIcons"
-          :key="type"
-        >
-          <li v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')">
+        <template v-for="(icon, type) in fieldIcons" :key="type">
+          <li
+            v-if="
+              (fieldTypes.length === 0 || fieldTypes.includes(type)) &&
+              (withPayment || type != 'payment')
+            "
+          >
             <a
               href="#"
               class="text-sm py-1 px-2"
-              :class="{ 'active': type === modelValue }"
+              :class="{ active: type === modelValue }"
               @click.prevent="$emit('select', { type })"
             >
-              <component
-                :is="icon"
-                :stroke-width="1.6"
-                :width="20"
-              />
+              <component :is="icon" :stroke-width="1.6" :width="20" />
               {{ fieldNames[type] }}
             </a>
           </li>
@@ -75,64 +67,67 @@
     </ul>
   </span>
 </template>
+
 <script>
-import { IconPlus, IconX } from '@tabler/icons-vue'
-import FieldType from './field_type'
+import { IconPlus, IconX } from "@tabler/icons-vue";
+import FieldType from "./field_type";
 
 export default {
-  name: 'MobileFields',
+  name: "MobileFields",
   components: {
     IconPlus,
-    IconX
+    IconX,
   },
-  inject: ['withPhone', 'withPayment', 'backgroundColor', 't'],
+  inject: ["withPayment", "backgroundColor", "t"],
   props: {
     modelValue: {
       type: String,
       required: false,
-      default: ''
+      default: "",
     },
     fields: {
       type: Array,
       required: false,
-      default: () => []
+      default: () => [],
     },
     selectedSubmitter: {
       type: Object,
-      required: true
+      required: true,
     },
     fieldTypes: {
       type: Array,
       required: false,
-      default: () => []
+      default: () => [],
     },
     defaultRequiredFields: {
       type: Array,
       required: false,
-      default: () => []
+      default: () => [],
     },
     defaultFields: {
       type: Array,
       required: false,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
-  emits: ['select'],
+  emits: ["select"],
   computed: {
     ...FieldType.computed,
-    submitterFields () {
-      return this.fields.filter((f) => f.submitter_uuid === this.selectedSubmitter.uuid)
+    submitterFields() {
+      return this.fields.filter(
+        (f) => f.submitter_uuid === this.selectedSubmitter.uuid
+      );
     },
-    submitterDefaultFields () {
+    submitterDefaultFields() {
       return this.defaultFields.filter((f) => {
-        return (!f.role || f.role === this.selectedSubmitter.name)
-      })
-    }
+        return !f.role || f.role === this.selectedSubmitter.name;
+      });
+    },
   },
   methods: {
-    closeDropdown () {
-      document.activeElement.blur()
-    }
-  }
-}
+    closeDropdown() {
+      document.activeElement.blur();
+    },
+  },
+};
 </script>

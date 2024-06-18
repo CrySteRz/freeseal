@@ -12,7 +12,7 @@ gem 'cancancan'
 gem 'csv'
 gem 'devise'
 gem 'devise-two-factor'
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv'
 gem 'email_typo'
 gem 'faraday'
 gem 'faraday-follow_redirects'
@@ -23,23 +23,24 @@ gem 'jwt'
 gem 'lograge'
 gem 'mysql2', require: false
 gem 'oj'
-gem "omniauth-rails_csrf_protection"
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 gem 'pagy'
 gem 'pg', require: false
 gem 'premailer-rails'
 gem 'pretender'
 gem 'puma'
 gem 'rack'
+gem 'rack-cors'
 gem 'rails'
 gem 'rails_autolink'
 gem 'rails-i18n'
 gem 'rotp'
 gem 'rqrcode'
-gem 'ruby-vips'
-gem 'rubyXL'
 gem 'rswag-api'
 gem 'rswag-ui'
+gem 'ruby-vips'
+gem 'rubyXL'
 gem 'shakapacker'
 gem 'sidekiq', require: ENV.key?('REDIS_URL')
 gem 'sqlite3', require: false, force_ruby_platform: true
@@ -47,7 +48,6 @@ gem 'strip_attributes'
 gem 'turbo-rails'
 gem 'twitter_cldr', require: false
 gem 'tzinfo-data'
-gem 'rack-cors' 
 
 group :development, :test do
   gem 'annotate'

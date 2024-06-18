@@ -36,22 +36,20 @@
           />
         </div>
         <div v-if="isNameFocus" class="flex items-center relative">
-          <template v-if="field.type != 'phone'">
-            <input
-              :id="`required-checkbox-${field.uuid}`"
-              v-model="field.required"
-              type="checkbox"
-              class="checkbox checkbox-xs no-animation rounded"
-              @mousedown.prevent
-            />
-            <label
-              :for="`required-checkbox-${field.uuid}`"
-              class="label text-xs"
-              @click.prevent="field.required = !field.required"
-              @mousedown.prevent
-              >{{ t("required") }}</label
-            >
-          </template>
+          <input
+            :id="`required-checkbox-${field.uuid}`"
+            v-model="field.required"
+            type="checkbox"
+            class="checkbox checkbox-xs no-animation rounded"
+            @mousedown.prevent
+          />
+          <label
+            :for="`required-checkbox-${field.uuid}`"
+            class="label text-xs"
+            @click.prevent="field.required = !field.required"
+            @mousedown.prevent
+            >{{ t("required") }}</label
+          >
         </div>
         <div v-else-if="editable" class="flex items-center space-x-1">
           <button

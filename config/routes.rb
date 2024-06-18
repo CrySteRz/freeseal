@@ -70,9 +70,6 @@ Rails.application.routes.draw do
   resources :encrypted_user_configs, only: %i[destroy]
   resources :timestamp_server, only: %i[create]
   resources :dashboard, only: %i[index]
-  resources :setup, only: %i[index create]
-  resource :newsletter, only: %i[show update]
-  resources :enquiries, only: %i[create]
   resources :users, only: %i[new create edit update destroy]
   resource :user_signature, only: %i[edit update destroy]
   resource :user_initials, only: %i[edit update destroy]
@@ -144,8 +141,6 @@ Rails.application.routes.draw do
   scope '/settings', as: :settings do
     resources :storage, only: %i[index create], controller: 'storage_settings'
     resources :email, only: %i[index create], controller: 'email_smtp_settings'
-    resources :sms, only: %i[index], controller: 'sms_settings'
-    resources :sso, only: %i[index], controller: 'sso_settings'
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]

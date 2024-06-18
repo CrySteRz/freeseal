@@ -359,7 +359,6 @@ export default {
       baseFetch: this.baseFetch,
       fieldTypes: this.fieldTypes,
       backgroundColor: this.backgroundColor,
-      withPhone: this.withPhone,
       withPayment: this.withPayment,
       isPaymentConnected: this.isPaymentConnected,
       withFormula: this.withFormula,
@@ -499,11 +498,6 @@ export default {
       type: Boolean,
       required: false,
       default: true,
-    },
-    withPhone: {
-      type: Boolean,
-      required: false,
-      default: false,
     },
     withPayment: {
       type: Boolean,

@@ -147,7 +147,7 @@
       <canvas
         v-show="!modelValue && !computedPreviousValue"
         ref="canvas"
-        style="padding: 1px; 0"
+        style="padding: 1px"
         class="bg-white border border-base-300 rounded-2xl w-full"
       />
       <div
@@ -210,7 +210,7 @@
           buttonText.charAt(0).toUpperCase() + buttonText.slice(1)
         )
       }}
-      <a href="https://www.docuseal.co/esign-disclosure" target="_blank">
+      <a href="https://www.placeholder.com/esign-disclosure" target="_blank">
         <span class="inline md:hidden">
           {{ t("esignature_disclosure") }}
         </span>

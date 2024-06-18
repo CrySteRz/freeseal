@@ -26,22 +26,20 @@
       :class="menuClasses"
       @click="closeDropdown"
     >
-      <template
-        v-for="(icon, type) in fieldIconsSorted"
-        :key="type"
-      >
-        <li v-if="(fieldTypes.length === 0 || fieldTypes.includes(type)) && (withPhone || type != 'phone') && (withPayment || type != 'payment')">
+      <template v-for="(icon, type) in fieldIconsSorted" :key="type">
+        <li
+          v-if="
+            (fieldTypes.length === 0 || fieldTypes.includes(type)) &&
+            (withPayment || type != 'payment')
+          "
+        >
           <a
             href="#"
             class="text-sm py-1 px-2"
-            :class="{ 'active': type === modelValue }"
+            :class="{ active: type === modelValue }"
             @click.prevent="$emit('update:model-value', type)"
           >
-            <component
-              :is="icon"
-              :stroke-width="1.6"
-              :width="20"
-            />
+            <component :is="icon" :stroke-width="1.6" :width="20" />
             {{ fieldNames[type] }}
           </a>
         </li>
@@ -51,69 +49,83 @@
 </template>
 
 <script>
-import { IconTextSize, IconWritingSign, IconCalendarEvent, IconPhoto, IconCheckbox, IconPaperclip, IconSelect, IconCircleDot, IconChecks, IconColumns3, IconPhoneCheck, IconLetterCaseUpper, IconCreditCard, IconRubberStamp, IconSquareNumber1 } from '@tabler/icons-vue'
+import {
+  IconTextSize,
+  IconWritingSign,
+  IconCalendarEvent,
+  IconPhoto,
+  IconCheckbox,
+  IconPaperclip,
+  IconSelect,
+  IconCircleDot,
+  IconChecks,
+  IconColumns3,
+  IconLetterCaseUpper,
+  IconCreditCard,
+  IconRubberStamp,
+  IconSquareNumber1,
+} from "@tabler/icons-vue";
 
 export default {
-  name: 'FiledTypeDropdown',
-  inject: ['withPhone', 'withPayment', 't', 'fieldTypes'],
+  name: "FiledTypeDropdown",
+  inject: ["withPayment", "t", "fieldTypes"],
   props: {
     modelValue: {
       type: String,
-      required: true
+      required: true,
     },
     menuClasses: {
       type: String,
       required: false,
-      default: 'mt-1.5 bg-base-100'
+      default: "mt-1.5 bg-base-100",
     },
     menuStyle: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
     buttonClasses: {
       type: String,
       required: false,
-      default: ''
+      default: "",
     },
     editable: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     buttonWidth: {
       type: Number,
       required: false,
-      default: 18
-    }
+      default: 18,
+    },
   },
-  emits: ['update:model-value'],
-  data () {
+  emits: ["update:model-value"],
+  data() {
     return {
-      renderDropdown: false
-    }
+      renderDropdown: false,
+    };
   },
   computed: {
-    fieldNames () {
+    fieldNames() {
       return {
-        text: this.t('text'),
-        signature: this.t('signature'),
-        initials: this.t('initials'),
-        date: this.t('date'),
-        number: this.t('number'),
-        image: this.t('image'),
-        file: this.t('file'),
-        select: this.t('select'),
-        checkbox: this.t('checkbox'),
-        multiple: this.t('multiple'),
-        radio: this.t('radio'),
-        cells: this.t('cells'),
-        stamp: this.t('stamp'),
-        payment: this.t('payment'),
-        phone: this.t('phone')
-      }
+        text: this.t("text"),
+        signature: this.t("signature"),
+        initials: this.t("initials"),
+        date: this.t("date"),
+        number: this.t("number"),
+        image: this.t("image"),
+        file: this.t("file"),
+        select: this.t("select"),
+        checkbox: this.t("checkbox"),
+        multiple: this.t("multiple"),
+        radio: this.t("radio"),
+        cells: this.t("cells"),
+        stamp: this.t("stamp"),
+        payment: this.t("payment"),
+      };
     },
-    fieldIcons () {
+    fieldIcons() {
       return {
         text: IconTextSize,
         signature: IconWritingSign,
@@ -129,25 +141,24 @@ export default {
         cells: IconColumns3,
         stamp: IconRubberStamp,
         payment: IconCreditCard,
-        phone: IconPhoneCheck
-      }
+      };
     },
-    fieldIconsSorted () {
+    fieldIconsSorted() {
       if (this.fieldTypes.length) {
         return this.fieldTypes.reduce((acc, type) => {
-          acc[type] = this.fieldIcons[type]
+          acc[type] = this.fieldIcons[type];
 
-          return acc
-        }, {})
+          return acc;
+        }, {});
       } else {
-        return this.fieldIcons
+        return this.fieldIcons;
       }
-    }
+    },
   },
   methods: {
-    closeDropdown () {
-      document.activeElement.blur()
-    }
-  }
-}
+    closeDropdown() {
+      document.activeElement.blur();
+    },
+  },
+};
 </script>

@@ -86,6 +86,31 @@ Rails.application.configure do
   # Raises error for missing translations.
   config.i18n.raise_on_missing_translations = true
 
+  if ENV['SMTP_ADDRESS']
+    begin
+      config.action_mailer.delivery_method = :smtp
+      config.action_mailer.smtp_settings = {
+        address: ENV.fetch('SMTP_ADDRESS'),
+        port: ENV.fetch('SMTP_PORT', 587),
+        domain: ENV.fetch('SMTP_DOMAIN', 'localhost'),
+        user_name: ENV.fetch('SMTP_USERNAME'),
+        password: ENV.fetch('SMTP_PASSWORD'),
+        authentication: ENV.fetch('SMTP_AUTHENTICATION', 'plain'),
+        enable_starttls_auto: ENV.fetch('SMTP_ENABLE_STARTTLS_AUTO', 'true') != 'false'
+      }.compact
+
+      config.action_mailer.default_options = {
+        from: ENV.fetch('SMTP_FROM')
+      }
+    rescue => e
+      Rails.logger.error("SMTP configuration error: #{e.message}")
+    end
+  end
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 

@@ -11,7 +11,7 @@
       :height="height"
       class="border rounded mb-4"
       @load="onImageLoad"
-    >
+    />
     <div
       class="top-0 bottom-0 left-0 right-0 absolute"
       @pointerdown="onStartDraw"
@@ -35,16 +35,31 @@
       <FieldArea
         v-if="newArea"
         :is-draw="true"
-        :field="{ submitter_uuid: selectedSubmitter.uuid, type: drawField?.type || defaultFieldType }"
+        :field="{
+          submitter_uuid: selectedSubmitter.uuid,
+          type: drawField?.type || defaultFieldType,
+        }"
         :area="newArea"
       />
     </div>
     <div
-      v-show="resizeDirection || isMove || isDrag || showMask || (drawField && isMobile) || fieldsDragFieldRef.value"
+      v-show="
+        resizeDirection ||
+        isMove ||
+        isDrag ||
+        showMask ||
+        (drawField && isMobile) ||
+        fieldsDragFieldRef.value
+      "
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute"
-      :class="{ 'z-10': !isMobile, 'cursor-grab': isDrag || isMove, 'cursor-nwse-resize': drawField, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
+      :class="{
+        'z-10': !isMobile,
+        'cursor-grab': isDrag || isMove,
+        'cursor-nwse-resize': drawField,
+        [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses,
+      }"
       @pointermove="onPointermove"
       @pointerdown="onStartDraw"
       @dragover.prevent
@@ -55,142 +70,148 @@
 </template>
 
 <script>
-import FieldArea from './area'
+import FieldArea from "./area";
 
 export default {
-  name: 'TemplatePage',
+  name: "TemplatePage",
   components: {
-    FieldArea
+    FieldArea,
   },
-  inject: ['fieldTypes', 'defaultDrawFieldType', 'fieldsDragFieldRef'],
+  inject: ["fieldTypes", "defaultDrawFieldType", "fieldsDragFieldRef"],
   props: {
     image: {
       type: Object,
-      required: true
+      required: true,
     },
     areas: {
       type: Array,
       required: false,
-      default: () => []
+      default: () => [],
     },
     defaultFields: {
       type: Array,
       required: false,
-      default: () => []
+      default: () => [],
     },
     drawFieldType: {
       type: String,
       required: false,
-      default: ''
+      default: "",
     },
     allowDraw: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     selectedSubmitter: {
       type: Object,
-      required: true
+      required: true,
     },
     defaultSubmitters: {
       type: Array,
       required: false,
-      default: () => []
+      default: () => [],
     },
     drawField: {
       type: Object,
       required: false,
-      default: null
+      default: null,
     },
     editable: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     isDrag: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     number: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
-  emits: ['draw', 'drop-field', 'remove-area', 'scroll-to'],
-  data () {
+  emits: ["draw", "drop-field", "remove-area", "scroll-to"],
+  data() {
     return {
       areaRefs: [],
       showMask: false,
       isMove: false,
       resizeDirection: null,
-      newArea: null
-    }
+      newArea: null,
+    };
   },
   computed: {
-    defaultFieldType () {
+    defaultFieldType() {
       if (this.drawFieldType) {
-        return this.drawFieldType
-      } else if (this.defaultDrawFieldType && this.defaultDrawFieldType !== 'text') {
-        return this.defaultDrawFieldType
-      } else if (this.fieldTypes.length !== 0 && !this.fieldTypes.includes('text')) {
-        return this.fieldTypes[0]
+        return this.drawFieldType;
+      } else if (
+        this.defaultDrawFieldType &&
+        this.defaultDrawFieldType !== "text"
+      ) {
+        return this.defaultDrawFieldType;
+      } else if (
+        this.fieldTypes.length !== 0 &&
+        !this.fieldTypes.includes("text")
+      ) {
+        return this.fieldTypes[0];
       } else {
-        return 'text'
+        return "text";
       }
     },
-    isMobile () {
-      return /android|iphone|ipad/i.test(navigator.userAgent)
+    isMobile() {
+      return /android|iphone|ipad/i.test(navigator.userAgent);
     },
-    resizeDirectionClasses () {
+    resizeDirectionClasses() {
       return {
-        nwse: 'cursor-nwse-resize',
-        ew: 'cursor-ew-resize'
-      }
+        nwse: "cursor-nwse-resize",
+        ew: "cursor-ew-resize",
+      };
     },
-    width () {
-      return this.image.metadata.width
+    width() {
+      return this.image.metadata.width;
     },
-    height () {
-      return this.image.metadata.height
-    }
+    height() {
+      return this.image.metadata.height;
+    },
   },
-  beforeUpdate () {
-    this.areaRefs = []
+  beforeUpdate() {
+    this.areaRefs = [];
   },
   methods: {
-    onImageLoad (e) {
-      e.target.setAttribute('width', e.target.naturalWidth)
-      e.target.setAttribute('height', e.target.naturalHeight)
+    onImageLoad(e) {
+      e.target.setAttribute("width", e.target.naturalWidth);
+      e.target.setAttribute("height", e.target.naturalHeight);
     },
-    setAreaRefs (el) {
+    setAreaRefs(el) {
       if (el) {
-        this.areaRefs.push(el)
+        this.areaRefs.push(el);
       }
     },
-    onDrop (e) {
-      this.$emit('drop-field', {
+    onDrop(e) {
+      this.$emit("drop-field", {
         x: e.offsetX,
         y: e.offsetY,
         maskW: this.$refs.mask.clientWidth,
         maskH: this.$refs.mask.clientHeight,
-        page: this.number
-      })
+        page: this.number,
+      });
     },
-    onStartDraw (e) {
+    onStartDraw(e) {
       if (!this.allowDraw) {
-        return
+        return;
       }
 
       if (this.isMobile && !this.drawField) {
-        return
+        return;
       }
 
       if (!this.editable) {
-        return
+        return;
       }
 
-      this.showMask = true
+      this.showMask = true;
 
       this.$nextTick(() => {
         this.newArea = {
@@ -199,55 +220,59 @@ export default {
           x: e.offsetX / this.$refs.mask.clientWidth,
           y: e.offsetY / this.$refs.mask.clientHeight,
           w: 0,
-          h: 0
-        }
-      })
+          h: 0,
+        };
+      });
     },
-    onPointermove (e) {
+    onPointermove(e) {
       if (this.newArea) {
-        const dx = e.offsetX / this.$refs.mask.clientWidth - this.newArea.initialX
-        const dy = e.offsetY / this.$refs.mask.clientHeight - this.newArea.initialY
+        const dx =
+          e.offsetX / this.$refs.mask.clientWidth - this.newArea.initialX;
+        const dy =
+          e.offsetY / this.$refs.mask.clientHeight - this.newArea.initialY;
 
         if (dx > 0) {
-          this.newArea.x = this.newArea.initialX
+          this.newArea.x = this.newArea.initialX;
         } else {
-          this.newArea.x = e.offsetX / this.$refs.mask.clientWidth
+          this.newArea.x = e.offsetX / this.$refs.mask.clientWidth;
         }
 
         if (dy > 0) {
-          this.newArea.y = this.newArea.initialY
+          this.newArea.y = this.newArea.initialY;
         } else {
-          this.newArea.y = e.offsetY / this.$refs.mask.clientHeight
+          this.newArea.y = e.offsetY / this.$refs.mask.clientHeight;
         }
 
-        if ((this.drawField?.type || this.drawFieldType) === 'cells') {
-          this.newArea.cell_w = this.newArea.h * (this.$refs.mask.clientHeight / this.$refs.mask.clientWidth)
+        if ((this.drawField?.type || this.drawFieldType) === "cells") {
+          this.newArea.cell_w =
+            this.newArea.h *
+            (this.$refs.mask.clientHeight / this.$refs.mask.clientWidth);
         }
 
-        this.newArea.w = Math.abs(dx)
-        this.newArea.h = Math.abs(dy)
+        this.newArea.w = Math.abs(dx);
+        this.newArea.h = Math.abs(dy);
       }
     },
-    onPointerup (e) {
+    onPointerup(e) {
       if (this.newArea) {
         const area = {
           x: this.newArea.x,
           y: this.newArea.y,
           w: this.newArea.w,
           h: this.newArea.h,
-          page: this.number
+          page: this.number,
+        };
+
+        if ("cell_w" in this.newArea) {
+          area.cell_w = this.newArea.cell_w;
         }
 
-        if ('cell_w' in this.newArea) {
-          area.cell_w = this.newArea.cell_w
-        }
-
-        this.$emit('draw', area)
+        this.$emit("draw", area);
       }
 
-      this.showMask = false
-      this.newArea = null
-    }
-  }
-}
+      this.showMask = false;
+      this.newArea = null;
+    },
+  },
+};
 </script>

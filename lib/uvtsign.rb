@@ -2,9 +2,7 @@
 
 module Uvtsign
   URL_CACHE = ActiveSupport::Cache::MemoryStore.new
-  PRODUCT_URL = 'http://localhost:3000'
-  NEWSLETTER_URL = "#{PRODUCT_URL}/newsletters".freeze
-  ENQUIRIES_URL = "#{PRODUCT_URL}/enquiries".freeze
+  PRODUCT_URL = 'http://localhost:3000'   
   PRODUCT_NAME = 'UVTSign'
   DEFAULT_APP_URL = 'http://localhost:3000'
   GITHUB_URL = 'https://github.com/uvtsignco/uvtsign'

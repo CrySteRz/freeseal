@@ -39,6 +39,7 @@ en: &en
   downloading: Downloading
   completed_successfully: Completed Successfully
   password: Password
+  password_confirmation: Password Confirmation
   sign_in: Sign In
   signing_in: Signing In
   sign_in_with_google: Sign in with Google
@@ -53,8 +54,10 @@ en: &en
   profile_details: Profile Details
   create_free_account: Create Free Account
   sign_up_with_google: Sign up with Google
-  by_creating_an_account_you_agree_to_our_html: 'By creating an account, you agree to our <a target="_blank" href="https://www.docuseal.co/privacy">Privacy Policy</a> and <a target="_blank" href="https://www.docuseal.co/terms">Terms of Service</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'By creating an account, you agree to our <a target="_blank" href="https://www.placeholder.com/privacy">Privacy Policy</a> and <a target="_blank" href="https://www.placeholder.com/terms">Terms of Service</a>.'
   enter_email_to_continue: Enter email to continue
+  reset_password: Reset Password
+
 
 es: &es
   role: Rol
@@ -78,6 +81,7 @@ es: &es
   downloading: Descargando
   completed_successfully: Completado exitosamente
   password: Contraseña
+  password_confirmation: Confirmar contraseña
   email: Correo electrónico
   sign_in: Iniciar sesión
   signing_in: Iniciando sesión
@@ -93,8 +97,9 @@ es: &es
   profile_details: Detalles del perfil
   create_free_account: Crear cuenta gratuita
   sign_up_with_google: Registrarse con Google
-  by_creating_an_account_you_agree_to_our_html: 'Al crear una cuenta, aceptas nuestra <a target="_blank" href="https://www.docuseal.co/privacy">Política de Privacidad</a> y <a target="_blank" href="https://www.docuseal.co/terms">Términos de Servicio</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Al crear una cuenta, aceptas nuestra <a target="_blank" href="https://www.placeholder.com/privacy">Política de Privacidad</a> y <a target="_blank" href="https://www.placeholder.com/terms">Términos de Servicio</a>.'
   enter_email_to_continue: Ingresa tu correo electrónico para continuar
+  reset_password: Restablecer la contraseña
 
 it:
   role: Rôle
@@ -118,6 +123,7 @@ it:
   downloading: Scaricamento
   completed_successfully: Completato con successo
   password: Password
+  password_confirmation: Conferma Password
   sign_in: Accedi
   signing_in: Accesso in corso
   sign_in_with_google: Accedi con Google
@@ -132,8 +138,9 @@ it:
   profile_details: Dettagli del profilo
   create_free_account: Crea un account gratuito
   sign_up_with_google: Registrati con Google
-  by_creating_an_account_you_agree_to_our_html: 'Creando un account, accetti la nostra <a target="_blank" href="https://www.docuseal.co/privacy">Privacy Policy</a> e i nostri <a target="_blank" href="https://www.docuseal.co/terms">Termini di servizio</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Creando un account, accetti la nostra <a target="_blank" href="https://www.placeholder.com/privacy">Privacy Policy</a> e i nostri <a target="_blank" href="https://www.placeholder.com/terms">Termini di servizio</a>.'
   enter_email_to_continue: Inserisci l'email per continuare
+  reset_password: Reimposta la password
 
 fr: &fr
   email: Email
@@ -156,6 +163,7 @@ fr: &fr
   downloading: Téléchargement
   completed_successfully: Complété avec succès
   password: Mot de passe
+  password_confirmation: Confirmation du mot de passe
   sign_in: Se connecter
   signing_in: Connexion en cours
   sign_in_with_google: Se connecter avec Google
@@ -171,8 +179,9 @@ fr: &fr
   create_free_account: Créer un compte gratuit
   sign_up_with_google: S'inscrire avec Google
   by_creating_an_account_you_agree_to_our_html: |
-    En créant un compte, vous acceptez notre <a target="_blank" href="https://www.docuseal.co/privacy">Politique de Confidentialité</a> et nos <a target="_blank" href="https://www.docuseal.co/terms">Conditions d'Utilisation</a>.
+    En créant un compte, vous acceptez notre <a target="_blank" href="https://www.placeholder.com/privacy">Politique de Confidentialité</a> et nos <a target="_blank" href="https://www.placeholder.com/terms">Conditions d'Utilisation</a>.
   enter_email_to_continue: Entrez votre e-mail pour continuer
+  reset_password: Réinitialiser le mot de passe
 
 pt: &pt
   role: Função
@@ -196,6 +205,7 @@ pt: &pt
   downloading: Baixando
   completed_successfully: Concluído com sucesso
   password: Senha
+  password_confirmation: Confirmar senha
   sign_in: Entrar
   signing_in: Entrando
   sign_in_with_google: Entrar com Google
@@ -210,8 +220,9 @@ pt: &pt
   profile_details: Detalhes do perfil
   create_free_account: Criar conta gratuita
   sign_up_with_google: Inscrever-se com Google
-  by_creating_an_account_you_agree_to_our_html: 'Ao criar uma conta, você concorda com nossa <a target="_blank" href="https://www.docuseal.co/privacy">Política de Privacidade</a> e <a target="_blank" href="https://www.docuseal.co/terms">Termos de Serviço</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Ao criar uma conta, você concorda com nossa <a target="_blank" href="https://www.placeholder.com/privacy">Política de Privacidade</a> e <a target="_blank" href="https://www.placeholder.com/terms">Termos de Serviço</a>.'
   enter_email_to_continue: Insira o e-mail para continuar
+  reset_password: Redefinir senha
 
 de: &de
   role: Rolle
@@ -235,6 +246,7 @@ de: &de
   downloading: Herunterladen
   completed_successfully: Erfolgreich abgeschlossen
   password: Passwort
+  password_confirmation: Passwortbestätigung
   sign_in: Anmelden
   signing_in: Anmeldung
   sign_in_with_google: Mit Google anmelden
@@ -249,8 +261,9 @@ de: &de
   profile_details: Profildetails
   create_free_account: Kostenloses Konto erstellen
   sign_up_with_google: Mit Google registrieren
-  by_creating_an_account_you_agree_to_our_html: 'Durch die Erstellung eines Kontos stimmst du unseren <a target="_blank" href="https://www.docuseal.co/privacy">Datenschutzrichtlinien</a> und <a target="_blank" href="https://www.docuseal.co/terms">Nutzungsbedingungen</a> zu.'
+  by_creating_an_account_you_agree_to_our_html: 'Durch die Erstellung eines Kontos stimmst du unseren <a target="_blank" href="https://www.placeholder.com/privacy">Datenschutzrichtlinien</a> und <a target="_blank" href="https://www.placeholder.com/terms">Nutzungsbedingungen</a> zu.'
   enter_email_to_continue: E-Mail eingeben, um fortzufahren
+  reset_password: Passwort zurücksetzen
 
 pl:
   email: Email
@@ -273,6 +286,7 @@ pl:
   downloading: Pobieranie
   completed_successfully: Zakończono pomyślnie
   password: Hasło
+  password_confirmation: Potwierdzenie hasła
   sign_in: Zaloguj się
   signing_in: Logowanie
   sign_in_with_google: Zaloguj się przez Google
@@ -287,8 +301,9 @@ pl:
   profile_details: Szczegóły profilu
   create_free_account: Utwórz darmowe konto
   sign_up_with_google: Zarejestruj się przez Google
-  by_creating_an_account_you_agree_to_our_html: 'Tworząc konto, akceptujesz naszą <a target="_blank" href="https://www.docuseal.co/privacy">Politykę Prywatności</a> i <a target="_blank" href="https://www.docuseal.co/terms">Regulamin</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Tworząc konto, akceptujesz naszą <a target="_blank" href="https://www.placeholder.com/privacy">Politykę Prywatności</a> i <a target="_blank" href="https://www.placeholder.com/terms">Regulamin</a>.'
   enter_email_to_continue: Wprowadź e-mail, aby kontynuować
+  reset_password: Zresetuj hasło
 
 uk:
   email: Email
@@ -311,6 +326,7 @@ uk:
   downloading: Завантаження
   completed_successfully: Успішно завершено
   password: Пароль
+  password_confirmation: Підтвердження пароля
   sign_in: Увійти
   signing_in: Вхід
   sign_in_with_google: Увійти через Google
@@ -325,8 +341,9 @@ uk:
   profile_details: Дані профілю
   create_free_account: Створити безкоштовний акаунт
   sign_up_with_google: Зареєструватися через Google
-  by_creating_an_account_you_agree_to_our_html: 'Створюючи акаунт, ви погоджуєтесь з нашою <a target="_blank" href="https://www.docuseal.co/privacy">Політикою конфіденційності</a> і <a target="_blank" href="https://www.docuseal.co/terms">Умовами надання послуг</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Створюючи акаунт, ви погоджуєтесь з нашою <a target="_blank" href="https://www.placeholder.com/privacy">Політикою конфіденційності</a> і <a target="_blank" href="https://www.placeholder.com/terms">Умовами надання послуг</a>.'
   enter_email_to_continue: Введіть електронну пошту, щоб продовжити
+  reset_password: Скинути пароль
 
 cs:
   email: Email
@@ -349,6 +366,7 @@ cs:
   downloading: Stahování
   completed_successfully: Úspěšně dokončeno
   password: Heslo
+  password_confirmation: Potvrzení hesla
   sign_in: Přihlásit se
   signing_in: Přihlašování
   sign_in_with_google: Přihlásit se pomocí Googlu
@@ -363,8 +381,9 @@ cs:
   profile_details: Detaily profilu
   create_free_account: Vytvořit bezplatný účet
   sign_up_with_google: Zaregistrovat se pomocí Googlu
-  by_creating_an_account_you_agree_to_our_html: 'Vytvořením účtu souhlasíte s našimi <a target="_blank" href="https://www.docuseal.co/privacy">Zásadami ochrany osobních údajů</a> a <a target="_blank" href="https://www.docuseal.co/terms">Podmínkami služby</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Vytvořením účtu souhlasíte s našimi <a target="_blank" href="https://www.placeholder.com/privacy">Zásadami ochrany osobních údajů</a> a <a target="_blank" href="https://www.placeholder.com/terms">Podmínkami služby</a>.'
   enter_email_to_continue: Zadejte e-mail pro pokračování
+  reset_password: Obnovit heslo
 
 he:
   email: דוא"ל
@@ -387,6 +406,7 @@ he:
   downloading: מוריד
   completed_successfully: הושלם בהצלחה
   password: סיסמה
+  password_confirmation: אימות סיסמה
   sign_in: התחבר
   signing_in: מתחבר
   sign_in_with_google: התחבר עם גוגל
@@ -401,8 +421,9 @@ he:
   profile_details: פרטי הפרופיל
   create_free_account: צור חשבון חינם
   sign_up_with_google: הירשם עם גוגל
-  by_creating_an_account_you_agree_to_our_html: 'על ידי יצירת חשבון, אתה מסכים ל<a target="_blank" href="https://www.docuseal.co/privacy">מדיניות הפרטיות</a> ול<a target="_blank" href="https://www.docuseal.co/terms">תנאי השירות</a> שלנו.'
+  by_creating_an_account_you_agree_to_our_html: 'על ידי יצירת חשבון, אתה מסכים ל<a target="_blank" href="https://www.placeholder.com/privacy">מדיניות הפרטיות</a> ול<a target="_blank" href="https://www.placeholder.com/terms">תנאי השירות</a> שלנו.'
   enter_email_to_continue: הכנס דוא"ל כדי להמשיך
+  reset_password: איפוס סיסמה
 
 nl:
   email: E-mail
@@ -426,6 +447,7 @@ nl:
   downloading: Downloaden
   completed_successfully: Succesvol voltooid
   password: Wachtwoord
+  password_confirmation: Wachtwoord bevestigen
   sign_in: Inloggen
   signing_in: Aan het inloggen
   sign_in_with_google: Inloggen met Google
@@ -440,8 +462,9 @@ nl:
   profile_details: Profielgegevens
   create_free_account: Gratis account aanmaken
   sign_up_with_google: Aanmelden met Google
-  by_creating_an_account_you_agree_to_our_html: 'Door een account aan te maken, ga je akkoord met ons <a target="_blank" href="https://www.docuseal.co/privacy">Privacybeleid</a> en onze <a target="_blank" href="https://www.docuseal.co/terms">Gebruiksvoorwaarden</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Door een account aan te maken, ga je akkoord met ons <a target="_blank" href="https://www.placeholder.com/privacy">Privacybeleid</a> en onze <a target="_blank" href="https://www.placeholder.com/terms">Gebruiksvoorwaarden</a>.'
   enter_email_to_continue: Voer e-mail in om door te gaan
+  reset_password: Wachtwoord resetten
 
 ar:
   email: البريد الإلكتروني
@@ -465,6 +488,7 @@ ar:
   downloading: جارٍ التحميل
   completed_successfully: تم الانتهاء بنجاح
   password: كلمة المرور
+  password_confirmation: تأكيد كلمة المرور
   sign_in: تسجيل الدخول
   signing_in: تسجيل الدخول
   sign_in_with_google: تسجيل الدخول باستخدام جوجل
@@ -479,8 +503,9 @@ ar:
   profile_details: تفاصيل الملف الشخصي
   create_free_account: إنشاء حساب مجاني
   sign_up_with_google: الاشتراك باستخدام جوجل
-  by_creating_an_account_you_agree_to_our_html: 'من خلال إنشاء حساب، فإنك توافق على <a target="_blank" href="https://www.docuseal.co/privacy">سياسة الخصوصية</a> و<a target="_blank" href="https://www.docuseal.co/terms">شروط الخدمة</a> الخاصة بنا.'
+  by_creating_an_account_you_agree_to_our_html: 'من خلال إنشاء حساب، فإنك توافق على <a target="_blank" href="https://www.placeholder.com/privacy">سياسة الخصوصية</a> و<a target="_blank" href="https://www.placeholder.com/terms">شروط الخدمة</a> الخاصة بنا.'
   enter_email_to_continue: أدخل البريد الإلكتروني للمتابعة
+  reset_password: إعادة تعيين كلمة المرور
 
 ko:
   email: 이메일
@@ -504,6 +529,7 @@ ko:
   downloading: 다운로드 중
   completed_successfully: 성공적으로 완료됨
   password: 비밀번호
+  password_confirmation: 비밀번호 확인
   sign_in: 로그인
   signing_in: 로그인 중
   sign_in_with_google: Google로 로그인
@@ -518,8 +544,9 @@ ko:
   profile_details: 프로필 세부 정보
   create_free_account: 무료 계정 생성
   sign_up_with_google: Google로 가입
-  by_creating_an_account_you_agree_to_our_html: '계정을 생성함으로써, 귀하는 우리의 <a target="_blank" href="https://www.docuseal.co/privacy">개인정보 보호정책</a> 및 <a target="_blank" href="https://www.docuseal.co/terms">서비스 약관</a>에 동의하는 것입니다.'
+  by_creating_an_account_you_agree_to_our_html: '계정을 생성함으로써, 귀하는 우리의 <a target="_blank" href="https://www.placeholder.com/privacy">개인정보 보호정책</a> 및 <a target="_blank" href="https://www.placeholder.com/terms">서비스 약관</a>에 동의하는 것입니다.'
   enter_email_to_continue: 계속하려면 이메일을 입력하세요
+  reset_password: 비밀번호 재설정
 
 en-US:
   <<: *en

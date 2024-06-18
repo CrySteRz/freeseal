@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class RegistrationsController < Devise::RegistrationsController
+  around_action :with_browser_locale
+
   def new
     build_resource({})
     resource.build_account

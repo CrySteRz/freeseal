@@ -118,7 +118,6 @@
       <button
         v-if="
           (fieldTypes.length === 0 || fieldTypes.includes(type)) &&
-          (withPhone || type != 'phone') &&
           (withPayment || type != 'payment')
         "
         draggable="true"
@@ -154,35 +153,6 @@
           </span>
         </div>
       </button>
-      <div
-        v-else-if="
-          type == 'phone' &&
-          (fieldTypes.length === 0 || fieldTypes.includes(type))
-        "
-        class="tooltip tooltip-bottom flex"
-        :class="{
-          'tooltip-bottom-end': withPayment,
-          'tooltip-bottom': !withPayment,
-        }"
-        data-tip="Unlock SMS-verified phone number field with paid plan. Use text field for phone numbers without verification."
-      >
-        <a
-          href="https://www.uvtsign.co/pricing"
-          target="_blank"
-          class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative"
-          :style="{ backgroundColor }"
-        >
-          <div class="w-0 absolute left-0">
-            <IconLock width="18" height="18" stroke-width="1.5" />
-          </div>
-          <div class="flex items-center flex-col px-2 py-2">
-            <component :is="icon" />
-            <span class="text-xs mt-1">
-              {{ fieldNames[type] }}
-            </span>
-          </div>
-        </a>
-      </div>
     </template>
   </div>
   <div
@@ -214,14 +184,7 @@ export default {
     IconDrag,
     IconLock,
   },
-  inject: [
-    "save",
-    "backgroundColor",
-    "withPhone",
-    "withPayment",
-    "t",
-    "fieldsDragFieldRef",
-  ],
+  inject: ["save", "backgroundColor", "withPayment", "t", "fieldsDragFieldRef"],
   props: {
     fields: {
       type: Array,

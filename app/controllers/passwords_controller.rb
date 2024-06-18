@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PasswordsController < Devise::PasswordsController
+  around_action :with_browser_locale
   class Current < ActiveSupport::CurrentAttributes
     attribute :user
   end

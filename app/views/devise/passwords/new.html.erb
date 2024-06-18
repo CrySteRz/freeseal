@@ -1,5 +1,5 @@
 <div class="max-w-lg mx-auto px-2">
-  <h1 class="text-4xl font-bold text-center mt-8">Forgot your password?</h1>
+  <h1 class="text-4xl font-bold text-center mt-8"><%= t(:forgot_your_password_) %></h1>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'space-y-6' }) do |f| %>
     <div class="space-y-2">
       <%= render 'devise/shared/error_messages', resource: %>
@@ -9,7 +9,15 @@
       </div>
     </div>
     <div class="form-control">
-      <%= f.button button_title(title: 'Reset password', disabled_with: 'Resetting password'), class: 'base-button' %>
+      <%= f.button button_title(title: t(:reset_password), disabled_with: 'Resetting password'), class: 'base-button' %>
     </div>
   <% end %>
+  <div class="text-center mt-10">
+  <%= form_with url: url_for, method: :get do %>
+    <% if params[:redir].present? %>
+      <%= hidden_field_tag :redir, params[:redir] %>
+    <% end %>
+    <%= select_tag :lang, options_for_select((I18n.available_locales - %i[en pt-PT de-DE fr-FR es-ES]).map { |code| [t("language_#{code}"), code] }, I18n.locale), onchange: 'this.form.requestSubmit();', class: 'select select-sm border-base-content/30 text-base' %>
+  <% end %>
+</div>
 </div>
