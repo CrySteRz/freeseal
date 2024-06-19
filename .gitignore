@@ -17,7 +17,6 @@
 thesis.todo
 .env
 
-*.lock
 
 # Used by dotenv library to load environment variables.
 # .env
