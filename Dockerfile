@@ -16,7 +16,7 @@ WORKDIR /app
 RUN apk add --no-cache nodejs yarn git build-base && \
     gem install shakapacker
 
-COPY ./package.json ./yarn.lock ./
+COPY ./package.json ./
 
 RUN yarn install --network-timeout 1000000
 
@@ -55,7 +55,7 @@ activate = 1\n\
 [legacy_sect]\n\
 activate = 1' >> /app/openssl_legacy.cnf
 
-COPY ./Gemfile ./Gemfile.lock ./
+COPY ./Gemfile ./
 
 RUN apk add --no-cache build-base && bundle install && apk del build-base && rm -rf ~/.bundle /usr/local/bundle/cache && ruby -e "puts Dir['/usr/local/bundle/**/{spec,rdoc,resources/shared,resources/collation,resources/locales}']" | xargs rm -rf
 
