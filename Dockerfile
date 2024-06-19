@@ -77,10 +77,10 @@ COPY ./bin ./bin
 COPY ./app ./app
 COPY ./config ./config
 COPY ./db ./db
-COPY ./log ./log
+RUN mkdir -p ./log
 COPY ./lib ./lib
 COPY ./public ./public
-COPY ./tmp ./tmp
+RUN mkdir -p ./tmp
 COPY LICENSE README.md Rakefile config.ru .version ./
 
 COPY --from=fonts /fonts/GoNotoKurrent-Regular.ttf /fonts/GoNotoKurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts/
