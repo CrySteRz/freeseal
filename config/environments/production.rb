@@ -104,7 +104,7 @@ Rails.application.configure do
     end
   end
 
-  config.action_mailer.default_url_options = { host: UVTSign::HOST,
+  config.action_mailer.default_url_options = { host: ENV['HOST'],
                                                protocol: ENV['FORCE_SSL'].present? ? 'https' : 'http' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
