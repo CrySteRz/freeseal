@@ -11,6 +11,7 @@ RUN apk --no-cache add fontforge wget \
  && wget https://github.com/impallari/DancingScript/raw/master/OFL.txt \
  && fontforge -lang=py -c 'font1 = fontforge.open("FreeSans.ttf"); font2 = fontforge.open("NotoSansSymbols2-Regular.ttf"); font1.mergeFonts(font2); font1.generate("FreeSans.ttf")'
 
+
 FROM ruby:3.3.1-alpine3.18 as webpack
 
 ENV RAILS_ENV=production \
@@ -37,6 +38,7 @@ COPY ./app/views ./app/views
 RUN echo "gem 'shakapacker'" > Gemfile \
  && ./bin/shakapacker
 
+
 FROM ruby:3.3.1-alpine3.18 as app
 
 ENV RAILS_ENV=production \
@@ -50,7 +52,7 @@ RUN apk add --no-cache sqlite-dev libpq-dev mariadb-dev vips-dev vips-poppler po
  && mkdir /fonts \
  && rm /usr/share/fonts/freefont/FreeSans.otf
 
- RUN cat <<EOF > /app/openssl_legacy.cnf
+RUN cat <<EOF > /app/openssl_legacy.cnf
 .include = /etc/ssl/openssl.cnf
 
 [provider_sect]
@@ -64,7 +66,6 @@ activate = 1
 activate = 1
 EOF
 
-
 COPY ./Gemfile ./Gemfile.lock ./
 
 RUN apk add --no-cache build-base \
@@ -77,10 +78,8 @@ COPY ./bin ./bin
 COPY ./app ./app
 COPY ./config ./config
 COPY ./db ./db
-RUN mkdir -p ./log
 COPY ./lib ./lib
 COPY ./public ./public
-RUN mkdir -p ./tmp
 COPY LICENSE README.md Rakefile config.ru .version ./
 
 COPY --from=fonts /fonts/GoNotoKurrent-Regular.ttf /fonts/GoNotoKurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts/

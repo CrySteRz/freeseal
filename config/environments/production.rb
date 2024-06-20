@@ -77,6 +77,12 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = false
 
+  # Initialize the logger early in the configuration
+  logger           = ActiveSupport::Logger.new($stdout)
+  logger.formatter = config.log_formatter
+  config.logger    = ActiveSupport::TaggedLogging.new(logger)
+  Rails.logger     = config.logger
+
   if ENV['SMTP_ADDRESS']
     begin
       config.action_mailer.delivery_method = :smtp
@@ -93,13 +99,13 @@ Rails.application.configure do
       config.action_mailer.default_options = {
         from: ENV.fetch('SMTP_FROM')
       }
-    rescue StandardError => e
+    rescue => e
       Rails.logger.error("SMTP configuration error: #{e.message}")
     end
   end
 
   config.action_mailer.default_url_options = { host: UVTSign::HOST,
-                                               protocol: ENV['FORCE_SSL'].present? ? 'https' : 'http'}
+                                               protocol: ENV['FORCE_SSL'].present? ? 'https' : 'http' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -114,10 +120,6 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
-
-  logger           = ActiveSupport::Logger.new($stdout)
-  logger.formatter = config.log_formatter
-  config.logger    = ActiveSupport::TaggedLogging.new(logger)
 
   encryption_secret = ENV['ENCRYPTION_SECRET'].presence || Digest::SHA256.hexdigest(ENV['SECRET_KEY_BASE'].to_s)
 
