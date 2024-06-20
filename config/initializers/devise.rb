@@ -319,7 +319,7 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'],
                   ENV['GOOGLE_CLIENT_SECRET'], scope: 'userinfo.email, userinfo.profile',
                                                prompt: 'select_account',
-                                               redirect_uri: "#{ENV['FORCE_SSL'].present? ? 'https' : 'http'}#{Uvtsign::HOST}/auth/google_oauth2/callback"
+                                               redirect_uri: "#{ENV['FORCE_SSL'].present? ? 'https' : 'http'}://#{ENV['HOST']}/auth/google_oauth2/callback"
 
   # ==> Hotwire/Turbo configuration
   # When using Devise with Hotwire/Turbo, the http status for error responses
