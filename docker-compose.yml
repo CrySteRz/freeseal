@@ -9,17 +9,26 @@ services:
     volumes:
       - .:/data
     environment:
+      - HOST=${HOST}
+      - DATABASE_URL=${DATABASE_URL}
+      - SMTP_ADDRESS=${SMTP_ADDRESS}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_DOMAIN=${SMTP_DOMAIN}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_AUTHENTICATION=${SMTP_AUTHENTICATION}
+      - SMTP_ENABLE_STARTTLS_AUTO=${SMTP_ENABLE_STARTTLS_AUTO}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       #FORCE_SSL=${HOST}
-      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/uvtsign
-
   postgres:
     image: postgres:15
     volumes:
       - "./pg_data:/var/lib/postgresql/data"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: uvtsign
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=uvtsign
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -33,15 +42,3 @@ services:
       - 80:80
     volumes:
       - .:/data
-
-  # caddy:
-  #   image: caddy:latest
-  #   command: caddy reverse-proxy --from $HOST --to app:3000
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-  #     - 443:443/udp
-  #   volumes:
-  #     - .:/data
-  #   environment:
-  #     - HOST=${HOST}

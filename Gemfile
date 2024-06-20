@@ -12,7 +12,7 @@ gem 'cancancan'
 gem 'csv'
 gem 'devise'
 gem 'devise-two-factor'
-gem 'dotenv'
+gem 'dotenv', require: false
 gem 'email_typo'
 gem 'faraday'
 gem 'faraday-follow_redirects'
