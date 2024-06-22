@@ -41,13 +41,13 @@ Rails.application.routes.draw do
     end
 
     post 'send_submission_email', to: 'submissions#send_email', defaults: { format: :json }
-
   end
 
   mount Rswag::Ui::Engine => '/docs/api'
   mount Rswag::Api::Engine => '/docs/api'
 
   namespace :api, defaults: { format: :json } do
+    get 'submissions/:slug/download', to: 'submissions_download#download'
     resources :attachments, only: %i[create]
     resources :submitter_email_clicks, only: %i[create]
     resources :submitter_form_views, only: %i[create]

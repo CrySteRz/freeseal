@@ -55,9 +55,11 @@
 <div id="js_1" class="block my-4">
     <div class="mockup-code overflow-hidden pb-0 mt-4">
       <span class="top-0 right-0 absolute flex">
-        <clipboard-copy data-text="<script src=&quot;<%= ENV['FORCE_SSL'].present? ? 'https' : 'http' %>://<%= Uvtsign::HOST %>/js/form.js&quot;></script>">
+        <clipboard-copy data-text="<script src='<%= ENV['FORCE_SSL'].present? ? 'https' : 'http' %>://<%= Uvtsign::HOST %>/js/form.js'></script>">
 
-<uvtsign-form data-src=&quot;<%= start_form_url(slug: template.slug) %>&quot;></uvtsign-form>
+<uvtsign-form data-src="<%= start_form_url(slug: template.slug) %>"></uvtsign-form>
+
+
 ">
   <label class="btn btn-ghost text-gray-100">
     <input type="radio" class="peer hidden">
