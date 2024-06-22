@@ -121,7 +121,7 @@ module Embed
     end
 
     def build_download_url(submitter_slug)
-      "#{ENV['FORCE_SSL'].present? ? 'https' : 'http'}://#{Uvtsign::HOST}/api/submissions_download/#{submitter_slug}/download"
+      "#{ENV['FORCE_SSL'].present? ? 'https' : 'http'}://#{Uvtsign::HOST}/api/submissions/#{submitter_slug}/download"
     end
   end
 end
