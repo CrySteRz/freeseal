@@ -1,5 +1,4 @@
 <% has_archived = current_account.templates.where.not(archived_at: nil).exists? %>
-<% if Uvtsign.demo? %><%= render 'shared/demo_alert' %><% end %>
 <div class="flex justify-between mb-4 items-center">
   <div class="flex items-center">
     <% if has_archived || @pagy.count > 0 %>

@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
 
   check_authorization unless: :devise_controller?
 
-  before_action :sign_in_for_demo, if: -> { Uvtsign.demo? }
   before_action :authenticate_user!, unless: :devise_controller?
   helper_method :button_title,
                 :current_account,
@@ -63,10 +62,6 @@ class ApplicationController < ActionController::Base
     locale = 'en-GB' unless I18n.locale_available?(locale)
 
     I18n.with_locale(locale, &)
-  end
-
-  def sign_in_for_demo
-    sign_in(User.active.order('random()').take) unless signed_in?
   end
 
   def current_account

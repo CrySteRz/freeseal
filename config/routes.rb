@@ -76,7 +76,7 @@ Rails.application.routes.draw do
   resources :submissions_archived, only: %i[index], path: 'submissions/archived'
   resources :submissions, only: %i[index], controller: 'submissions_dashboard'
   resources :submissions, only: %i[show destroy]
-  resources :console_redirect, only: %i[index]
+  # resources :console_redirect, only: %i[index]
   resources :upgrade, only: %i[index], controller: 'console_redirect'
   resources :manage, only: %i[index], controller: 'console_redirect'
   resource :testing_account, only: %i[show destroy]
@@ -139,16 +139,14 @@ Rails.application.routes.draw do
   end
 
   scope '/settings', as: :settings do
-    resources :storage, only: %i[index create], controller: 'storage_settings'
-    resources :email, only: %i[index create], controller: 'email_smtp_settings'
-    resources :notifications, only: %i[index create], controller: 'notifications_settings'
+    # resources :storage, only: %i[index create], controller: 'storage_settings'
+    # resources :email, only: %i[index create], controller: 'email_smtp_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]
     resources :archived_users, only: %i[index], path: 'users/:status', controller: 'users',
                                defaults: { status: :archived }
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
     resources :api, only: %i[index create], controller: 'api_settings'
-    resource :webhooks, only: %i[show create update], controller: 'webhook_settings'
     resource :account, only: %i[show update destroy]
     resources :profile, only: %i[index] do
       collection do

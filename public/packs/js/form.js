@@ -123,25 +123,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const safeRegisterElement = (name, element, options = {}) => !window.customElements.get(name) && window.customElements.define(name, element, options);
-safeRegisterElement('download-button', _elements_download_button__WEBPACK_IMPORTED_MODULE_2__["default"]);
-safeRegisterElement('toggle-submit', _elements_toggle_submit__WEBPACK_IMPORTED_MODULE_3__["default"]);
-safeRegisterElement('submission-form', class extends HTMLElement {
+safeRegisterElement("download-button", _elements_download_button__WEBPACK_IMPORTED_MODULE_2__["default"]);
+safeRegisterElement("toggle-submit", _elements_toggle_submit__WEBPACK_IMPORTED_MODULE_3__["default"]);
+safeRegisterElement("submission-form", class extends HTMLElement {
   connectedCallback() {
-    this.appElem = document.createElement('div');
+    this.appElem = document.createElement("div");
     this.app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_submission_form_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
       submitter: JSON.parse(this.dataset.submitter),
-      canSendEmail: this.dataset.canSendEmail === 'true',
-      goToLast: this.dataset.goToLast === 'true',
-      isDemo: this.dataset.isDemo === 'true',
-      attribution: this.dataset.attribution !== 'false',
-      withConfetti: this.dataset.withConfetti !== 'false',
-      withDisclosure: this.dataset.withDisclosure === 'true',
-      withTypedSignature: this.dataset.withTypedSignature !== 'false',
+      canSendEmail: this.dataset.canSendEmail === "true",
+      goToLast: this.dataset.goToLast === "true",
+      attribution: this.dataset.attribution !== "false",
+      withConfetti: this.dataset.withConfetti !== "false",
+      withDisclosure: this.dataset.withDisclosure === "true",
+      withTypedSignature: this.dataset.withTypedSignature !== "false",
       authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content,
       values: (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)(JSON.parse(this.dataset.values)),
-      completedButton: JSON.parse(this.dataset.completedButton || '{}'),
+      completedButton: JSON.parse(this.dataset.completedButton || "{}"),
       withQrButton: true,
-      completedMessage: JSON.parse(this.dataset.completedMessage || '{}'),
+      completedMessage: JSON.parse(this.dataset.completedMessage || "{}"),
       completedRedirectUrl: this.dataset.completedRedirectUrl,
       attachments: (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)(JSON.parse(this.dataset.attachments)),
       fields: JSON.parse(this.dataset.fields)
@@ -1650,11 +1649,6 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       required: true
     },
-    isDemo: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
     attribution: {
       type: Boolean,
       required: false,
@@ -2011,10 +2005,10 @@ const isEmpty = obj => {
   if (Array.isArray(obj)) {
     return obj.length === 0;
   }
-  if (typeof obj === 'string') {
+  if (typeof obj === "string") {
     return obj.trim().length === 0;
   }
-  if (typeof obj === 'object') {
+  if (typeof obj === "object") {
     return Object.keys(obj).length === 0;
   }
   if (obj === false) {
@@ -2023,7 +2017,7 @@ const isEmpty = obj => {
   return false;
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SubmissionForm',
+  name: "SubmissionForm",
   components: {
     FieldAreas: _areas__WEBPACK_IMPORTED_MODULE_0__["default"],
     ImageStep: _image_step__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -2128,7 +2122,7 @@ const isEmpty = obj => {
     baseUrl: {
       type: String,
       required: false,
-      default: ''
+      default: ""
     },
     fields: {
       type: Array,
@@ -2138,7 +2132,7 @@ const isEmpty = obj => {
     backgroundColor: {
       type: String,
       required: false,
-      default: ''
+      default: ""
     },
     allowToSkip: {
       type: Boolean,
@@ -2149,11 +2143,6 @@ const isEmpty = obj => {
       type: Boolean,
       required: false,
       default: true
-    },
-    isDemo: {
-      type: Boolean,
-      required: false,
-      default: false
     },
     dryRun: {
       type: Boolean,
@@ -2168,7 +2157,7 @@ const isEmpty = obj => {
     language: {
       type: String,
       required: false,
-      default: ''
+      default: ""
     },
     values: {
       type: Object,
@@ -2178,7 +2167,7 @@ const isEmpty = obj => {
     authenticityToken: {
       type: String,
       required: false,
-      default: ''
+      default: ""
     },
     i18n: {
       type: Object,
@@ -2198,7 +2187,7 @@ const isEmpty = obj => {
     completedRedirectUrl: {
       type: String,
       required: false,
-      default: ''
+      default: ""
     },
     completedButton: {
       type: Object,
@@ -2221,7 +2210,7 @@ const isEmpty = obj => {
       orientation: screen?.orientation?.type,
       isSubmitting: false,
       submittedValues: {},
-      recalculateButtonDisabledKey: ''
+      recalculateButtonDisabledKey: ""
     };
   },
   computed: {
@@ -2230,19 +2219,19 @@ const isEmpty = obj => {
     },
     buttonText() {
       if (this.alwaysMinimize || this.stepFields.length === this.currentStep + 1) {
-        return this.t('submit');
+        return this.t("submit");
       } else {
-        return this.t('next');
+        return this.t("next");
       }
     },
     alwaysMinimize() {
-      return this.minimize || this.orientation?.includes('landscape') && this.isMobile && parseInt(window.innerHeight) < 550;
+      return this.minimize || this.orientation?.includes("landscape") && this.isMobile && parseInt(window.innerHeight) < 550;
     },
     currentStepFields() {
       return this.stepFields[this.currentStep] || [];
     },
     browserLanguage() {
-      return (navigator.language || navigator.userLanguage || 'en').split('-')[0];
+      return (navigator.language || navigator.userLanguage || "en").split("-")[0];
     },
     queryParams() {
       return new URLSearchParams(window.location.search);
@@ -2258,18 +2247,18 @@ const isEmpty = obj => {
     },
     previousInitialsValue() {
       if (this.reuseSignature !== false) {
-        const initialsField = [...this.fields].reverse().find(field => field.type === 'initials' && !!this.values[field.uuid]);
+        const initialsField = [...this.fields].reverse().find(field => field.type === "initials" && !!this.values[field.uuid]);
         return this.values[initialsField?.uuid];
       } else {
         return null;
       }
     },
     isAnonymousChecboxes() {
-      return this.currentField.type === 'checkbox' && this.currentStepFields.every(e => !e.name && !e.required) && this.currentStepFields.length > 4;
+      return this.currentField.type === "checkbox" && this.currentStepFields.every(e => !e.name && !e.required) && this.currentStepFields.length > 4;
     },
     isButtonDisabled() {
       if (this.recalculateButtonDisabledKey) {
-        return this.isSubmitting || this.currentField.required && ['image', 'file', 'multiple'].includes(this.currentField.type) && !this.values[this.currentField.uuid]?.length || this.currentField.required && this.currentField.type === 'signature' && !this.values[this.currentField.uuid]?.length && this.$refs.currentStep && !this.$refs.currentStep.isSignatureStarted || this.currentField.required && this.currentField.type === 'initials' && !this.values[this.currentField.uuid]?.length && this.$refs.currentStep && !this.$refs.currentStep.isInitialsStarted;
+        return this.isSubmitting || this.currentField.required && ["image", "file", "multiple"].includes(this.currentField.type) && !this.values[this.currentField.uuid]?.length || this.currentField.required && this.currentField.type === "signature" && !this.values[this.currentField.uuid]?.length && this.$refs.currentStep && !this.$refs.currentStep.isSignatureStarted || this.currentField.required && this.currentField.type === "initials" && !this.values[this.currentField.uuid]?.length && this.$refs.currentStep && !this.$refs.currentStep.isInitialsStarted;
       } else {
         return false;
       }
@@ -2281,7 +2270,7 @@ const isEmpty = obj => {
       return this.fields.filter(f => !f.readonly).reduce((acc, f) => {
         const prevStep = acc[acc.length - 1];
         if (this.checkFieldConditions(f)) {
-          if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox' && !f.description) {
+          if (f.type === "checkbox" && Array.isArray(prevStep) && prevStep[0].type === "checkbox" && !f.description) {
             prevStep.push(f);
           } else {
             acc.push([f]);
@@ -2314,19 +2303,19 @@ const isEmpty = obj => {
     }
   },
   beforeUnmount() {
-    screen?.orientation?.removeEventListener('change', this.onOrientationChange);
+    screen?.orientation?.removeEventListener("change", this.onOrientationChange);
   },
   mounted() {
     this.submittedValues = JSON.parse(JSON.stringify(this.values));
-    screen?.orientation.addEventListener('change', this.onOrientationChange);
+    screen?.orientation.addEventListener("change", this.onOrientationChange);
     this.fields.forEach(field => {
       if (field.default_value && !field.readonly) {
         this.values[field.uuid] ||= field.default_value;
       }
     });
-    if (this.queryParams.get('field_uuid')) {
+    if (this.queryParams.get("field_uuid")) {
       const stepIndex = this.stepFields.findIndex(fields => {
-        return fields.some(f => f.uuid === this.queryParams.get('field_uuid'));
+        return fields.some(f => f.uuid === this.queryParams.get("field_uuid"));
       });
       this.currentStep = Math.max(stepIndex, 0);
     } else if (this.goToLast) {
@@ -2341,7 +2330,7 @@ const isEmpty = obj => {
       }
       this.currentStep = Math.min(...indexesList);
     }
-    if (document.body?.clientWidth >= 768 && this.expand !== true && ['signature', 'initials', 'file', 'image'].includes(this.currentField?.type)) {
+    if (document.body?.clientWidth >= 768 && this.expand !== true && ["signature", "initials", "file", "image"].includes(this.currentField?.type)) {
       this.isFormVisible = false;
     }
     if (this.alwaysMinimize) {
@@ -2350,12 +2339,12 @@ const isEmpty = obj => {
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       this.$nextTick(() => {
         const root = this.$root.$el.parentNode.getRootNode();
-        const scrollbox = root.getElementById('scrollbox');
-        const parent = root.body || root.querySelector('div');
-        parent.style.overflow = 'hidden';
-        scrollbox.classList.add('h-full', 'overflow-y-auto');
-        scrollbox.parentNode.classList.add('h-screen', 'overflow-y-auto');
-        scrollbox.parentNode.style.maxHeight = '-webkit-fill-available';
+        const scrollbox = root.getElementById("scrollbox");
+        const parent = root.body || root.querySelector("div");
+        parent.style.overflow = "hidden";
+        scrollbox.classList.add("h-full", "overflow-y-auto");
+        scrollbox.parentNode.classList.add("h-screen", "overflow-y-auto");
+        scrollbox.parentNode.style.maxHeight = "-webkit-fill-available";
       });
     }
     this.$nextTick(() => {
@@ -2375,16 +2364,16 @@ const isEmpty = obj => {
     checkFieldConditions(field) {
       if (field.conditions?.length) {
         return field.conditions.reduce((acc, c) => {
-          if (['empty', 'unchecked'].includes(c.action)) {
+          if (["empty", "unchecked"].includes(c.action)) {
             return acc && isEmpty(this.values[c.field_uuid]);
-          } else if (['not_empty', 'checked'].includes(c.action)) {
+          } else if (["not_empty", "checked"].includes(c.action)) {
             return acc && !isEmpty(this.values[c.field_uuid]);
-          } else if (['equal', 'contains'].includes(c.action)) {
+          } else if (["equal", "contains"].includes(c.action)) {
             const field = this.fieldsUuidIndex[c.field_uuid];
             const option = field.options.find(o => o.uuid === c.value);
             const values = [this.values[c.field_uuid]].flat();
             return acc && values.includes(this.optionValue(option, field.options.indexOf(option)));
-          } else if (['not_equal', 'does_not_contain'].includes(c.action)) {
+          } else if (["not_equal", "does_not_contain"].includes(c.action)) {
             const field = this.fieldsUuidIndex[c.field_uuid];
             const option = field.options.find(o => o.uuid === c.value);
             const values = [this.values[c.field_uuid]].flat();
@@ -2401,22 +2390,22 @@ const isEmpty = obj => {
       if (option.value) {
         return option.value;
       } else {
-        return `${this.t('option')} ${index + 1}`;
+        return `${this.t("option")} ${index + 1}`;
       }
     },
     maybeTrackEmailClick() {
       const {
         queryParams
       } = this;
-      if (queryParams.has('t')) {
-        const t = queryParams.get('t');
-        queryParams.delete('t');
-        const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join('?');
+      if (queryParams.has("t")) {
+        const t = queryParams.get("t");
+        queryParams.delete("t");
+        const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join("?");
         window.history.replaceState({}, document.title, newUrl);
-        return fetch(this.baseUrl + '/api/submitter_email_clicks', {
-          method: 'POST',
+        return fetch(this.baseUrl + "/api/submitter_email_clicks", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
           },
           body: JSON.stringify({
             t,
@@ -2431,15 +2420,15 @@ const isEmpty = obj => {
       const {
         queryParams
       } = this;
-      if (queryParams.has('c')) {
-        const c = queryParams.get('c');
-        queryParams.delete('c');
-        const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join('?');
+      if (queryParams.has("c")) {
+        const c = queryParams.get("c");
+        queryParams.delete("c");
+        const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join("?");
         window.history.replaceState({}, document.title, newUrl);
-        return fetch(this.baseUrl + '/api/submitter_sms_clicks', {
-          method: 'POST',
+        return fetch(this.baseUrl + "/api/submitter_sms_clicks", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
           },
           body: JSON.stringify({
             c,
@@ -2451,10 +2440,10 @@ const isEmpty = obj => {
       }
     },
     trackViewForm() {
-      fetch(this.baseUrl + '/api/submitter_form_views', {
-        method: 'POST',
+      fetch(this.baseUrl + "/api/submitter_form_views", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           submitter_slug: this.submitterSlug
@@ -2463,7 +2452,7 @@ const isEmpty = obj => {
     },
     previousSignatureValueFor(field) {
       if (this.reuseSignature !== false) {
-        const signatureField = [...this.fields].reverse().find(f => f.type === 'signature' && field.preferences?.format === f.preferences?.format && !!this.values[f.uuid]);
+        const signatureField = [...this.fields].reverse().find(f => f.type === "signature" && field.preferences?.format === f.preferences?.format && !!this.values[f.uuid]);
         return this.values[signatureField?.uuid];
       } else {
         return null;
@@ -2479,7 +2468,7 @@ const isEmpty = obj => {
             this.scrollIntoField(step[0]);
             this.$refs.form.querySelector('input[type="date"], input[type="number"], input[type="text"], select')?.focus();
           }
-          if (clickUpload && !this.values[this.currentField.uuid] && ['file', 'image'].includes(this.currentField.type)) {
+          if (clickUpload && !this.values[this.currentField.uuid] && ["file", "image"].includes(this.currentField.type)) {
             this.$refs.form.querySelector('input[type="file"]')?.click();
           }
         }
@@ -2492,13 +2481,13 @@ const isEmpty = obj => {
         return Promise.resolve({});
       } else {
         return fetch(this.baseUrl + this.submitPath, {
-          method: 'POST',
+          method: "POST",
           body: formData || new FormData(this.$refs.form)
         }).then(response => {
           if (response.status === 200) {
             currentFieldUuids.forEach(fieldUuid => {
               this.submittedValues[fieldUuid] = this.values[fieldUuid];
-              if (currentFieldType === 'phone') {
+              if (currentFieldType === "phone") {
                 this.phoneVerifiedValues[fieldUuid] = this.values[fieldUuid];
               }
             });
@@ -2515,20 +2504,20 @@ const isEmpty = obj => {
     },
     async submitStep() {
       this.isSubmitting = true;
-      const stepPromise = ['signature', 'phone', 'initials', 'payment'].includes(this.currentField.type) ? this.$refs.currentStep.submit : () => Promise.resolve({});
+      const stepPromise = ["signature", "phone", "initials", "payment"].includes(this.currentField.type) ? this.$refs.currentStep.submit : () => Promise.resolve({});
       stepPromise().then(async () => {
         const emptyRequiredField = this.stepFields.find((fields, index) => {
           if (index >= this.currentStep) {
             return false;
           }
           return fields.some(f => {
-            return f.required && (f.type === 'phone' || !this.allowToSkip) && isEmpty(this.submittedValues[f.uuid]);
+            return f.required && (f.type === "phone" || !this.allowToSkip) && isEmpty(this.submittedValues[f.uuid]);
           });
         });
         const formData = new FormData(this.$refs.form);
         const isLastStep = this.currentStep === this.stepFields.length - 1;
         if (isLastStep && !emptyRequiredField && !this.dryRun) {
-          formData.append('completed', 'true');
+          formData.append("completed", "true");
         }
         let saveStepRequest;
         if (!isLastStep && this.phoneVerifiedValues[this.currentField.uuid] && this.phoneVerifiedValues[this.currentField.uuid] === this.values[this.currentField.uuid]) {
@@ -2539,7 +2528,7 @@ const isEmpty = obj => {
         await saveStepRequest.then(async response => {
           if (response.status === 422 || response.status === 500) {
             const data = await response.json();
-            alert(data.error || 'Value is invalid');
+            alert(data.error || "Value is invalid");
             return Promise.reject(new Error(data.error));
           }
           if (isLastStep) {
@@ -2570,8 +2559,8 @@ const isEmpty = obj => {
           this.isSubmitting = false;
         });
       }).catch(error => {
-        if (error?.message === 'Image too small') {
-          alert('Signature is too small - please redraw.');
+        if (error?.message === "Image too small") {
+          alert("Signature is too small - please redraw.");
         } else {
           console.log(error);
         }
@@ -4085,22 +4074,10 @@ const _hoisted_5 = ["href"];
 const _hoisted_6 = ["disabled"];
 const _hoisted_7 = ["disabled"];
 const _hoisted_8 = {
-  key: 3,
-  target: "_blank",
-  href: "https://github.com/uvtsignco/uvtsign",
-  class: "white-button flex items-center space-x-1 w-full"
-};
-const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " Star on Github ", -1 /* HOISTED */);
-const _hoisted_10 = {
-  key: 4,
-  href: "https://uvtsign.co/sign_up",
-  class: "white-button flex items-center space-x-1 w-full"
-};
-const _hoisted_11 = {
   key: 1,
   class: "text-center mt-4"
 };
-const _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "https://www.uvtsign.co/",
   target: "_blank",
   class: "underline"
@@ -4111,8 +4088,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_IconInnerShadowTop = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconInnerShadowTop");
   const _component_IconMail = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconMail");
   const _component_IconDownload = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconDownload");
-  const _component_IconBrandGithub = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconBrandGithub");
-  const _component_IconLogin = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconLogin");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconCircleCheck, {
     class: "inline text-green-600",
     width: 30,
@@ -4124,7 +4099,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     href: $options.sanitizeHref($props.completedButton.url),
     rel: "noopener noreferrer nofollow",
     class: "white-button flex items-center w-full"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.completedButton.title || "Back to Website"), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.canSendEmail && !$props.isDemo && $props.withSendCopyButton ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.completedButton.title || "Back to Website"), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.canSendEmail && $props.withSendCopyButton ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 1,
     class: "white-button !h-auto flex items-center space-x-1 w-full",
     disabled: $data.isSendingCopy,
@@ -4144,7 +4119,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     class: "animate-spin"
   })) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_IconDownload, {
     key: 1
-  })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("download")), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_7)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.isDemo ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconBrandGithub), _hoisted_9])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.isDemo ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconLogin), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("create_a_free_account")), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $props.attribution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("signed_with")) + " ", 1 /* TEXT */), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("open_source_documents_software")), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("download")), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_7)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $props.attribution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("signed_with")) + " ", 1 /* TEXT */), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("open_source_documents_software")), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
 /***/ }),
@@ -4452,11 +4427,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconWritingSign, {
     "stroke-width": "1.5"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t('sign_now')), 1 /* TEXT */)], 64 /* STABLE_FRAGMENT */)) : $options.alwaysMinimize ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("sign_now")), 1 /* TEXT */)], 64 /* STABLE_FRAGMENT */)) : $options.alwaysMinimize ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 1
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t('next')), 1 /* TEXT */)], 64 /* STABLE_FRAGMENT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("next")), 1 /* TEXT */)], 64 /* STABLE_FRAGMENT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 2
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t('submit_form')), 1 /* TEXT */)], 64 /* STABLE_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconArrowsDiagonal, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("submit_form")), 1 /* TEXT */)], 64 /* STABLE_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconArrowsDiagonal, {
     class: "absolute right-0 mr-4",
     width: 20,
     height: 20
@@ -4530,7 +4505,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 1
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.currentField.name) + " ", 1 /* TEXT */), !$options.currentField.required ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t('optional')) + ")", 1 /* TEXT */)], 64 /* STABLE_FRAGMENT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */))], 10 /* CLASS, PROPS */, _hoisted_8)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9)), $options.currentField.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MarkdownContent, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("optional")) + ")", 1 /* TEXT */)], 64 /* STABLE_FRAGMENT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */))], 10 /* CLASS, PROPS */, _hoisted_8)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9)), $options.currentField.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MarkdownContent, {
     string: $options.currentField.description
   }, null, 8 /* PROPS */, ["string"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AppearsOn, {
     field: $options.currentField
@@ -4545,7 +4520,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: "",
     selected: !$props.values[$options.currentField.uuid]
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t('select_your_option')), 9 /* TEXT, PROPS */, _hoisted_12), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.currentField.options, option => {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("select_your_option")), 9 /* TEXT, PROPS */, _hoisted_12), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.currentField.options, option => {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: option.uuid,
       selected: $props.values[$options.currentField.uuid] == option.value,
@@ -4565,11 +4540,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 1
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.currentField.name) + " ", 1 /* TEXT */), !$options.currentField.required ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t('optional')) + ")", 1 /* TEXT */)], 64 /* STABLE_FRAGMENT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */))], 10 /* CLASS, PROPS */, _hoisted_15)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.currentField.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MarkdownContent, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("optional")) + ")", 1 /* TEXT */)], 64 /* STABLE_FRAGMENT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */))], 10 /* CLASS, PROPS */, _hoisted_15)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.currentField.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MarkdownContent, {
     string: $options.currentField.description
   }, null, 8 /* PROPS */, ["string"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [!$props.showFieldNames || $options.currentField.options.every(e => !e.value) && $options.currentField.options.length > 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     onClick: _cache[11] || (_cache[11] = $event => $options.scrollIntoField($options.currentField))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t('complete_hightlighted_checkboxes_and_click')) + " ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.stepFields.length === $data.currentStep + 1 ? $options.t('submit') : $options.t('next')), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(". ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("complete_hightlighted_checkboxes_and_click")) + " ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.stepFields.length === $data.currentStep + 1 ? $options.t("submit") : $options.t("next")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(". ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["space-y-3.5 mx-auto", {
       hidden: !$props.showFieldNames || $options.currentField.options.every(e => !e.value) && $options.currentField.options.length > 4
     }])
@@ -4588,7 +4563,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       value: option.value || `${$options.t('option')} ${index + 1}`,
       required: $options.currentField.required,
       onClick: _cache[13] || (_cache[13] = $event => $options.scrollIntoField($options.currentField))
-    }, null, 8 /* PROPS */, _hoisted_21), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $props.values[$options.currentField.uuid]]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.value || `${$options.t('option')} ${index + 1}`), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_20)]);
+    }, null, 8 /* PROPS */, _hoisted_21), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $props.values[$options.currentField.uuid]]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.value || `${$options.t("option")} ${index + 1}`), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_20)]);
   }), 128 /* KEYED_FRAGMENT */))], 2 /* CLASS */)])])) : $options.currentField.type === 'multiple' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_MultiSelectStep, {
     key: $options.currentField.uuid,
     modelValue: $props.values[$options.currentField.uuid],
@@ -4600,7 +4575,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     string: $options.currentField.description
   }, null, 8 /* PROPS */, ["string"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [$options.isAnonymousChecboxes || !$props.showFieldNames ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t('complete_hightlighted_checkboxes_and_click')) + " ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.stepFields.length === $data.currentStep + 1 ? $options.t('submit') : $options.t('next')), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(". ")]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.currentStepFields, field => {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("complete_hightlighted_checkboxes_and_click")) + " ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.stepFields.length === $data.currentStep + 1 ? $options.t("submit") : $options.t("next")), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(". ")]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.currentStepFields, field => {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
       key: field.uuid,
       type: "hidden",
@@ -4630,7 +4605,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: $event => [$options.scrollIntoField(field), $props.values[field.uuid] = !$props.values[field.uuid]]
     }, null, 8 /* PROPS */, _hoisted_33), field.title ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MarkdownContent, {
       string: field.title
-    }, null, 8 /* PROPS */, ["string"])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(field.name || field.type + ' ' + (index + 1)), 1 /* TEXT */))], 8 /* PROPS */, _hoisted_31)]);
+    }, null, 8 /* PROPS */, ["string"])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(field.name || field.type + " " + (index + 1)), 1 /* TEXT */))], 8 /* PROPS */, _hoisted_31)]);
   }), 128 /* KEYED_FRAGMENT */))])])])) : $options.currentField.type === 'image' || $options.currentField.type === 'stamp' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ImageStep, {
     key: $options.currentField.uuid,
     modelValue: $props.values[$options.currentField.uuid],
@@ -4714,9 +4689,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_37, [$data.isSubmitting ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_IconInnerShadowTop, {
     key: 0,
     class: "mr-1 animate-spin"
-  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.buttonText), 1 /* TEXT */), $data.isSubmitting ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_38, [..._hoisted_40])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 8 /* PROPS */, _hoisted_36), $data.showFillAllRequiredFields ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t('please_fill_all_required_fields')), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 44 /* STYLE, PROPS, NEED_HYDRATION */, _hoisted_2)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FormCompleted, {
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.buttonText), 1 /* TEXT */), $data.isSubmitting ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_38, [..._hoisted_40])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 8 /* PROPS */, _hoisted_36), $data.showFillAllRequiredFields ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.t("please_fill_all_required_fields")), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2 /* CLASS */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 44 /* STYLE, PROPS, NEED_HYDRATION */, _hoisted_2)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FormCompleted, {
     key: 1,
-    "is-demo": $props.isDemo,
     attribution: $props.attribution,
     "completed-button": $props.completedRedirectUrl ? {} : $props.completedButton,
     "completed-message": $props.completedRedirectUrl ? {} : $props.completedMessage,
@@ -4725,7 +4699,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "with-confetti": $props.withConfetti,
     "can-send-email": $props.canSendEmail && !!$props.submitter.email,
     "submitter-slug": $options.submitterSlug
-  }, null, 8 /* PROPS */, ["is-demo", "attribution", "completed-button", "completed-message", "with-send-copy-button", "with-download-button", "with-confetti", "can-send-email", "submitter-slug"])), $options.stepFields.length < 80 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.stepFields, (step, index) => {
+  }, null, 8 /* PROPS */, ["attribution", "completed-button", "completed-message", "with-send-copy-button", "with-download-button", "with-confetti", "can-send-email", "submitter-slug"])), $options.stepFields.length < 80 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.stepFields, (step, index) => {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
       key: step[0].uuid,
       href: "#",

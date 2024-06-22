@@ -6,7 +6,13 @@
     :attachments-index="attachmentsIndex"
     :with-label="!isAnonymousChecboxes && showFieldNames"
     :current-step="currentStepFields"
-    @focus-step="[saveStep(), goToStep($event, false, true), currentField.type !== 'checkbox' ? isFormVisible = true : '']"
+    @focus-step="
+      [
+        saveStep(),
+        goToStep($event, false, true),
+        currentField.type !== 'checkbox' ? (isFormVisible = true) : '',
+      ]
+    "
   />
   <FormulaFieldAreas
     v-if="formulaFields.length"
@@ -18,17 +24,17 @@
     id="expand_form_button"
     class="btn btn-neutral flex text-white absolute bottom-0 w-full mb-3"
     style="width: 96%; margin-left: 2%"
-    @click.prevent="[isFormVisible = true, scrollIntoField(currentField)]"
+    @click.prevent="[(isFormVisible = true), scrollIntoField(currentField)]"
   >
     <template v-if="['initials', 'signature'].includes(currentField.type)">
       <IconWritingSign stroke-width="1.5" />
-      {{ t('sign_now') }}
+      {{ t("sign_now") }}
     </template>
     <template v-else-if="alwaysMinimize">
-      {{ t('next') }}
+      {{ t("next") }}
     </template>
     <template v-else>
-      {{ t('submit_form') }}
+      {{ t("submit_form") }}
     </template>
     <IconArrowsDiagonal
       class="absolute right-0 mr-4"
@@ -50,14 +56,9 @@
       :title="t('minimize')"
       @click.prevent="isFormVisible = false"
     >
-      <IconArrowsDiagonalMinimize2
-        :width="20"
-        :height="20"
-      />
+      <IconArrowsDiagonalMinimize2 :width="20" :height="20" />
     </button>
-    <div
-      :class="{ 'md:px-4': isBreakpointMd }"
-    >
+    <div :class="{ 'md:px-4': isBreakpointMd }">
       <form
         v-if="!isCompleted"
         ref="form"
@@ -71,12 +72,8 @@
           type="hidden"
           name="authenticity_token"
           :value="authenticityToken"
-        >
-        <input
-          value="put"
-          name="_method"
-          type="hidden"
-        >
+        />
+        <input value="put" name="_method" type="hidden" />
         <div class="md:mt-4">
           <div v-if="['cells', 'text'].includes(currentField.type)">
             <TextStep
@@ -117,18 +114,13 @@
               />
               <template v-else>
                 {{ currentField.name }}
-                <template v-if="!currentField.required">({{ t('optional') }})</template>
+                <template v-if="!currentField.required"
+                  >({{ t("optional") }})</template
+                >
               </template>
             </label>
-            <div
-              v-else
-              class="py-1"
-            />
-            <div
-              v-if="currentField.description"
-              dir="auto"
-              class="mb-3 px-1"
-            >
+            <div v-else class="py-1" />
+            <div v-if="currentField.description" dir="auto" class="mb-3 px-1">
               <MarkdownContent :string="currentField.description" />
             </div>
             <AppearsOn :field="currentField" />
@@ -141,11 +133,8 @@
               @change="values[currentField.uuid] = $event.target.value"
               @focus="scrollIntoField(currentField)"
             >
-              <option
-                value=""
-                :selected="!values[currentField.uuid]"
-              >
-                {{ t('select_your_option') }}
+              <option value="" :selected="!values[currentField.uuid]">
+                {{ t("select_your_option") }}
               </option>
               <option
                 v-for="option in currentField.options"
@@ -171,39 +160,47 @@
               />
               <template v-else>
                 {{ currentField.name }}
-                <template v-if="!currentField.required">({{ t('optional') }})</template>
+                <template v-if="!currentField.required"
+                  >({{ t("optional") }})</template
+                >
               </template>
             </label>
-            <div
-              v-if="currentField.description"
-              dir="auto"
-              class="mb-3 px-1"
-            >
+            <div v-if="currentField.description" dir="auto" class="mb-3 px-1">
               <MarkdownContent :string="currentField.description" />
             </div>
             <div class="flex w-full max-h-44 overflow-y-auto">
               <div
-                v-if="!showFieldNames || (currentField.options.every((e) => !e.value) && currentField.options.length > 4)"
+                v-if="
+                  !showFieldNames ||
+                  (currentField.options.every((e) => !e.value) &&
+                    currentField.options.length > 4)
+                "
                 class="text-xl px-1"
               >
-                <span
-                  @click="scrollIntoField(currentField)"
-                >
-                  {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? t('submit') : t('next') }}</span>.
+                <span @click="scrollIntoField(currentField)">
+                  {{ t("complete_hightlighted_checkboxes_and_click") }}
+                  <span class="font-semibold">{{
+                    stepFields.length === currentStep + 1
+                      ? t("submit")
+                      : t("next")
+                  }}</span
+                  >.
                 </span>
               </div>
               <div
                 class="space-y-3.5 mx-auto"
-                :class="{ hidden: !showFieldNames || (currentField.options.every((e) => !e.value) && currentField.options.length > 4) }"
+                :class="{
+                  hidden:
+                    !showFieldNames ||
+                    (currentField.options.every((e) => !e.value) &&
+                      currentField.options.length > 4),
+                }"
               >
                 <div
                   v-for="(option, index) in currentField.options"
                   :key="option.uuid"
                 >
-                  <label
-                    :for="option.uuid"
-                    class="flex items-center space-x-3"
-                  >
+                  <label :for="option.uuid" class="flex items-center space-x-3">
                     <input
                       :id="option.uuid"
                       v-model="values[currentField.uuid]"
@@ -213,9 +210,9 @@
                       :value="option.value || `${t('option')} ${index + 1}`"
                       :required="currentField.required"
                       @click="scrollIntoField(currentField)"
-                    >
+                    />
                     <span class="text-xl">
-                      {{ option.value || `${t('option')} ${index + 1}` }}
+                      {{ option.value || `${t("option")} ${index + 1}` }}
                     </span>
                   </label>
                 </div>
@@ -230,30 +227,22 @@
             :is-last-step="stepFields.length === currentStep + 1"
             :field="currentField"
           />
-          <div
-            v-else-if="currentField.type === 'checkbox'"
-          >
-            <div
-              v-if="currentField.description"
-              dir="auto"
-              class="mb-3 px-1"
-            >
+          <div v-else-if="currentField.type === 'checkbox'">
+            <div v-if="currentField.description" dir="auto" class="mb-3 px-1">
               <MarkdownContent :string="currentField.description" />
             </div>
-            <div
-              class="flex w-full max-h-44 overflow-y-auto"
-            >
-              <input
-                type="hidden"
-                name="cast_boolean"
-                value="true"
-              >
-              <div
-                class="space-y-3.5 mx-auto"
-              >
+            <div class="flex w-full max-h-44 overflow-y-auto">
+              <input type="hidden" name="cast_boolean" value="true" />
+              <div class="space-y-3.5 mx-auto">
                 <template v-if="isAnonymousChecboxes || !showFieldNames">
                   <span class="text-xl">
-                    {{ t('complete_hightlighted_checkboxes_and_click') }} <span class="font-semibold">{{ stepFields.length === currentStep + 1 ? t('submit') : t('next') }}</span>.
+                    {{ t("complete_hightlighted_checkboxes_and_click") }}
+                    <span class="font-semibold">{{
+                      stepFields.length === currentStep + 1
+                        ? t("submit")
+                        : t("next")
+                    }}</span
+                    >.
                   </span>
                   <input
                     v-for="field in currentStepFields"
@@ -261,7 +250,7 @@
                     type="hidden"
                     :name="`values[${field.uuid}]`"
                     :value="!!values[field.uuid]"
-                  >
+                  />
                 </template>
                 <template v-else>
                   <div
@@ -276,28 +265,31 @@
                         type="hidden"
                         :name="`values[${field.uuid}]`"
                         :value="!!values[field.uuid]"
-                      >
+                      />
                       <input
                         :id="field.uuid"
                         type="checkbox"
                         class="base-checkbox !h-7 !w-7"
-                        :oninvalid="`this.setCustomValidity('${t('please_check_the_box_to_continue')}')`"
-                        :onchange="`this.setCustomValidity(validity.valueMissing ? '${t('please_check_the_box_to_continue')}' : '');`"
+                        :oninvalid="`this.setCustomValidity('${t(
+                          'please_check_the_box_to_continue'
+                        )}')`"
+                        :onchange="`this.setCustomValidity(validity.valueMissing ? '${t(
+                          'please_check_the_box_to_continue'
+                        )}' : '');`"
                         :required="field.required"
                         :checked="!!values[field.uuid]"
-                        @click="[scrollIntoField(field), values[field.uuid] = !values[field.uuid]]"
-                      >
-                      <span
-                        v-if="field.title"
-                        class="text-xl"
-                      >
+                        @click="
+                          [
+                            scrollIntoField(field),
+                            (values[field.uuid] = !values[field.uuid]),
+                          ]
+                        "
+                      />
+                      <span v-if="field.title" class="text-xl">
                         <MarkdownContent :string="field.title" />
                       </span>
-                      <span
-                        v-else
-                        class="text-xl"
-                      >
-                        {{ field.name || field.type + ' ' + (index + 1) }}
+                      <span v-else class="text-xl">
+                        {{ field.name || field.type + " " + (index + 1) }}
                       </span>
                     </label>
                   </div>
@@ -306,14 +298,18 @@
             </div>
           </div>
           <ImageStep
-            v-else-if="currentField.type === 'image' || currentField.type === 'stamp'"
+            v-else-if="
+              currentField.type === 'image' || currentField.type === 'stamp'
+            "
             :key="currentField.uuid"
             v-model="values[currentField.uuid]"
             :field="currentField"
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
             :show-field-names="showFieldNames"
-            @attached="[attachments.push($event), scrollIntoField(currentField)]"
+            @attached="
+              [attachments.push($event), scrollIntoField(currentField)]
+            "
           />
           <SignatureStep
             v-else-if="currentField.type === 'signature'"
@@ -355,7 +351,9 @@
             :field="currentField"
             :attachments-index="attachmentsIndex"
             :submitter-slug="submitterSlug"
-            @attached="[attachments.push($event), scrollIntoField(currentField)]"
+            @attached="
+              [attachments.push($event), scrollIntoField(currentField)]
+            "
           />
           <PhoneStep
             v-else-if="currentField.type === 'phone'"
@@ -384,7 +382,10 @@
           />
         </div>
         <div
-          v-if="currentField.type !== 'payment' || submittedValues[currentField.uuid]"
+          v-if="
+            currentField.type !== 'payment' ||
+            submittedValues[currentField.uuid]
+          "
           :class="currentField.type === 'signature' ? 'mt-2' : 'mt-6 md:mt-8'"
         >
           <button
@@ -399,25 +400,19 @@
                 v-if="isSubmitting"
                 class="mr-1 animate-spin"
               />
-              <span>
-                {{ buttonText }}
-              </span><span
-                v-if="isSubmitting"
-                class="w-6 flex justify-start mr-1"
-              ><span>...</span></span>
+              <span> {{ buttonText }} </span
+              ><span v-if="isSubmitting" class="w-6 flex justify-start mr-1"
+                ><span>...</span></span
+              >
             </span>
           </button>
-          <div
-            v-if="showFillAllRequiredFields"
-            class="text-center mt-1"
-          >
-            {{ t('please_fill_all_required_fields') }}
+          <div v-if="showFillAllRequiredFields" class="text-center mt-1">
+            {{ t("please_fill_all_required_fields") }}
           </div>
         </div>
       </form>
       <FormCompleted
         v-else
-        :is-demo="isDemo"
         :attribution="attribution"
         :completed-button="completedRedirectUrl ? {} : completedButton"
         :completed-message="completedRedirectUrl ? {} : completedMessage"
@@ -427,72 +422,84 @@
         :can-send-email="canSendEmail && !!submitter.email"
         :submitter-slug="submitterSlug"
       />
-      <div
-        v-if="stepFields.length < 80"
-        class="flex justify-center"
-      >
+      <div v-if="stepFields.length < 80" class="flex justify-center">
         <div class="flex items-center mt-4 mb-1 flex-wrap">
           <a
             v-for="(step, index) in stepFields"
             :key="step[0].uuid"
             href="#"
             class="inline border border-base-300 h-3 w-3 rounded-full mx-1 mt-1"
-            :class="{ 'bg-base-300': index === currentStep, 'bg-base-content': (index < currentStep && stepFields[index].every((f) => !f.required || ![null, undefined, ''].includes(values[f.uuid]))) || isCompleted, 'bg-white': index > currentStep }"
-            @click.prevent="isCompleted ? '' : [saveStep(), goToStep(step, true)]"
+            :class="{
+              'bg-base-300': index === currentStep,
+              'bg-base-content':
+                (index < currentStep &&
+                  stepFields[index].every(
+                    (f) =>
+                      !f.required ||
+                      ![null, undefined, ''].includes(values[f.uuid])
+                  )) ||
+                isCompleted,
+              'bg-white': index > currentStep,
+            }"
+            @click.prevent="
+              isCompleted ? '' : [saveStep(), goToStep(step, true)]
+            "
           />
         </div>
       </div>
-      <div
-        v-else
-        class="mt-5"
-      />
+      <div v-else class="mt-5" />
     </div>
   </div>
 </template>
 
 <script>
-import FieldAreas from './areas'
-import FormulaFieldAreas from './formula_areas'
-import ImageStep from './image_step'
-import SignatureStep from './signature_step'
-import InitialsStep from './initials_step'
-import AttachmentStep from './attachment_step'
-import MultiSelectStep from './multi_select_step'
-import PhoneStep from './phone_step'
-import PaymentStep from './payment_step'
-import TextStep from './text_step'
-import NumberStep from './number_step'
-import DateStep from './date_step'
-import MarkdownContent from './markdown_content'
-import FormCompleted from './completed'
-import { IconInnerShadowTop, IconArrowsDiagonal, IconWritingSign, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
-import AppearsOn from './appears_on'
-import i18n from './i18n'
+import FieldAreas from "./areas";
+import FormulaFieldAreas from "./formula_areas";
+import ImageStep from "./image_step";
+import SignatureStep from "./signature_step";
+import InitialsStep from "./initials_step";
+import AttachmentStep from "./attachment_step";
+import MultiSelectStep from "./multi_select_step";
+import PhoneStep from "./phone_step";
+import PaymentStep from "./payment_step";
+import TextStep from "./text_step";
+import NumberStep from "./number_step";
+import DateStep from "./date_step";
+import MarkdownContent from "./markdown_content";
+import FormCompleted from "./completed";
+import {
+  IconInnerShadowTop,
+  IconArrowsDiagonal,
+  IconWritingSign,
+  IconArrowsDiagonalMinimize2,
+} from "@tabler/icons-vue";
+import AppearsOn from "./appears_on";
+import i18n from "./i18n";
 
 const isEmpty = (obj) => {
-  if (obj == null) return true
+  if (obj == null) return true;
 
   if (Array.isArray(obj)) {
-    return obj.length === 0
+    return obj.length === 0;
   }
 
-  if (typeof obj === 'string') {
-    return obj.trim().length === 0
+  if (typeof obj === "string") {
+    return obj.trim().length === 0;
   }
 
-  if (typeof obj === 'object') {
-    return Object.keys(obj).length === 0
+  if (typeof obj === "object") {
+    return Object.keys(obj).length === 0;
   }
 
   if (obj === false) {
-    return true
+    return true;
   }
 
-  return false
-}
+  return false;
+};
 
 export default {
-  name: 'SubmissionForm',
+  name: "SubmissionForm",
   components: {
     FieldAreas,
     ImageStep,
@@ -512,175 +519,171 @@ export default {
     MarkdownContent,
     PaymentStep,
     IconArrowsDiagonalMinimize2,
-    FormCompleted
+    FormCompleted,
   },
-  provide () {
+  provide() {
     return {
       baseUrl: this.baseUrl,
       scrollIntoArea: this.scrollIntoArea,
       scrollIntoField: this.scrollIntoField,
-      t: this.t
-    }
+      t: this.t,
+    };
   },
   props: {
     submitter: {
       type: Object,
-      required: true
+      required: true,
     },
     canSendEmail: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     attachments: {
       type: Array,
       required: false,
-      default: () => []
+      default: () => [],
     },
     onComplete: {
       type: Function,
       required: false,
-      default () {
-        return () => {}
-      }
+      default() {
+        return () => {};
+      },
     },
     expand: {
       type: Boolean,
       required: false,
-      default: null
+      default: null,
     },
     minimize: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     withDisclosure: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     reuseSignature: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     withConfetti: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     autoscrollFields: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     showFieldNames: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     withQrButton: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     withTypedSignature: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     isBreakpointMd: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     baseUrl: {
       type: String,
       required: false,
-      default: ''
+      default: "",
     },
     fields: {
       type: Array,
       required: false,
-      default: () => []
+      default: () => [],
     },
     backgroundColor: {
       type: String,
       required: false,
-      default: ''
+      default: "",
     },
     allowToSkip: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     goToLast: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
-    isDemo: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
+
     dryRun: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     attribution: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     language: {
       type: String,
       required: false,
-      default: ''
+      default: "",
     },
     values: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
     authenticityToken: {
       type: String,
       required: false,
-      default: ''
+      default: "",
     },
     i18n: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
     withSendCopyButton: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     withDownloadButton: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     completedRedirectUrl: {
       type: String,
       required: false,
-      default: ''
+      default: "",
     },
     completedButton: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
     completedMessage: {
       type: Object,
       required: false,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
-  data () {
+  data() {
     return {
       isCompleted: false,
       isFormVisible: this.expand !== false,
@@ -690,424 +693,538 @@ export default {
       orientation: screen?.orientation?.type,
       isSubmitting: false,
       submittedValues: {},
-      recalculateButtonDisabledKey: ''
-    }
+      recalculateButtonDisabledKey: "",
+    };
   },
   computed: {
-    isMobile () {
-      return /android|iphone|ipad/i.test(navigator.userAgent)
+    isMobile() {
+      return /android|iphone|ipad/i.test(navigator.userAgent);
     },
-    buttonText () {
-      if (this.alwaysMinimize || this.stepFields.length === this.currentStep + 1) {
-        return this.t('submit')
+    buttonText() {
+      if (
+        this.alwaysMinimize ||
+        this.stepFields.length === this.currentStep + 1
+      ) {
+        return this.t("submit");
       } else {
-        return this.t('next')
+        return this.t("next");
       }
     },
-    alwaysMinimize () {
-      return this.minimize || (this.orientation?.includes('landscape') && this.isMobile && parseInt(window.innerHeight) < 550)
+    alwaysMinimize() {
+      return (
+        this.minimize ||
+        (this.orientation?.includes("landscape") &&
+          this.isMobile &&
+          parseInt(window.innerHeight) < 550)
+      );
     },
-    currentStepFields () {
-      return this.stepFields[this.currentStep] || []
+    currentStepFields() {
+      return this.stepFields[this.currentStep] || [];
     },
-    browserLanguage () {
-      return (navigator.language || navigator.userLanguage || 'en').split('-')[0]
+    browserLanguage() {
+      return (navigator.language || navigator.userLanguage || "en").split(
+        "-"
+      )[0];
     },
-    queryParams () {
-      return new URLSearchParams(window.location.search)
+    queryParams() {
+      return new URLSearchParams(window.location.search);
     },
-    submitterSlug () {
-      return this.submitter.slug
+    submitterSlug() {
+      return this.submitter.slug;
     },
-    fieldsUuidIndex () {
+    fieldsUuidIndex() {
       return this.fields.reduce((acc, f) => {
-        acc[f.uuid] = f
+        acc[f.uuid] = f;
 
-        return acc
-      }, {})
+        return acc;
+      }, {});
     },
-    previousInitialsValue () {
+    previousInitialsValue() {
       if (this.reuseSignature !== false) {
-        const initialsField = [...this.fields].reverse().find((field) => field.type === 'initials' && !!this.values[field.uuid])
+        const initialsField = [...this.fields]
+          .reverse()
+          .find(
+            (field) => field.type === "initials" && !!this.values[field.uuid]
+          );
 
-        return this.values[initialsField?.uuid]
+        return this.values[initialsField?.uuid];
       } else {
-        return null
+        return null;
       }
     },
-    isAnonymousChecboxes () {
-      return this.currentField.type === 'checkbox' && this.currentStepFields.every((e) => !e.name && !e.required) && this.currentStepFields.length > 4
+    isAnonymousChecboxes() {
+      return (
+        this.currentField.type === "checkbox" &&
+        this.currentStepFields.every((e) => !e.name && !e.required) &&
+        this.currentStepFields.length > 4
+      );
     },
-    isButtonDisabled () {
+    isButtonDisabled() {
       if (this.recalculateButtonDisabledKey) {
-        return this.isSubmitting ||
-        (this.currentField.required && ['image', 'file', 'multiple'].includes(this.currentField.type) && !this.values[this.currentField.uuid]?.length) ||
-        (this.currentField.required && this.currentField.type === 'signature' && !this.values[this.currentField.uuid]?.length && this.$refs.currentStep && !this.$refs.currentStep.isSignatureStarted) ||
-        (this.currentField.required && this.currentField.type === 'initials' && !this.values[this.currentField.uuid]?.length && this.$refs.currentStep && !this.$refs.currentStep.isInitialsStarted)
+        return (
+          this.isSubmitting ||
+          (this.currentField.required &&
+            ["image", "file", "multiple"].includes(this.currentField.type) &&
+            !this.values[this.currentField.uuid]?.length) ||
+          (this.currentField.required &&
+            this.currentField.type === "signature" &&
+            !this.values[this.currentField.uuid]?.length &&
+            this.$refs.currentStep &&
+            !this.$refs.currentStep.isSignatureStarted) ||
+          (this.currentField.required &&
+            this.currentField.type === "initials" &&
+            !this.values[this.currentField.uuid]?.length &&
+            this.$refs.currentStep &&
+            !this.$refs.currentStep.isInitialsStarted)
+        );
       } else {
-        return false
+        return false;
       }
     },
-    currentField () {
-      return this.currentStepFields[0]
+    currentField() {
+      return this.currentStepFields[0];
     },
-    stepFields () {
-      return this.fields.filter((f) => !f.readonly).reduce((acc, f) => {
-        const prevStep = acc[acc.length - 1]
+    stepFields() {
+      return this.fields
+        .filter((f) => !f.readonly)
+        .reduce((acc, f) => {
+          const prevStep = acc[acc.length - 1];
 
-        if (this.checkFieldConditions(f)) {
-          if (f.type === 'checkbox' && Array.isArray(prevStep) && prevStep[0].type === 'checkbox' && !f.description) {
-            prevStep.push(f)
-          } else {
-            acc.push([f])
+          if (this.checkFieldConditions(f)) {
+            if (
+              f.type === "checkbox" &&
+              Array.isArray(prevStep) &&
+              prevStep[0].type === "checkbox" &&
+              !f.description
+            ) {
+              prevStep.push(f);
+            } else {
+              acc.push([f]);
+            }
           }
-        }
 
-        return acc
-      }, [])
+          return acc;
+        }, []);
     },
-    formulaFields () {
-      return this.fields.filter((f) => f.preferences?.formula)
+    formulaFields() {
+      return this.fields.filter((f) => f.preferences?.formula);
     },
-    attachmentsIndex () {
+    attachmentsIndex() {
       return this.attachments.reduce((acc, a) => {
-        acc[a.uuid] = a
+        acc[a.uuid] = a;
 
-        return acc
-      }, {})
+        return acc;
+      }, {});
     },
-    submitPath () {
-      return `/s/${this.submitterSlug}`
-    }
+    submitPath() {
+      return `/s/${this.submitterSlug}`;
+    },
   },
   watch: {
-    expand (value) {
-      this.isFormVisible = value
+    expand(value) {
+      this.isFormVisible = value;
     },
-    currentStepFields (value) {
+    currentStepFields(value) {
       if (isEmpty(value) && this.currentStep > 0) {
-        this.currentStep -= 1
+        this.currentStep -= 1;
       }
-    }
+    },
   },
-  beforeUnmount () {
-    screen?.orientation?.removeEventListener('change', this.onOrientationChange)
+  beforeUnmount() {
+    screen?.orientation?.removeEventListener(
+      "change",
+      this.onOrientationChange
+    );
   },
-  mounted () {
-    this.submittedValues = JSON.parse(JSON.stringify(this.values))
+  mounted() {
+    this.submittedValues = JSON.parse(JSON.stringify(this.values));
 
-    screen?.orientation.addEventListener('change', this.onOrientationChange)
+    screen?.orientation.addEventListener("change", this.onOrientationChange);
 
     this.fields.forEach((field) => {
       if (field.default_value && !field.readonly) {
-        this.values[field.uuid] ||= field.default_value
+        this.values[field.uuid] ||= field.default_value;
       }
-    })
+    });
 
-    if (this.queryParams.get('field_uuid')) {
+    if (this.queryParams.get("field_uuid")) {
       const stepIndex = this.stepFields.findIndex((fields) => {
-        return fields.some((f) => f.uuid === this.queryParams.get('field_uuid'))
-      })
+        return fields.some(
+          (f) => f.uuid === this.queryParams.get("field_uuid")
+        );
+      });
 
-      this.currentStep = Math.max(stepIndex, 0)
+      this.currentStep = Math.max(stepIndex, 0);
     } else if (this.goToLast) {
-      const requiredEmptyStepIndex = this.stepFields.indexOf(this.stepFields.find((fields) => fields.some((f) => f.required && !this.submittedValues[f.uuid])))
-      const lastFilledStepIndex = this.stepFields.indexOf([...this.stepFields].reverse().find((fields) => fields.some((f) => !!this.submittedValues[f.uuid]))) + 1
+      const requiredEmptyStepIndex = this.stepFields.indexOf(
+        this.stepFields.find((fields) =>
+          fields.some((f) => f.required && !this.submittedValues[f.uuid])
+        )
+      );
+      const lastFilledStepIndex =
+        this.stepFields.indexOf(
+          [...this.stepFields]
+            .reverse()
+            .find((fields) =>
+              fields.some((f) => !!this.submittedValues[f.uuid])
+            )
+        ) + 1;
 
-      const indexesList = [this.stepFields.length - 1]
+      const indexesList = [this.stepFields.length - 1];
 
       if (requiredEmptyStepIndex !== -1) {
-        indexesList.push(requiredEmptyStepIndex)
+        indexesList.push(requiredEmptyStepIndex);
       }
 
       if (lastFilledStepIndex !== -1) {
-        indexesList.push(lastFilledStepIndex)
+        indexesList.push(lastFilledStepIndex);
       }
 
-      this.currentStep = Math.min(...indexesList)
+      this.currentStep = Math.min(...indexesList);
     }
 
-    if (document.body?.clientWidth >= 768 && this.expand !== true && ['signature', 'initials', 'file', 'image'].includes(this.currentField?.type)) {
-      this.isFormVisible = false
+    if (
+      document.body?.clientWidth >= 768 &&
+      this.expand !== true &&
+      ["signature", "initials", "file", "image"].includes(
+        this.currentField?.type
+      )
+    ) {
+      this.isFormVisible = false;
     }
 
     if (this.alwaysMinimize) {
-      this.isFormVisible = false
+      this.isFormVisible = false;
     }
 
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       this.$nextTick(() => {
-        const root = this.$root.$el.parentNode.getRootNode()
-        const scrollbox = root.getElementById('scrollbox')
-        const parent = root.body || root.querySelector('div')
+        const root = this.$root.$el.parentNode.getRootNode();
+        const scrollbox = root.getElementById("scrollbox");
+        const parent = root.body || root.querySelector("div");
 
-        parent.style.overflow = 'hidden'
+        parent.style.overflow = "hidden";
 
-        scrollbox.classList.add('h-full', 'overflow-y-auto')
-        scrollbox.parentNode.classList.add('h-screen', 'overflow-y-auto')
-        scrollbox.parentNode.style.maxHeight = '-webkit-fill-available'
-      })
+        scrollbox.classList.add("h-full", "overflow-y-auto");
+        scrollbox.parentNode.classList.add("h-screen", "overflow-y-auto");
+        scrollbox.parentNode.style.maxHeight = "-webkit-fill-available";
+      });
     }
 
     this.$nextTick(() => {
-      this.recalculateButtonDisabledKey = Math.random()
+      this.recalculateButtonDisabledKey = Math.random();
 
       Promise.all([
         this.maybeTrackEmailClick(),
-        this.maybeTrackSmsClick()
+        this.maybeTrackSmsClick(),
       ]).finally(() => {
-        this.trackViewForm()
-      })
-    })
+        this.trackViewForm();
+      });
+    });
   },
   methods: {
-    t (key) {
-      return this.i18n[key] || i18n[this.language?.toLowerCase()]?.[key] || i18n[this.browserLanguage]?.[key] || i18n.en[key] || key
+    t(key) {
+      return (
+        this.i18n[key] ||
+        i18n[this.language?.toLowerCase()]?.[key] ||
+        i18n[this.browserLanguage]?.[key] ||
+        i18n.en[key] ||
+        key
+      );
     },
-    onOrientationChange (event) {
-      this.orientation = event.target.type
+    onOrientationChange(event) {
+      this.orientation = event.target.type;
     },
-    checkFieldConditions (field) {
+    checkFieldConditions(field) {
       if (field.conditions?.length) {
         return field.conditions.reduce((acc, c) => {
-          if (['empty', 'unchecked'].includes(c.action)) {
-            return acc && isEmpty(this.values[c.field_uuid])
-          } else if (['not_empty', 'checked'].includes(c.action)) {
-            return acc && !isEmpty(this.values[c.field_uuid])
-          } else if (['equal', 'contains'].includes(c.action)) {
-            const field = this.fieldsUuidIndex[c.field_uuid]
-            const option = field.options.find((o) => o.uuid === c.value)
-            const values = [this.values[c.field_uuid]].flat()
+          if (["empty", "unchecked"].includes(c.action)) {
+            return acc && isEmpty(this.values[c.field_uuid]);
+          } else if (["not_empty", "checked"].includes(c.action)) {
+            return acc && !isEmpty(this.values[c.field_uuid]);
+          } else if (["equal", "contains"].includes(c.action)) {
+            const field = this.fieldsUuidIndex[c.field_uuid];
+            const option = field.options.find((o) => o.uuid === c.value);
+            const values = [this.values[c.field_uuid]].flat();
 
-            return acc && values.includes(this.optionValue(option, field.options.indexOf(option)))
-          } else if (['not_equal', 'does_not_contain'].includes(c.action)) {
-            const field = this.fieldsUuidIndex[c.field_uuid]
-            const option = field.options.find((o) => o.uuid === c.value)
-            const values = [this.values[c.field_uuid]].flat()
+            return (
+              acc &&
+              values.includes(
+                this.optionValue(option, field.options.indexOf(option))
+              )
+            );
+          } else if (["not_equal", "does_not_contain"].includes(c.action)) {
+            const field = this.fieldsUuidIndex[c.field_uuid];
+            const option = field.options.find((o) => o.uuid === c.value);
+            const values = [this.values[c.field_uuid]].flat();
 
-            return acc && !values.includes(this.optionValue(option, field.options.indexOf(option)))
+            return (
+              acc &&
+              !values.includes(
+                this.optionValue(option, field.options.indexOf(option))
+              )
+            );
           } else {
-            return acc
+            return acc;
           }
-        }, true)
+        }, true);
       } else {
-        return true
+        return true;
       }
     },
-    optionValue (option, index) {
+    optionValue(option, index) {
       if (option.value) {
-        return option.value
+        return option.value;
       } else {
-        return `${this.t('option')} ${index + 1}`
+        return `${this.t("option")} ${index + 1}`;
       }
     },
-    maybeTrackEmailClick () {
-      const { queryParams } = this
+    maybeTrackEmailClick() {
+      const { queryParams } = this;
 
-      if (queryParams.has('t')) {
-        const t = queryParams.get('t')
+      if (queryParams.has("t")) {
+        const t = queryParams.get("t");
 
-        queryParams.delete('t')
-        const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join('?')
-        window.history.replaceState({}, document.title, newUrl)
+        queryParams.delete("t");
+        const newUrl = [window.location.pathname, queryParams.toString()]
+          .filter(Boolean)
+          .join("?");
+        window.history.replaceState({}, document.title, newUrl);
 
-        return fetch(this.baseUrl + '/api/submitter_email_clicks', {
-          method: 'POST',
+        return fetch(this.baseUrl + "/api/submitter_email_clicks", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             t,
-            submitter_slug: this.submitterSlug
-          })
-        })
+            submitter_slug: this.submitterSlug,
+          }),
+        });
       } else {
-        return Promise.resolve({})
+        return Promise.resolve({});
       }
     },
-    maybeTrackSmsClick () {
-      const { queryParams } = this
+    maybeTrackSmsClick() {
+      const { queryParams } = this;
 
-      if (queryParams.has('c')) {
-        const c = queryParams.get('c')
+      if (queryParams.has("c")) {
+        const c = queryParams.get("c");
 
-        queryParams.delete('c')
-        const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join('?')
-        window.history.replaceState({}, document.title, newUrl)
+        queryParams.delete("c");
+        const newUrl = [window.location.pathname, queryParams.toString()]
+          .filter(Boolean)
+          .join("?");
+        window.history.replaceState({}, document.title, newUrl);
 
-        return fetch(this.baseUrl + '/api/submitter_sms_clicks', {
-          method: 'POST',
+        return fetch(this.baseUrl + "/api/submitter_sms_clicks", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             c,
-            submitter_slug: this.submitterSlug
-          })
-        })
+            submitter_slug: this.submitterSlug,
+          }),
+        });
       } else {
-        return Promise.resolve({})
+        return Promise.resolve({});
       }
     },
-    trackViewForm () {
-      fetch(this.baseUrl + '/api/submitter_form_views', {
-        method: 'POST',
+    trackViewForm() {
+      fetch(this.baseUrl + "/api/submitter_form_views", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          submitter_slug: this.submitterSlug
-        })
-      })
+          submitter_slug: this.submitterSlug,
+        }),
+      });
     },
-    previousSignatureValueFor (field) {
+    previousSignatureValueFor(field) {
       if (this.reuseSignature !== false) {
-        const signatureField = [...this.fields].reverse().find((f) =>
-          f.type === 'signature' && field.preferences?.format === f.preferences?.format && !!this.values[f.uuid]
-        )
+        const signatureField = [...this.fields]
+          .reverse()
+          .find(
+            (f) =>
+              f.type === "signature" &&
+              field.preferences?.format === f.preferences?.format &&
+              !!this.values[f.uuid]
+          );
 
-        return this.values[signatureField?.uuid]
+        return this.values[signatureField?.uuid];
       } else {
-        return null
+        return null;
       }
     },
-    goToStep (step, scrollToArea = false, clickUpload = false) {
-      this.currentStep = this.stepFields.indexOf(step)
-      this.showFillAllRequiredFields = false
+    goToStep(step, scrollToArea = false, clickUpload = false) {
+      this.currentStep = this.stepFields.indexOf(step);
+      this.showFillAllRequiredFields = false;
 
       this.$nextTick(() => {
-        this.recalculateButtonDisabledKey = Math.random()
+        this.recalculateButtonDisabledKey = Math.random();
 
         if (!this.isCompleted) {
           if (scrollToArea) {
-            this.scrollIntoField(step[0])
+            this.scrollIntoField(step[0]);
 
-            this.$refs.form.querySelector('input[type="date"], input[type="number"], input[type="text"], select')?.focus()
+            this.$refs.form
+              .querySelector(
+                'input[type="date"], input[type="number"], input[type="text"], select'
+              )
+              ?.focus();
           }
 
-          if (clickUpload && !this.values[this.currentField.uuid] && ['file', 'image'].includes(this.currentField.type)) {
-            this.$refs.form.querySelector('input[type="file"]')?.click()
+          if (
+            clickUpload &&
+            !this.values[this.currentField.uuid] &&
+            ["file", "image"].includes(this.currentField.type)
+          ) {
+            this.$refs.form.querySelector('input[type="file"]')?.click();
           }
         }
-      })
+      });
     },
-    saveStep (formData) {
-      const currentFieldUuids = this.currentStepFields.map((f) => f.uuid)
-      const currentFieldType = this.currentField.type
+    saveStep(formData) {
+      const currentFieldUuids = this.currentStepFields.map((f) => f.uuid);
+      const currentFieldType = this.currentField.type;
 
       if (this.isCompleted) {
-        return Promise.resolve({})
+        return Promise.resolve({});
       } else {
         return fetch(this.baseUrl + this.submitPath, {
-          method: 'POST',
-          body: formData || new FormData(this.$refs.form)
+          method: "POST",
+          body: formData || new FormData(this.$refs.form),
         }).then((response) => {
           if (response.status === 200) {
             currentFieldUuids.forEach((fieldUuid) => {
-              this.submittedValues[fieldUuid] = this.values[fieldUuid]
+              this.submittedValues[fieldUuid] = this.values[fieldUuid];
 
-              if (currentFieldType === 'phone') {
-                this.phoneVerifiedValues[fieldUuid] = this.values[fieldUuid]
+              if (currentFieldType === "phone") {
+                this.phoneVerifiedValues[fieldUuid] = this.values[fieldUuid];
               }
-            })
+            });
           }
 
-          return response
-        })
+          return response;
+        });
       }
     },
-    scrollIntoField (field) {
-      return this.$refs.areas.scrollIntoField(field)
+    scrollIntoField(field) {
+      return this.$refs.areas.scrollIntoField(field);
     },
-    scrollIntoArea (area) {
-      return this.$refs.areas.scrollIntoArea(area)
+    scrollIntoArea(area) {
+      return this.$refs.areas.scrollIntoArea(area);
     },
-    async submitStep () {
-      this.isSubmitting = true
+    async submitStep() {
+      this.isSubmitting = true;
 
-      const stepPromise = ['signature', 'phone', 'initials', 'payment'].includes(this.currentField.type)
+      const stepPromise = [
+        "signature",
+        "phone",
+        "initials",
+        "payment",
+      ].includes(this.currentField.type)
         ? this.$refs.currentStep.submit
-        : () => Promise.resolve({})
+        : () => Promise.resolve({});
 
-      stepPromise().then(async () => {
-        const emptyRequiredField = this.stepFields.find((fields, index) => {
-          if (index >= this.currentStep) {
-            return false
-          }
-
-          return fields.some((f) => {
-            return f.required && (f.type === 'phone' || !this.allowToSkip) && isEmpty(this.submittedValues[f.uuid])
-          })
-        })
-
-        const formData = new FormData(this.$refs.form)
-        const isLastStep = this.currentStep === this.stepFields.length - 1
-
-        if (isLastStep && !emptyRequiredField && !this.dryRun) {
-          formData.append('completed', 'true')
-        }
-
-        let saveStepRequest
-
-        if (!isLastStep && this.phoneVerifiedValues[this.currentField.uuid] && this.phoneVerifiedValues[this.currentField.uuid] === this.values[this.currentField.uuid]) {
-          saveStepRequest = Promise.resolve({})
-        } else {
-          saveStepRequest = this.saveStep(formData)
-        }
-
-        await saveStepRequest.then(async (response) => {
-          if (response.status === 422 || response.status === 500) {
-            const data = await response.json()
-
-            alert(data.error || 'Value is invalid')
-
-            return Promise.reject(new Error(data.error))
-          }
-
-          if (isLastStep) {
-            this.isSecondWalkthrough = true
-          }
-
-          const nextStep = (isLastStep && emptyRequiredField) || this.stepFields[this.currentStep + 1]
-
-          if (nextStep) {
-            if (this.alwaysMinimize) {
-              this.isFormVisible = false
+      stepPromise()
+        .then(async () => {
+          const emptyRequiredField = this.stepFields.find((fields, index) => {
+            if (index >= this.currentStep) {
+              return false;
             }
 
-            this.goToStep(nextStep, this.autoscrollFields)
+            return fields.some((f) => {
+              return (
+                f.required &&
+                (f.type === "phone" || !this.allowToSkip) &&
+                isEmpty(this.submittedValues[f.uuid])
+              );
+            });
+          });
 
-            if (emptyRequiredField === nextStep) {
-              this.showFillAllRequiredFields = true
-            }
+          const formData = new FormData(this.$refs.form);
+          const isLastStep = this.currentStep === this.stepFields.length - 1;
+
+          if (isLastStep && !emptyRequiredField && !this.dryRun) {
+            formData.append("completed", "true");
+          }
+
+          let saveStepRequest;
+
+          if (
+            !isLastStep &&
+            this.phoneVerifiedValues[this.currentField.uuid] &&
+            this.phoneVerifiedValues[this.currentField.uuid] ===
+              this.values[this.currentField.uuid]
+          ) {
+            saveStepRequest = Promise.resolve({});
           } else {
-            this.isCompleted = true
-
-            const respData = await response.text()
-
-            if (respData) {
-              this.onComplete(JSON.parse(respData))
-            }
-
-            if (this.completedRedirectUrl) {
-              window.location.href = this.completedRedirectUrl
-            }
+            saveStepRequest = this.saveStep(formData);
           }
-        }).catch(error => {
-          console.error(error)
-        }).finally(() => {
-          this.isSubmitting = false
+
+          await saveStepRequest
+            .then(async (response) => {
+              if (response.status === 422 || response.status === 500) {
+                const data = await response.json();
+
+                alert(data.error || "Value is invalid");
+
+                return Promise.reject(new Error(data.error));
+              }
+
+              if (isLastStep) {
+                this.isSecondWalkthrough = true;
+              }
+
+              const nextStep =
+                (isLastStep && emptyRequiredField) ||
+                this.stepFields[this.currentStep + 1];
+
+              if (nextStep) {
+                if (this.alwaysMinimize) {
+                  this.isFormVisible = false;
+                }
+
+                this.goToStep(nextStep, this.autoscrollFields);
+
+                if (emptyRequiredField === nextStep) {
+                  this.showFillAllRequiredFields = true;
+                }
+              } else {
+                this.isCompleted = true;
+
+                const respData = await response.text();
+
+                if (respData) {
+                  this.onComplete(JSON.parse(respData));
+                }
+
+                if (this.completedRedirectUrl) {
+                  window.location.href = this.completedRedirectUrl;
+                }
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+            })
+            .finally(() => {
+              this.isSubmitting = false;
+            });
         })
-      }).catch(error => {
-        if (error?.message === 'Image too small') {
-          alert('Signature is too small - please redraw.')
-        } else {
-          console.log(error)
-        }
-      }).finally(() => {
-        this.isSubmitting = false
-      })
-    }
-  }
-}
+        .catch((error) => {
+          if (error?.message === "Image too small") {
+            alert("Signature is too small - please redraw.");
+          } else {
+            console.log(error);
+          }
+        })
+        .finally(() => {
+          this.isSubmitting = false;
+        });
+    },
+  },
+};
 </script>

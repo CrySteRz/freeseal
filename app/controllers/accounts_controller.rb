@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AccountsController < ApplicationController
   LOCALE_OPTIONS = {
     'en-US' => 'English (United States)',
@@ -16,23 +14,12 @@ class AccountsController < ApplicationController
   def show; end
 
   def update
-    current_account.update!(account_params)
-
-    @encrypted_config = EncryptedConfig.find_or_initialize_by(account: current_account,
-                                                              key: EncryptedConfig::APP_URL_KEY)
-    @encrypted_config.assign_attributes(app_url_params)
-
-    unless URI.parse(@encrypted_config.value.to_s).class.in?([URI::HTTP, URI::HTTPS])
-      @encrypted_config.errors.add(:value, 'should be a valid URL')
-
-      return render :show, status: :unprocessable_entity
+    if current_account.update(account_params)
+      Uvtsign.refresh_default_url_options!
+      redirect_to settings_account_path, notice: 'Account information has been updated'
+    else
+      render :show, status: :unprocessable_entity
     end
-
-    @encrypted_config.save!
-
-    Uvtsign.refresh_default_url_options!
-
-    redirect_to settings_account_path, notice: 'Account information has been updated'
   rescue ActiveRecord::RecordInvalid
     render :show, status: :unprocessable_entity
   end
@@ -57,11 +44,5 @@ class AccountsController < ApplicationController
 
   def account_params
     params.require(:account).permit(:name, :timezone, :locale)
-  end
-
-  def app_url_params
-    return {} if params[:encrypted_config].blank?
-
-    params.require(:encrypted_config).permit(:value)
   end
 end

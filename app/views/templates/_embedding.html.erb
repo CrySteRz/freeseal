@@ -55,7 +55,7 @@
 <div id="js_1" class="block my-4">
     <div class="mockup-code overflow-hidden pb-0 mt-4">
       <span class="top-0 right-0 absolute flex">
-        <clipboard-copy data-text="<script src=&quot;<%= Uvtsign::CDN_URL %>/js/form.js&quot;></script>
+        <clipboard-copy data-text="<script src=&quot;<%= ENV['FORCE_SSL'].present? ? 'https' : 'http' %>://<%= Uvtsign::HOST %>/js/form.js&quot;></script>">
 
 <uvtsign-form data-src=&quot;<%= start_form_url(slug: template.slug) %>&quot;></uvtsign-form>
 ">
@@ -77,7 +77,7 @@
 </clipboard-copy>
 
       </span>
-      <pre class="before:!m-0 pl-6 pb-4 overflow-auto"><code class="overflow-hidden w-full"><span style="color: #f4bf75">&lt;script </span><span style="color: #6a9fb5">src=</span><span style="color: #90a959">"<%= Uvtsign::CDN_URL %>/js/form.js"</span><span style="color: #f4bf75">&gt;&lt;/script&gt;</span>
+      <pre class="before:!m-0 pl-6 pb-4 overflow-auto"><code class="overflow-hidden w-full"><span style="color: #f4bf75">&lt;script </span><span style="color: #6a9fb5">src=</span><span style="color: #90a959">"<%= ENV['FORCE_SSL'].present? ? 'https' : 'http' %>://<%= Uvtsign::HOST %>/js/form.js"</span><span style="color: #f4bf75">&gt;&lt;/script&gt;</span>
 
 <span style="color: #f4bf75">&lt;uvtsign-form</span> <span style="color: #6a9fb5">data-src=</span><span style="color: #90a959">"<%= start_form_url(slug: template.slug) %>"</span><span style="color: #f4bf75">&gt;</span><span style="color: #f4bf75">&lt;/uvtsign-form&gt;</span>
 </code></pre>

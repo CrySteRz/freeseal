@@ -4,13 +4,8 @@ module Uvtsign
   URL_CACHE = ActiveSupport::Cache::MemoryStore.new
   PRODUCT_URL = 'http://85.120.206.58'
   PRODUCT_NAME = 'UVTSign'
-  DEFAULT_APP_URL = 'http://localhost:3000'
-  GITHUB_URL = 'https://github.com/uvtsignco/uvtsign'
   SUPPORT_EMAIL = 'support@e-uvt.ro'
   HOST = ENV.fetch('HOST')
-  CONSOLE_URL = Rails.env.development? ? 'http://console.localhost.io:3001' : 'https://console.uvtsign.co'
-  CLOUD_URL = Rails.env.development? ? 'http://localhost:3000' : 'https://sign.uvt.ro'
-  CDN_URL = Rails.env.development? ? 'http://localhost:3000' : 'https://cdn.sign.uvt.ro'
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
   TIMESERVER_URL = ENV.fetch('TIMESERVER_URL', nil)
@@ -25,11 +20,6 @@ module Uvtsign
 
   def version
     @version ||= VERSION_FILE_PATH.read.strip if VERSION_FILE_PATH.exist?
-  end
-
-
-  def demo?
-    ENV['DEMO'] == 'true'
   end
 
   def active_storage_public?

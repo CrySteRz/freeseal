@@ -21,7 +21,7 @@
         </span>
       </a>
       <button
-        v-if="canSendEmail && !isDemo && withSendCopyButton"
+        v-if="canSendEmail && withSendCopyButton"
         class="white-button !h-auto flex items-center space-x-1 w-full"
         :disabled="isSendingCopy"
         @click.prevent="sendCopyToEmail"
@@ -44,25 +44,6 @@
           {{ t("download") }}
         </span>
       </button>
-      <a
-        v-if="isDemo"
-        target="_blank"
-        href="https://github.com/uvtsignco/uvtsign"
-        class="white-button flex items-center space-x-1 w-full"
-      >
-        <IconBrandGithub />
-        <span> Star on Github </span>
-      </a>
-      <a
-        v-if="isDemo"
-        href="https://uvtsign.co/sign_up"
-        class="white-button flex items-center space-x-1 w-full"
-      >
-        <IconLogin />
-        <span>
-          {{ t("create_a_free_account") }}
-        </span>
-      </a>
     </div>
     <div v-if="attribution" class="text-center mt-4">
       {{ t("signed_with") }}
@@ -101,11 +82,6 @@ export default {
     submitterSlug: {
       type: String,
       required: true,
-    },
-    isDemo: {
-      type: Boolean,
-      required: false,
-      default: false,
     },
     attribution: {
       type: Boolean,
